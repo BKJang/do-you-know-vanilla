@@ -10,7 +10,9 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 
 ### 📚 Category of contents
 
-- [Type of JS (Primitive vs Object / 값 타입 vs 참조 타입 / Deep Copy / 명시적 변환 vs 암묵적 변환)](https://github.com/BKJang/do-you-know-vanilla/issues/1)
+- [Primitive vs Object](https://github.com/BKJang/do-you-know-vanilla/issues/1)
+- [값 타입 vs 참조 타입 / Deep Copy](https://github.com/BKJang/do-you-know-vanilla/issues/2)
+- [명시적 변환 vs 암묵적 변환](https://github.com/BKJang/do-you-know-vanilla/issues/3)
 
 ### :hammer: Simple Projects
 
