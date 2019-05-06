@@ -10,11 +10,18 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 
 ## [Go to Issues](https://github.com/BKJang/do-you-know-vanilla/issues)
 
-### 📚 Category of contents
+## 📚 Category of contents
 
-- [Type of JS - 01 ( Primitive vs Object )](https://github.com/BKJang/do-you-know-vanilla/issues/1)
-- [Type of JS - 02 ( 값 타입 vs 참조 타입 / Deep Copy )](https://github.com/BKJang/do-you-know-vanilla/issues/2)
-- [Type of JS - 03 ( 명시적 변환 vs 암묵적 변환 ) ](https://github.com/BKJang/do-you-know-vanilla/issues/3)
+#### ✏️ Basic of JS
+
+- [Primitive(값) vs Object(참조) ](https://github.com/BKJang/do-you-know-vanilla/issues/1)
+- [명시적 변환 vs 암묵적 변환](https://github.com/BKJang/do-you-know-vanilla/issues/3)
+
+#### 🔍 Advance of JS
+
+#### 💻 Skill of JS
+
+- [Deep Copy ](https://github.com/BKJang/do-you-know-vanilla/issues/2)
 
 <br/>
 
