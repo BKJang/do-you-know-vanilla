@@ -23,6 +23,6 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 
 <br/>
 
-### :hammer: Simple Projects
+## :hammer: Simple Projects
 
 - [vanilla-todoApp](https://github.com/BKJang/vanilla-todoApp)
