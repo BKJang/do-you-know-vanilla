@@ -10,7 +10,7 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 
 ### 📚 Category of contents
 
-- 
+- [Type of JS](https://github.com/BKJang/do-you-know-vanilla/issues/1)
 
 ### :hammer: Simple Projects
 
