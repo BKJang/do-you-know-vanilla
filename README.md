@@ -14,6 +14,7 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 
 - [Primitive(값) vs Object(참조) ](https://github.com/BKJang/do-you-know-vanilla/issues/1)
 - [명시적 변환 vs 암묵적 변환](https://github.com/BKJang/do-you-know-vanilla/issues/3)
+- [Functional Scope vs Block Scope](https://github.com/BKJang/do-you-know-vanilla/issues/4)
 
 ### 🔍 Advance of JS
 
