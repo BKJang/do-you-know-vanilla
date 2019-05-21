@@ -18,6 +18,8 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 
 ### 🔍 Advance of JS
 
+- [Event Loop](https://github.com/BKJang/do-you-know-vanilla/issues/5)
+
 ### 💻 Skill of JS
 
 - [Deep Copy ](https://github.com/BKJang/do-you-know-vanilla/issues/2)
