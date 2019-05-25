@@ -20,6 +20,7 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 ### 🔍 Advance of JS
 
 - [Event Loop](https://github.com/BKJang/do-you-know-vanilla/issues/5)
+- [repaint와 reflow](https://github.com/BKJang/do-you-know-vanilla/issues/9)
 
 ### 💻 Skill of JS
 
