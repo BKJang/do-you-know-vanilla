@@ -28,7 +28,7 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 - [Event Delegation(이벤트 위임)](https://github.com/BKJang/do-you-know-vanilla/issues/6)
 - [document.createDocumentFragment()](https://github.com/BKJang/do-you-know-vanilla/issues/8)
 - [repaint와 reflow 최적화](https://github.com/BKJang/do-you-know-vanilla/issues/10)
-
+- [쓰로틀링(Throttling)과 디바운싱(Debouncing)](https://github.com/BKJang/do-you-know-vanilla/issues/11)
 <br/>
 
 ## :hammer: Simple Projects
