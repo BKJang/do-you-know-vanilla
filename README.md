@@ -24,6 +24,7 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 
 - [Event Loop](https://github.com/BKJang/do-you-know-vanilla/issues/5)
 - [repaint와 reflow](https://github.com/BKJang/do-you-know-vanilla/issues/9)
+- [네임스페이스 패턴(Namespace Pattern)과 IIFE](https://github.com/BKJang/do-you-know-vanilla/issues/16)
 - [모듈 패턴(Module Pattern)](https://github.com/BKJang/do-you-know-vanilla/issues/13)
 
 ### 💻 Skill of JS
