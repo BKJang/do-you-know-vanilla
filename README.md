@@ -19,6 +19,7 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 - [Prototype](https://github.com/BKJang/do-you-know-vanilla/issues/12)
 - [실행 컨텍스트(Execution Context)](https://github.com/BKJang/do-you-know-vanilla/issues/14)
 - [클로저(Closure)](https://github.com/BKJang/do-you-know-vanilla/issues/15)
+- [템플릿 리터럴(Template Literal)](https://github.com/BKJang/do-you-know-vanilla/issues/17)
 
 ### 🔍 Advance of JS
 
