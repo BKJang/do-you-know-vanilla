@@ -21,6 +21,7 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 - [클로저(Closure)](https://github.com/BKJang/do-you-know-vanilla/issues/15)
 - [템플릿 리터럴(Template Literal)](https://github.com/BKJang/do-you-know-vanilla/issues/17)
 - [화살표 함수(Arrow Function)](https://github.com/BKJang/do-you-know-vanilla/issues/18)
+- [Spread연산자 & rest파라미터](https://github.com/BKJang/do-you-know-vanilla/issues/19)
 
 ### 🔍 Advance of JS
 
