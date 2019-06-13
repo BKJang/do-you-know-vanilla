@@ -1,3 +1,5 @@
+![do-you-know-vaniilla](./img/do-you-know-vanilla.png)
+
 # do-you-know-vanilla
 
 :banana: This repository contains contents about Vanilla JS and project developed with `Vanilla JS`.
