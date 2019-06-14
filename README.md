@@ -25,6 +25,7 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 - [화살표 함수(Arrow Function)](https://github.com/BKJang/do-you-know-vanilla/issues/18)
 - [Spread연산자 & rest파라미터](https://github.com/BKJang/do-you-know-vanilla/issues/19)
 - [Destructuring(비구조화 할당)](https://github.com/BKJang/do-you-know-vanilla/issues/20)
+- [클래스(class)](https://github.com/BKJang/do-you-know-vanilla/issues/21)
 
 ### 🔍 Advance of JS
 
