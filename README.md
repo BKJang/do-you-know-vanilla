@@ -46,6 +46,7 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 - [스크롤 이벤트 최적화(rAF)](https://github.com/BKJang/do-you-know-vanilla/issues/23)
 - [값 비교하기 (Array, String, Object ...)](https://github.com/BKJang/do-you-know-vanilla/issues/26)
 - [Object.keys(), Object.values(), Object.entries() 그리고 for...in](https://github.com/BKJang/do-you-know-vanilla/issues/27)
+- [배열 내장함수의 활용](https://github.com/BKJang/do-you-know-vanilla/issues/28)
 
 <br/>
 
