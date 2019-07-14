@@ -27,6 +27,7 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 - [Destructuring(비구조화 할당)](https://github.com/BKJang/do-you-know-vanilla/issues/20)
 - [클래스(class)](https://github.com/BKJang/do-you-know-vanilla/issues/21)
 - [모듈(Module)](https://github.com/BKJang/do-you-know-vanilla/issues/22)
+- [Promise와 async-await](https://github.com/BKJang/do-you-know-vanilla/issues/24)
 
 ### 🔍 Advance of JS
 
