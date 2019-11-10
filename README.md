@@ -29,6 +29,7 @@ The goal of this repository is to understand `Vanilla JS` and to become familiar
 - [모듈(Module)](https://github.com/BKJang/do-you-know-vanilla/issues/22)
 - [Promise와 async-await](https://github.com/BKJang/do-you-know-vanilla/issues/24)
 - [Iteration Protocol](https://github.com/BKJang/do-you-know-vanilla/issues/29)
+- [Generator](https://github.com/BKJang/do-you-know-vanilla/issues/30)
 
 ### 🔍 Advance of JS
 
