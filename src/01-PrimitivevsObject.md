@@ -116,3 +116,11 @@ console.log(changedAlex); // -> { name: 'Alex', age: 25 }
 ```
 
 원시타입과는 다르게 복사한 것을 변경을 했더니 기존 객체에도 영향이 간다. 이유는 **같은 값의 주소**를 복사했기 때문이다.
+
+<br/>
+
+---
+
+#### 🙏 Reference
+
+- [ImD/Dev-Docs - javascript Type](https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Type.md)
