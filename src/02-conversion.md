@@ -108,8 +108,6 @@ var value = NaN;
 if (value !== value) { console.log("we're dealing with NaN here") }
 ```
 
-<br/>
-
 ---
 
 #### 🙏 Reference

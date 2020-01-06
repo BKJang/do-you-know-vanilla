@@ -1,7 +1,5 @@
 ## Primitive(값) vs Object(참조)
 
-<br/>
-
 ## Primitive Type
 
 - String : 텍스트를 셋팅하는데 사용하는 타입.
@@ -116,8 +114,6 @@ console.log(changedAlex); // -> { name: 'Alex', age: 25 }
 ```
 
 원시타입과는 다르게 복사한 것을 변경을 했더니 기존 객체에도 영향이 간다. 이유는 **같은 값의 주소**를 복사했기 때문이다.
-
-<br/>
 
 ---
 
