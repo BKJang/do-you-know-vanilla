@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Basic - Do you know vanilla?</title>
+        <title>명시적 변환 vs 암묵적 변환 - Do you know vanilla?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="Primitive(값)%20vs%20Object(참조).html" class="active"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html" class="active"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -176,18 +176,109 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#basic" id="basic"><h1>Basic</h1></a>
+                        <a class="header" href="#명시적-변환-vs-암묵적-변환" id="명시적-변환-vs-암묵적-변환"><h2>명시적 변환 vs 암묵적 변환</h2></a>
+<p><code>Number(value)</code> 와 같은 코드를 작성하여 변환할 의사를 명확하게 표현하는 것을 <strong>명시적 변환</strong>이라고 한다. <code>JavaScript</code>는 동적 타입 언어이므로 값을 자동으로 여러 유형간에 변환을 자동으로 한다. 이것을 <strong>암묵적 변환</strong> 이라고 한다.</p>
+<p>암묵적 변환을 하지 않는 연산자는 <code>===</code> 이며, 완전 항등 연산자 라고 한다. 반면에 느슨한 항등 연산자 <code>==</code> 는 필요하다면 비교와 타입 강제 변환을 수행한다.</p>
+<a class="header" href="#string-변환" id="string-변환"><h3>String 변환</h3></a>
+<pre><code class="language-js">String(123) // 명시적
+123 + ''    // 암시적
+</code></pre>
+<pre><code class="language-js">String(123)                   // '123'
+String(-12.3)                 // '-12.3'
+String(null)                  // 'null'
+String(undefined)             // 'undefined'
+String(true)                  // 'true'
+String(false)                 // 'false'
+</code></pre>
+<p><code>Symbol</code> 변환은 명시적으로만 변환될 수 있고, <strong>암시적 변환은 되지 않는다</strong>.</p>
+<pre><code class="language-js">String(Symbol('my symbol'))   // 'Symbol(my symbol)'
+'' + Symbol('my symbol')      // TypeError is thrown
+</code></pre>
+<a class="header" href="#boolean-변환" id="boolean-변환"><h3>Boolean 변환</h3></a>
+<pre><code class="language-js">Boolean(2)          // 명시적
+if (2) { ... }      // 논리적 문맥 때문에 암시적
+!!2                 // 논리적 문맥 때문에 암시적
+2 || 'hello'        // 논리적 문맥 때문에 암시적
+</code></pre>
+<p>논리 연산자(예 : <code>||</code> 및 <code>&amp;&amp;</code> )에 따른 Boolean 변환을 내부적으로 수행하지만 Boolean값이 아니더라도 원래 피연산자의 값을 실제로 반환한다.</p>
+<pre><code class="language-js">// true를 반환하는 것이 아닌 123를 반환하고 있다.
+// 'hello' and 123 은 표현식을 계산하기 위해서 Boolean으로 강제 변환을 한다.
+let x = 'hello' &amp;&amp; 123;   // 123
+</code></pre>
+<pre><code class="language-js">Boolean('')           // false
+Boolean(0)            // false     
+Boolean(-0)           // false
+Boolean(NaN)          // false
+Boolean(null)         // false
+Boolean(undefined)    // false
+Boolean(false)        // false
+</code></pre>
+<p><code>object</code>, <code>function</code>, <code>Array</code>, <code>Date</code>, 사용자 정의 유형등은 <code>true</code> 로 변환한다.</p>
+<pre><code class="language-js">Boolean({})             // true
+Boolean([])             // true
+Boolean(Symbol())       // true
+!!Symbol()              // true
+Boolean(function() {})  // true
+</code></pre>
+<a class="header" href="#numeric-변환" id="numeric-변환"><h3>Numeric 변환</h3></a>
+<p><code>Number()</code> 함수를 사용하면 된다. 암시적 변환은 많은 경우에서 작동이 되기 때문에 까다롭다.</p>
+<pre><code class="language-js">Number('123')   // 명시적 - 123
++'123'          // 암시적 - 123
+123 != '456'    // 암시적 - true
+4 &gt; '5'         // 암시적 - false
+5 / null        // 암시적 - Infinity
+true | 0        // 암시적 - 1
+</code></pre>
+<pre><code class="language-js">Number(null) // 0
+Number(undefined) // NaN
+Number(true)  // 1
+Number(false) // 0
+Number(&quot; 12 &quot;) // 12
+Number(&quot;-12.34&quot;) // -12.34
+Number(&quot;\n&quot;) // 0
+Number(&quot; 12s &quot;) // NaN
+Number(123) // 123
+</code></pre>
+<ul>
+<li>문자열을 숫자로 변환할 때 엔진은 먼저 앞뒤의 공백, <code>\ n</code>, <code>\ t</code> 문자를 제거하고, 문자열이 유효한 숫자를 나타내지 않으면 <code>NaN</code> 을 반환한다. <strong><code>string</code>이 비어 있으면 <code>0</code>을 반환</strong>한다.</li>
+<li>null와 undefined는 다르게 처리가 되는데 null은 0으로 undefined는 NaN으로 된다.</li>
+</ul>
+<p><code>Symbol</code>은 명시적 또는 암시적으로 숫자로 변환될 수 없다. 또한 <code>TypeError</code>는 <code>undefined</code>로 발생하는 것처럼 <code>NaN</code>으로 자동 변환하는 대신 <code>throw</code> 된다.</p>
+<pre><code class="language-js">Number(Symbol('my symbol'))    // TypeError is thrown
++Symbol('123')                 // TypeError is thrown
+</code></pre>
+<a class="header" href="#tips" id="tips"><h4>Tips</h4></a>
+<ul>
+<li><code>==</code> 를 <code>null</code> 또는 <code>undefined</code> 에 적용하면 숫자 변환이 발생하지 않는다. <code>null</code> 은 <code>null</code>, <code>undefined</code> 와 동일하다.</li>
+</ul>
+<pre><code class="language-js">null == 0 // false, null is not converted to 0
+null == null // true
+undefined == undefined // true
+null == undefined // true
+null === undefined // false
+</code></pre>
+<ul>
+<li><code>NaN</code>은 그 자체가 동등하지 않다.</li>
+</ul>
+<pre><code class="language-js">var value = NaN;
+if (value !== value) { console.log(&quot;we're dealing with NaN here&quot;) }
+</code></pre>
+<hr />
+<a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
+<ul>
+<li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Type.md">ImD/Dev-Docs - javascript Type</a></li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-
-                        
-                            <a rel="next" href="01-PrimitivevsObject.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                            <a rel="prev" href="01-PrimitivevsObject.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
                             </a>
+                        
+
                         
 
                         <div style="clear: both"></div>
@@ -197,11 +288,11 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-
-                
-                    <a href="01-PrimitivevsObject.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                    <a href="01-PrimitivevsObject.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
                     </a>
+                
+
                 
             </nav>
 
