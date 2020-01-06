@@ -1,0 +1,16 @@
+  
+language: rust
+before_script:
+- cargo install mdbook --version 0.2.3
+script:
+- mv _theme theme
+- mdbook build
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: "$GH_TOKEN"
+  keep_history: true
+  local_dir: book
+  on:
+    branch: master
