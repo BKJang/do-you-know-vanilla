@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -484,6 +484,41 @@ if (value !== value) { console.log(&quot;we're dealing with NaN here&quot;) }
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Type.md">ImD/Dev-Docs - javascript Type</a></li>
 </ul>
+<a class="header" href="#functional-scope-vs-block-scope" id="functional-scope-vs-block-scope"><h2>Functional Scope vs Block Scope</h2></a>
+<a class="header" href="#functional-scope" id="functional-scope"><h2>Functional Scope</h2></a>
+<p>자바스크립트는 <strong>함수를 단위로 Scope를 구분한다.</strong> 즉 같은 함수 안에서 선언된 변수들은 같은 레벨의 Scope를 가지게 되는 것이다. 각각의 함수는 독립적인 Scope를 가지게 되어 다른 함수의 Scope에 접근을 할 수 없다.</p>
+<pre><code class="language-javascript">// Global Scope
+function someFunction() {
+  if (true) {
+    var name = &quot;BKJang&quot;;
+  }
+  console.log(name); //BKJang
+}
+</code></pre>
+<p>위와 같이 Global Scope에 <code>someFunction()</code> 을 선언하고 내부에 if문 괄호 안에 선언한 변수는 <strong>someFunction function Scope</strong> 에 붙게 된다. 함수를 단위로 스코프가 생기기 때문에 <code>name</code>을 출력하면 <code>undefined</code>가 아닌 <code>BKJang</code>이 출력된다.</p>
+<a class="header" href="#block-scope" id="block-scope"><h2>Block Scope</h2></a>
+<p>Block Statement는 우리가 많이 보는 if문, switch문, for, while문이다. 이러한 문장들은 괄호로 감싸진 부분이 존재하지만 새로운 Scope를 만들지는 않는다. Block Statement 안에서 정의한 변수는 가장 가까운 함수의 Scope에 붙게 된다.</p>
+<pre><code class="language-javascript">if (true) {
+  // this 'if' conditional block doesn't create a new scope
+  var name = &quot;BKJang&quot;; // name is still in the global scope
+}
+
+console.log(name); // logs 'sseon'
+</code></pre>
+<p><code>ES6</code>에서는 <code>let</code>, <code>const</code>가 추가 되었다. 이 2개는 <code>var</code> 대용으로 사용된다. 그러나 그보다 더 중요한 개념이 들어간다. 바로 <strong>Block Level Scope</strong> 라는 것이다. 기존의 자바스크립트는 위에서 본 것처럼 <strong>Functional Scope</strong> 이다. 그러나 <code>let</code>, <code>const</code> 를 사용하게 되면 <strong>Block Level Scope</strong> 지원이 가능하다.</p>
+<pre><code class="language-javascript">if (true) {
+  // this 'if' conditional block doesn't create a new scope
+  var name = &quot;BKJang&quot;; // name is still in the global scope
+  let likes = &quot;Coding&quot;;
+  const lang = &quot;Javascript&quot;;
+}
+
+console.log(name); // 'BKJang'
+console.log(likes); // Uncaught ReferenceError: likes is not defined
+console.log(lang); // Uncaught ReferenceError: lang is not defined
+</code></pre>
+<p><code>var</code>와는 다르게 <code>let</code>, <code>const</code>는 Block Statement내에서 <strong>Local Scope</strong> 를 지원한다. 즉 이제 Scope가 가장 가까운 function에 붙는 것이 아닌 해당 Block에 붙게 되는 것이다.</p>
+<p><strong>참고로 Global Scope는 응용 프로그램이 살아있을 때까지 유효하며, Local Scope은 함수가 호출되고 실행되는한 유지가 된다.</strong></p>
 
                     </main>
 
