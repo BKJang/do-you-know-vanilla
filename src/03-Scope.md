@@ -22,19 +22,17 @@ Block Statement는 우리가 많이 보는 if문, switch문, for, while문이다
 
 ```javascript
 if (true) {
-  // this 'if' conditional block doesn't create a new scope
-  var name = "BKJang"; // name is still in the global scope
+  var name = "BKJang";
 }
 
-console.log(name); // logs 'sseon'
+console.log(name); // BKJang
 ```
 
 `ES6`에서는 `let`, `const`가 추가 되었다. 이 2개는 `var` 대용으로 사용된다. 그러나 그보다 더 중요한 개념이 들어간다. 바로 **Block Level Scope** 라는 것이다. 기존의 자바스크립트는 위에서 본 것처럼 **Functional Scope** 이다. 그러나 `let`, `const` 를 사용하게 되면 **Block Level Scope** 지원이 가능하다.
 
 ```javascript
 if (true) {
-  // this 'if' conditional block doesn't create a new scope
-  var name = "BKJang"; // name is still in the global scope
+  var name = "BKJang";
   let likes = "Coding";
   const lang = "Javascript";
 }
@@ -47,3 +45,10 @@ console.log(lang); // Uncaught ReferenceError: lang is not defined
 `var`와는 다르게 `let`, `const`는 Block Statement내에서 **Local Scope** 를 지원한다. 즉 이제 Scope가 가장 가까운 function에 붙는 것이 아닌 해당 Block에 붙게 되는 것이다.
 
 **참고로 Global Scope는 응용 프로그램이 살아있을 때까지 유효하며, Local Scope은 함수가 호출되고 실행되는한 유지가 된다.**
+
+---
+
+#### 🙏 Reference
+
+- [ImD/Dev-Docs - javascript Function](https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Function.md)
+- [DEVLOG - [ES6]1. let과 const](https://bkdevlog.netlify.com/posts/let-const)
