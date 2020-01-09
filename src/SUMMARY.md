@@ -5,3 +5,4 @@
   - [명시적 변환 vs 암묵적 변환](./02-conversion.md)
   - [Functional Scope vs Block Scope](./03-Scope.md)
   - [this binding](./04-this-binding.md)
+  - [prototype](./05-prototype.md)
