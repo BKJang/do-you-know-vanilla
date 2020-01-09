@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -676,6 +676,191 @@ obj.outerFunc();
 <li><a href="https://seonhyungjo.github.io/Javascript-Book/Basic/11-Call-Apply-Bind.html">SeonHyungJo - Javascript-Book</a></li>
 <li><a href="https://github.com/Im-D/Dev-Docs/edit/master/Javascript/JavaScript%EC%9D%98%20this.md">Im-D/Dev-Docs -Javascript의 this</a></li>
 <li><a href="https://www.zerocho.com/category/JavaScript/post/5b0645cc7e3e36001bf676eb">Zerocho - 자바스크립트의 this는 무엇인가</a></li>
+</ul>
+<a class="header" href="#prototype" id="prototype"><h2>Prototype</h2></a>
+<a class="header" href="#프로토타입-체인" id="프로토타입-체인"><h3>프로토타입 체인</h3></a>
+<p>특정 객체의 메서드나 프로퍼티에 접근하고자할 때, <strong>해당 객체에 접근하려고 하는 프로퍼티나 객체가 없다면</strong> 프로토타입 링크([[Prototype]] 프로퍼티)를 따라 <strong>자신의 부모 역할을 하는 프로토타입 객체를 차례로 검색</strong>한다. 이를 프로토타입 체인이라 한다.</p>
+<pre><code class="language-javascript">var developer = {
+  name: &quot;BKJang&quot;,
+  age: 25,
+  sex: &quot;male&quot;
+};
+
+console.log(developer.hasOwnProperty(&quot;name&quot;)); //true
+console.log(developer.__proto__ === Object.prototype); //true
+console.log(Object.prototype.hasOwnProperty(&quot;hasOwnProperty&quot;)); //true
+</code></pre>
+<p><code>developer</code>객체에는 <code>hasOwnProperty()</code>메서드가 존재하지 않지만 에러가 나지 않는다.
+이는 <code>developer</code> 객체의 <strong>부모 객체인 <code>Object.prototype</code> 해당 메서드를 검색하기 때문</strong>이다.</p>
+<a class="header" href="#객체-리터럴-방식으로-생성했을-때-프로토타입-체인" id="객체-리터럴-방식으로-생성했을-때-프로토타입-체인"><h3>객체 리터럴 방식으로 생성했을 때 프로토타입 체인</h3></a>
+<pre><code class="language-javascript">var developer = {
+  name: &quot;BKJang&quot;,
+  age: 25,
+  sex: &quot;male&quot;
+};
+
+console.log(developer.__proto__ === Object.prototype); //1.true
+console.log(Object.prototype.constructor === Object); // 2.true
+console.log(Object.__proto__ === Function.prototype); //3.true
+console.log(Function.prototype.__proto__ === Object.prototype); //4.true
+</code></pre>
+<p><img src="https://bkdevlog.netlify.com/assets/img/prototype_literal.png" alt="JavaScript" /></p>
+<p><code>developer</code> 객체와 <code>Function.prototype</code> 객체의 <strong>프로토타입 객체는 <code>Object.prototype</code> 객체</strong>다.</p>
+<blockquote>
+<p>객체리터럴 방식으로 객체를 생성하면 해당 객체의 프로토타입 객체는 <code>Object.prototype</code> 객체다.</p>
+</blockquote>
+<a class="header" href="#생성자-함수를-생성했을-때-프로토타입-체인" id="생성자-함수를-생성했을-때-프로토타입-체인"><h3>생성자 함수를 생성했을 때 프로토타입 체인</h3></a>
+<pre><code class="language-javascript">function Developer(name) {
+  this.name = name;
+}
+
+var web = new Developer(&quot;BKJang&quot;);
+
+console.log(web.__proto__ === Developer.prototype); //1.true
+console.log(Developer.prototype.__proto__ === Object.prototype); //2.true
+console.log(Developer.prototype.constructor === Developer); //3.true
+console.log(Developer.__proto__ === Function.prototype); //4.true
+console.log(Function.prototype.__proto__ === Object.prototype); //5.true
+</code></pre>
+<p><code>Developer.prototype</code> 객체와 Developer() 생성자 함수의 프로토타입 객체인 <code>Function.prototype</code> 객체의 <strong>프로토타입 객체는 <code>Object.prototype</code> 객체</strong>다.</p>
+<p><img src="https://bkdevlog.netlify.com/assets/img/prototype_Func.png" alt="JavaScript" /></p>
+<a class="header" href="#프로토타입-체인의-종점end-of-prototype-chain" id="프로토타입-체인의-종점end-of-prototype-chain"><h4>프로토타입 체인의 종점(End of prototype chain)</h4></a>
+<blockquote>
+<p>객체 리터럴 방식으로 객체를 생성하든 생성자 함수를 이용해 객체를 생성하든 <strong>결국 모든 객체의 부모 객체(프로토타입 객체)는 <code>Object.prototype</code> 객체</strong>다. 이 때 <code>Object.prototype</code> 객체를 <strong>프로토타입 체인의 종점</strong>이라 한다.</p>
+</blockquote>
+<a class="header" href="#프로토타입-객체의-확장" id="프로토타입-객체의-확장"><h3>프로토타입 객체의 확장</h3></a>
+<p>프로토타입 객체 역시 객체다. 따라서, 객체의 <strong>프로퍼티를 동적으로 추가하거나 삭제할 수 있다.</strong></p>
+<pre><code class="language-javascript">function Developer(name) {
+  this.name = name;
+}
+
+var web = new Developer(&quot;BKJang&quot;);
+
+web.printAge(25); // Uncaught TypeError: web.printAge is not a function
+</code></pre>
+<p>위의 코드의 결과를 보면 <strong>web객체에서 <code>printAge()</code>라는 메서드가 없기 때문에</strong> 에러가 나는 것을 볼 수 있다.</p>
+<pre><code class="language-javascript">function Developer(name) {
+  this.name = name;
+}
+
+var web = new Developer(&quot;BKJang&quot;);
+
+Developer.prototype.printAge = function(age) {
+  console.log(&quot;The age of this developer is&quot;, age);
+};
+
+web.printAge(25); // The age of this developer is 25
+</code></pre>
+<p>web 객체의 프로토타입 객체(부모 객체)인 <code>Developer.prototype</code> 객체에 <code>printAge(age)</code>라는 메서드를 추가했다.</p>
+<p>이에 따라 <strong>web 객체에서 <code>printAge(age)</code>메서드에 접근하면 결과 값을 출력</strong>하는 것을 볼 수 있다.</p>
+<p><img src="https://bkdevlog.netlify.com/assets/img/prototype_extenstion.png" alt="JavaScript" /></p>
+<a class="header" href="#기본-데이터-타입의-확장" id="기본-데이터-타입의-확장"><h3>기본 데이터 타입의 확장</h3></a>
+<p>자바스크립트에서 <strong>숫자, 문자열과 같은 기본 데이터 타입에서 사용되는 표준 메서드의 경우 <code>Number.prototype</code>과 <code>String.prototype</code> 객체에 정의</strong>되어 있다.</p>
+<pre><code class="language-javascript">var str = &quot;hello world&quot;;
+
+str.printStr = function(text) {
+  console.log(text);
+};
+
+str.printStr(&quot;This is the test&quot;); //Uncaught TypeError: str.printStr is not a function
+</code></pre>
+<p>원시 데이터 타입인 문자열의 경우에는 객체가 아니기 때문에 프로퍼티를 동적으로 추가할 수 없다.</p>
+<p>그렇다면, 위에서 <code>str</code>변수에 <code>printStr</code> 메서드를 동적으로 추가하는 코드에서는 왜 에러가 발생하지 않을까?</p>
+<p>그 이유는 <strong>기본 데이터 타입으로 프로퍼티나 메소드를 호출하면 기본 데이터 타입과 연관된 객체로 일시적으로 변환되어 프로토타입 객체를 공유하게 되기 때문</strong>이다.</p>
+<pre><code class="language-javascript">var str = &quot;hello world&quot;;
+
+String.prototype.printStr = function(text) {
+  console.log(text);
+};
+
+str.printStr(&quot;This is the test&quot;); //This is the test
+&quot;this is string&quot;.printStr(&quot;This is the test&quot;); //This is the test
+</code></pre>
+<p>문자열 타입의 경우, <code>String.prototype</code> 객체에 표준 메서드가 정의 되어있기 때문에 <strong>해당 객체에 메서드를 추가해주면 기본 데이터 타입에서도 해당 메서드를 사용할 수 있다.</strong></p>
+<pre><code class="language-javascript">var str = &quot;hello world&quot;;
+
+String.prototype.printStr = function(text) {
+  console.log(text);
+};
+
+console.log(str.__proto__ === String.prototype); //1.true
+console.log(String.prototype.__proto__ === Object.prototype); //2.true
+console.log(String.prototype.constructor === String); //3.true
+console.log(String.__proto__ === Function.prototype); //4.true
+console.log(Function.prototype.__proto__ === Object.prototype); //5.true
+
+str.printStr(&quot;This is the test&quot;); //This is the test
+</code></pre>
+<p><img src="https://bkdevlog.netlify.com/assets/img/prototype_extenstion_primitive.png" alt="JavaScript" /></p>
+<a class="header" href="#프로토타입-객체의-변경" id="프로토타입-객체의-변경"><h3>프로토타입 객체의 변경</h3></a>
+<p>자바스크립트에서 특정 객체는 <strong>부모 객체인 프로토타입 객체를 임의로 변경할 수 있다.</strong></p>
+<pre><code class="language-javascript">function Developer(name) {
+  this.name = name;
+}
+
+var web = new Developer(&quot;BKJang&quot;);
+
+Developer.prototype = { age: 25 };
+
+var android = new Developer(&quot;YAKim&quot;);
+
+console.log(web.age); //undefined
+console.log(android.age); //25
+
+console.log(web.constructor); //Developer(name)
+console.log(android.constructor); //Object()
+</code></pre>
+<ul>
+<li><strong>변경 전 :</strong> 파란색 번호</li>
+<li><strong>변경 후 :</strong> 주황색 번호</li>
+</ul>
+<p><img src="https://bkdevlog.netlify.com/assets/img/prototype_change.png" alt="JavaScript" /></p>
+<p><strong>프로토타입 객체를 변경하기 전,</strong> web객체의 <code>constructor</code>는 프로토타입 체이닝에 따라 <strong><code>Developer()</code>생성자 함수</strong>를 가리킨다.</p>
+<p><strong>프로토타입 객체를 변경한 후,</strong> android객체의 <code>constructor</code>는 <strong><code>Object()</code> 함수</strong>를 가리킨다.</p>
+<p>프로토타입 객체가 변경되면서 <strong><code>Developer.prototype</code> 객체의 <code>constructor</code> 프로퍼티와 <code>Developer()</code> 생성자 함수의 연결이 깨진다.</strong></p>
+<p>이에 따라 <strong>프로토타입 체인이 동작하고</strong> android 객체의 <code>constructor</code>는 <code>Object.prototype</code> 객체의 <code>constructor</code> 프로퍼티가 가리키는 <strong><code>Object()</code> 함수</strong>가 되는 것이다.</p>
+<blockquote>
+<ul>
+<li>프로토타입 객체를 변경하기 전과 후의 프로토타입 링크([[Prototype]] 프로퍼티)는 <strong>각각 다른 프로토타입 객체와 바인딩 된다.</strong></li>
+<li>프로토타입 객체를 변경한 후에는 <strong>프로토타입 객체의 constructor 프로퍼티와 생성자 함수와의 연결이 깨진다.</strong></li>
+</ul>
+</blockquote>
+<a class="header" href="#프로토타입-체인의-동작-조건" id="프로토타입-체인의-동작-조건"><h3>프로토타입 체인의 동작 조건</h3></a>
+<blockquote>
+<p>프로토타입 체인은 객체의 특정 프로퍼티에 접근할 때, 그 프로퍼티가 해당 객체에 없는 경우 동작한다.</p>
+</blockquote>
+<pre><code class="language-javascript">function Developer(name) {
+  this.name = name;
+}
+
+Developer.prototype.age = 25;
+Developer.prototype.sex = &quot;male&quot;;
+
+var web = new Developer(&quot;BKJang&quot;);
+var android = new Developer(&quot;YAKim&quot;);
+
+android.sex = &quot;female&quot;;
+
+console.log(web.age); //1.25
+console.log(web.sex); //2.male
+
+console.log(android.age); //1.25
+console.log(android.sex); //3.female
+</code></pre>
+<p><img src="https://bkdevlog.netlify.com/assets/img/prototype_chaining_condition.png" alt="JavaScript" /></p>
+<ol>
+<li>
+<p><code>web</code> 객체에는 <code>age</code>와 <code>sex</code> 프로퍼티가 없기 때문에 <strong>프로토타입 체인에 따라 <code>Developer.prototype</code> 객체의 <code>age</code>와 <code>sex</code> 프로퍼티에 접근</strong>하고 있다.</p>
+</li>
+<li>
+<p><code>android</code> 객체에는 <code>age</code> 프로퍼티는 없지만 <code>sex</code> 프로퍼티는 있기 때문에 <strong><code>sex</code> 프로퍼티의 경우엔 프로토타입 체인이 동작하지 않고 <code>android</code> 객체의 <code>sex</code> 프로퍼티 값을 반환</strong>하고 있다.</p>
+</li>
+</ol>
+<hr />
+<a class="header" href="#pray-reference-1" id="pray-reference-1"><h4>:pray: Reference</h4></a>
+<ul>
+<li>인사이드 자바스크립트 (송형주, 고형준)</li>
+<li><a href="https://poiemaweb.com/js-prototype">Poiemaweb - Prototype</a></li>
 </ul>
 
                     </main>
