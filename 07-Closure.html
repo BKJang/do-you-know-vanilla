@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>실행 컨텍스트 - Do you know vanilla?</title>
+        <title>클로저 - Do you know vanilla?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html" class="active"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트</a></li><li><a href="07-Closure.html" class="active"><strong aria-hidden="true">1.7.</strong> 클로저</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -176,67 +176,116 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#실행-컨텍스트" id="실행-컨텍스트"><h2>실행 컨텍스트</h2></a>
-<p>실행 컨텍스트는 자바스크립트가 동작하는 원리라고 할 수 있다.</p>
-<p>쉽게 말하면, <strong>코드가 실행되는 환경</strong>이라고 보면 된다.</p>
-<ul>
-<li>
-<p>전역 컨텍스트 생성 후, <strong>함수 호출 시마다 함수 컨텍스트가 생긴다.</strong></p>
-</li>
-<li>
-<p>컨텍스트 생성 시 컨텍스트 안에 <code>변수객체(arguments, variable)</code>, <code>scope chain</code>, <code>this</code>가 생성된다.</p>
-</li>
-<li>
-<p>컨텍스트 생성 후 함수가 실행되는데, <strong>사용되는 변수들은 변수 객체 안에서 값을 찾고, 없다면 스코프 체인을 따라 올라가며 찾는다.</strong></p>
-</li>
-<li>
-<p><strong>함수 실행이 끝나면 해당 컨텍스트는 사라지고, 페이지가 종료되면 전역 컨텍스트는 사라진다.</strong></p>
-</li>
-</ul>
-<a class="header" href="#실행-컨텍스트-스택" id="실행-컨텍스트-스택"><h3>실행 컨텍스트 스택</h3></a>
-<p>코드가 실행 될 때, <strong>실행 컨텍스트 스택(Stack)</strong> 이 생성하고 소멸한다.</p>
-<p>현재 <strong>실행 중인 컨텍스트에서 관련없는 코드(예를 들어, 다른 함수)가 실행되면 새로운 컨텍스트가 생성</strong>된다.</p>
-<pre><code class="language-js">var global = &quot;global&quot;;
-
-function foo() {
-  var local1 = &quot;local1&quot;;
+                        <a class="header" href="#클로저closure" id="클로저closure"><h2>클로저(Closure)</h2></a>
+<p>클로저는 <a href="./06-execution-context.html">실행 컨텍스트</a>와 밀접한 관련이 있다.</p>
+<p>생성된 함수 객체는 <code>[[Scopes]]</code> 프로퍼티를 가지게 된다.</p>
+<p><code>[[Scopes]]</code> 프로퍼티는 <strong>함수 객체만이 소유하는 내부 프로퍼티(Internal Property)로서 현재 실행 컨텍스트의 스코프 체인이 참조하고 있는 객체를 값으로 설정</strong>한다.</p>
+<p><img src="https://bkdevlog.netlify.com/assets/img/js_scope_property.png" alt="JavaScript" /></p>
+<p>내부 함수의 <code>[[Scopes]]</code> 프로퍼티는 <strong>자신의 실행 환경(Lexical Enviroment)</strong> 과 자신을 포함하는 <strong>외부 함수의 실행 환경과 전역 객체</strong>를 가리킨다.</p>
+<p>이 때, 자신을 포함하는 <strong>외부 함수의 실행 컨텍스트가 소멸하여도 <code>[[Scopes]]</code>프로퍼티가 가리키는 외부 함수의 실행 환경(Activation Object)은 소멸하지 않고 참조</strong>할 수 있다. 이것이 <strong>클로저</strong>이다.</p>
+<p><br/></p>
+<p>외부함수에서 내부함수를 반환하는 코드를 보자.</p>
+<pre><code class="language-js">function foo() {
+  var x = &quot;variable of outerFunc&quot;;
 
   function bar() {
-    var local2 = &quot;local2&quot;;
-    console.log(local1, local2, global); //local1 local2 global
+    console.log(x);
   }
 
-  bar();
+  return bar;
 }
 
-foo();
+var innerFunc = foo();
+innerFunc(); //variable of outerFunc
 </code></pre>
-<p><img src="https://bkdevlog.netlify.com/assets/img/js_ec_stack.png" alt="JavaScript" /></p>
-<a class="header" href="#변수-객체variable-object" id="변수-객체variable-object"><h3>변수 객체(Variable Object)</h3></a>
-<p>실행 컨텍스트가 생성되면 자바스크립트 엔진은 <strong>실행에 필요한 여러 정보들을 담을 객체를 생성</strong>한다. 이를 <strong>Variable Object(VO / 변수 객체)</strong> 라고 한다.</p>
-<p>변수 객체는 <strong>arguments(인수 정보)</strong> 와 <strong>variable(스코프의 변수)</strong> 을 담고 있고, 전역 컨텍스의 경우와 함수 컨텍스트의 경우에 가리키는 객체가 다르다.</p>
-<a class="header" href="#전역-컨텍스트" id="전역-컨텍스트"><h4>전역 컨텍스트</h4></a>
-<p>전역 컨텍스트의 경우, 변수 객체는 <code>arguments</code>를 가지지 않는다.</p>
-<p>그리고 <strong>변수 객체는 모든 전역 변수, 전역 함수 등을 포함하는 전역 객체(Global Object / GO)를 가리킨다.</strong></p>
-<p>전역 객체는 전역 변수와 전역 함수를 프로퍼티로 가진다.</p>
-<p><img src="https://bkdevlog.netlify.com/assets/img/js_global_context.png" alt="JavaScript" /></p>
-<a class="header" href="#함수-컨텍스트" id="함수-컨텍스트"><h4>함수 컨텍스트</h4></a>
-<p>함수 컨텍스트의 경우, <strong>변수 객체는 Activation Object(AO / 활성 객체)를 가리킨다.</strong></p>
-<p>또한, 전역 컨텍스트와 다르게 매개변수와 인수들의 정보를 배열의 형태로 담고 있는 유사 배열 객체 <code>arguments</code>도 가진다.</p>
-<p><img src="https://bkdevlog.netlify.com/assets/img/js_function_context.png" alt="JavaScript" /></p>
-<a class="header" href="#스코프-체인scope-chain" id="스코프-체인scope-chain"><h3>스코프 체인(Scope Chain)</h3></a>
-<p>스코프 체인은 <strong>현재 컨텍스트의 유효 범위를 나타내는 스코프 정보를 담고 있으며</strong>, 연결 리스트의 형태와 유사하게 생성된다.</p>
-<p>이 리스트를 이용해 현재 컨텍스트의 변수와 상위 실행 컨텍스트의 변수에도 접근할 수 있다.</p>
-<p>이 리스트는 <strong>현재 실행 컨텍스트의 활성 객체</strong>를 먼저 가리키고 순차적으로 <strong>상위 컨텍스트의 활성 객체</strong>를 가리키고 마지막으로 <strong>전역 객체</strong>를 가리킨다.</p>
-<p><img src="https://bkdevlog.netlify.com/assets/img/js_scope_chain.png" alt="JavaScript" /></p>
+<p>위의 코드를 보면 외부함수 <code>foo()</code>에서 <code>bar()</code>를 반환하고 소멸한다.</p>
+<p><strong>외부함수 <code>foo()</code>는 실행된 이후, 실행 컨텍스트 스택에서 제거되기 때문에 변수 <code>x</code>도 같이 소멸될 것으로 보인다.</strong> 이에 따라 변수 <code>x</code>에 접근할 방법이 없어 보인다.
+하지만 <code>innerFunc()</code>함수를 호출하면 변수 x의 값이 출력되는 것을 볼 수 있다.</p>
+<p>이처럼 <strong>클로저는 외부함수(<code>foo()</code>) 밖에서 내부함수(<code>bar()</code>)가 호출되더라도 외부함수의 지역 변수(<code>var x</code>)에 접근할 수 있다.</strong></p>
+<p><img src="https://bkdevlog.netlify.com/assets/img/js_closure_scope.png" alt="JavaScript" /></p>
+<p>클로저가 외부함수 밖에서 내부함수가 호출되더라도 외부함수의 지역 변수에 접근할 수 있는 이유를 설명한 그림이다.</p>
+<p>외부함수인 <code>foo()</code>함수가 종료되면 함수 실행 컨텍스트도 소멸하지만 <strong><code>foo()</code> 함수 실행 컨텍스트의 활성 객체는 유효</strong>하다.</p>
+<p>이 때문에 <strong>외부 함수 <code>foo()</code>가 실행이 종료되어도 내부 함수 <code>bar()</code>에서 접근이 가능한 것</strong>이다.</p>
 <blockquote>
-<p>즉, 스코프 체인은 식별자 중 <strong>변수를 검색하는 것</strong>을 말하고, 변수가 아닌 <strong>객체의 프로퍼티를 검색하는 것</strong>을 프로토타입 체인이라고 한다.</p>
+<p>클로저를 사용하면 <strong>클로저에서의 스코프 체인 접근 방식</strong>, <strong>메모리의 부담</strong> 등의 이유로 성능적인 면과 자원적인 면에서 손해를 볼 수 있다. <br/>그렇기 때문에 좋은 구현을 위해서는 충분한 경험을 쌓을 필요가 있다.</p>
 </blockquote>
+<a class="header" href="#클로저를-활용한-전역-변수의-사용-억제" id="클로저를-활용한-전역-변수의-사용-억제"><h3>클로저를 활용한 전역 변수의 사용 억제</h3></a>
+<p>클로저를 활용한 대표적인 예로 카운터가 있다.
+우선, 전역 변수를 사용한 예를 한 번 살펴보자.</p>
+<pre><code class="language-js">var counter = 0;
+
+function calculator() {
+  return console.log(++counter);
+}
+
+calculator(); //1
+calculator(); //2
+calculator(); //3
+</code></pre>
+<p>위의 결과는 에상대로 잘 나오고 있지만 전역 변수 <code>counter</code>를 쓰고 있다. <br/>
+전역 변수는 <strong>어디서든 접근이 가능하기 때문에 값이 변할 수 있고</strong> 이에 따라 오류를 불러올 수 있다.</p>
+<pre><code class="language-js">var outerFunc = (function() {
+  var counter = 0;
+
+  function calculater() {
+    return console.log(++counter);
+  }
+
+  return calculater;
+})();
+
+outerFunc(); //1
+outerFunc(); //2
+outerFunc(); //3
+</code></pre>
+<p>위의 코드와 같이 클로저를 이용하면 전역 변수의 사용을 줄일 수 있다.</p>
+<a class="header" href="#루프-안에서의-클로저-활용" id="루프-안에서의-클로저-활용"><h3>루프 안에서의 클로저 활용</h3></a>
+<p>클로저를 활용하는데 있어 주의할 사항에 대해 설명할 때 가장 많이 등장하는게 이 경우다.</p>
+<pre><code class="language-js">function count(numberOfCount) {
+  for (var i = 1; i &lt;= numberOfCount; i++) {
+    setTimeout(function() {
+      console.log(i);
+    }, i * 1000);
+  }
+}
+
+count(4);
+</code></pre>
+<p>보면 알겠지만, 위 코드의 의도는 1초 간격으로 1,2,3,4를 출력하는 것이다. 하지만 결과는 예상과 다르게 <strong>5가 4번 1초 간격으로 출력</strong>된다.</p>
+<p>그 이유는 <strong>변수 <code>i</code>는 외부함수의 변수가 아닌 전역변수이고 <code>setTimeout()</code>함수가 실행되는 시점은 <code>count()</code>함수가 종료된 이후</strong>다.
+이 때는 이미 <code>i</code>의 값이 5인 상태이다.</p>
+<pre><code class="language-js">function count(numberOfCount) {
+  for (var i = 1; i &lt;= numberOfCount; i++) {
+    (function(j) {
+      setTimeout(function() {
+        console.log(j);
+      }, i * 1000);
+    })(i);
+  }
+}
+
+count(4);
+</code></pre>
+<p>즉시 실행 함수를 실행시켜 루프의 <code>i</code> 값을 <code>j</code>에 복사하고 <code>setTimeout()</code>함수에서 사용했다.<br/>
+이 때 <strong><code>j</code>는 상위스코프의 자유변수이므로 그 값이 유지</strong>된다.</p>
+<p>이러한 문제는 자바스크립트의 함수형 스코프로 인해 for 루프의 초기문에서 사용된 변수는 <strong>전역 스코프</strong>를 가지기 때문에 발생한다.</p>
+<p>ES6에서는 <code>let</code>을 이용해 <strong>블록 레벨 스코프</strong>를 구현할 수 있다.</p>
+<pre><code class="language-js">function count(numberOfCount) {
+  for (let i = 1; i &lt;= numberOfCount; i++) {
+    setTimeout(function() {
+      console.log(i);
+    }, i * 1000);
+  }
+}
+
+count(4);
+</code></pre>
+<p>첫 번째 코드에서 <code>var</code>를 <code>let</code>으로만 바꿔주면 위의 코드처럼 깔끔하게 구현할 수 있다.</p>
 <hr />
 <a class="header" href="#pray-reference" id="pray-reference"><h4>:pray: Reference</h4></a>
 <ul>
-<li>인사이드 자바스크립트 (송형주, 고형준)</li>
-<li><a href="https://poiemaweb.com/js-execution-context">Poiemaweb - 실행 컨텍스트와 자바스크립트의 동작 원리</a></li>
+<li>[인사이드 자바스크립트 (송형주, 고형준)]</li>
+<li><a href="https://poiemaweb.com/js-closure">Poiemaweb - Closure</a></li>
 </ul>
 
                     </main>
@@ -244,15 +293,11 @@ foo();
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="05-prototype.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="06-execution-context.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="07-Closure.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -262,15 +307,11 @@ foo();
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="05-prototype.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="06-execution-context.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a href="07-Closure.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
