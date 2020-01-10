@@ -6,3 +6,4 @@
   - [Functional Scope vs Block Scope](./03-Scope.md)
   - [this binding](./04-this-binding.md)
   - [prototype](./05-prototype.md)
+  - [실행 컨텍스트](./06-execution-context.md)
