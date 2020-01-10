@@ -221,7 +221,7 @@ console.log(android.sex); //3.female
 
 ---
 
-#### :pray: Reference
+#### 🙏 Reference
 
 - 인사이드 자바스크립트 (송형주, 고형준)
 - [Poiemaweb - Prototype](https://poiemaweb.com/js-prototype)

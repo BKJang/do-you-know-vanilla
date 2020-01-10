@@ -144,7 +144,7 @@ count(4);
 
 ---
 
-#### :pray: Reference
+#### 🙏 Reference
 
 - [인사이드 자바스크립트 (송형주, 고형준)]
 - [Poiemaweb - Closure](https://poiemaweb.com/js-closure)

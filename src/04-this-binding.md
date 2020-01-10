@@ -180,7 +180,7 @@ obj.outerFunc();
 
 ---
 
-#### :pray: Reference
+#### 🙏 Reference
 
 - [SeonHyungJo - Javascript-Book](https://seonhyungjo.github.io/Javascript-Book/Basic/11-Call-Apply-Bind.html)
 - [Im-D/Dev-Docs -Javascript의 this](https://github.com/Im-D/Dev-Docs/edit/master/Javascript/JavaScript%EC%9D%98%20this.md)

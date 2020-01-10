@@ -75,7 +75,7 @@ foo();
 
 ---
 
-#### :pray: Reference
+#### 🙏 Reference
 
 - 인사이드 자바스크립트 (송형주, 고형준)
 - [Poiemaweb - 실행 컨텍스트와 자바스크립트의 동작 원리](https://poiemaweb.com/js-execution-context)
