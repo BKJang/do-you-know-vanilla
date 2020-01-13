@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -1210,6 +1210,153 @@ devleoper.renderData(); //undefined
 
 const jang = new Person(&quot;BKJang&quot;); //Uncaught TypeError: Person is not a constructor
 </code></pre>
+<a class="header" href="#spread연산자--rest파라미터" id="spread연산자--rest파라미터"><h2>Spread연산자 &amp; rest파라미터</h2></a>
+<a class="header" href="#rest-파라미터" id="rest-파라미터"><h3>rest 파라미터</h3></a>
+<p>rest 파라미터는 Spread 연산자(<code>...</code>)를 사용하여 파라미터를 정의한다.
+기존에 ES5에서는 가변 파라미터를 정의할 때 <code>arguments</code>객체를 사용할 수 있었지만 이를 <code>rest 파라미터</code>로 대체할 수 있다.</p>
+<pre><code class="language-js">//ES5
+function foo() {
+  console.log(Array.isArray(arguments));
+  console.log(arguments);
+}
+
+foo(1, 2, 3, 4, 5);
+/*
+false
+{'0': 1, '1': 2, '2': 3, '3': 4, '4': 5, length: 5}
+*/
+</code></pre>
+<pre><code class="language-js">//ES6
+function foo(...rest) {
+  console.log(Array.isArray(rest));
+  console.log(rest);
+}
+
+foo(1, 2, 3, 4, 5);
+/*
+true
+[1, 2, 3, 4, 5]
+*/
+</code></pre>
+<p>위의 결과를 보면 arguments 객체와 rest 파라미터의 중요한 차이를 알 수 있다.</p>
+<p><strong><code>arguments</code>객체는 유사배열 객체</strong>다. 따라서 <code>Array.isArray(arguments)</code>의 결과는 false를 반환한다.</p>
+<p>여기서 큰 차이가 발생하는데 <strong>유사배열객체는 배열의 메서드를 사용할 수 없다.</strong> 배열의 메서드를 사용하기 위해서는 이를 <strong>배열로 변환하는 과정을 거쳐야하는 불편함</strong>이 있다. <br/>
+하지만 가변 인자 함수를 rest 파라미터로 정의하면 파라미터는 배열의 형태로 넘어온다.</p>
+<p>또한 ES6의 <a href="https://bkjang.github.io/arrow_function/">화살표 함수(Arrow Function)</a>에서는 <code>arguments</code>를 사용할 수 없다.</p>
+<pre><code class="language-js">//ES6 화살표 함수
+const foo = () =&gt; {
+  console.log(arguments);
+};
+
+foo(1, 2, 3, 4, 5); //Uncaught ReferenceError: arguments is not defined
+</code></pre>
+<blockquote>
+<ul>
+<li><code>rest</code> 파라미터는 <code>arguments</code>와 달리 <strong>배열</strong>로 파라미터가 넘어온다.</li>
+<li>ES6의 <strong>화살표 함수에서는 <code>arguments</code>를 사용할 수 없다.</strong></li>
+</ul>
+</blockquote>
+<a class="header" href="#spread-연산자" id="spread-연산자"><h3>Spread 연산자</h3></a>
+<p>Spread 연산자는 말그대로 전개 연산자다. <strong>배열 또는 Iterable object(반복 가능한 객체)의 엘리먼트를 하나씩 분리하여 전개</strong>한다.</p>
+<pre><code class="language-js">let a = &quot;Hello&quot;;
+let arr = [...a];
+
+console.log(arr); //[&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]
+</code></pre>
+<a class="header" href="#spread-연산자의-활용" id="spread-연산자의-활용"><h3>Spread 연산자의 활용</h3></a>
+<ul>
+<li><strong>concat</strong></li>
+</ul>
+<p>ES5에서는 배열을 합칠 때 <code>concat</code>을 사용했었다. 이를 <code>Spread</code>연산자로 대체할 수 있다.</p>
+<pre><code class="language-js">//concat
+var arr1 = [5, 6];
+var arr2 = [1, 2, 3, 4];
+
+console.log(arr2.concat(arr1)); //[1, 2, 3, 4, 5, 6]
+console.log(arr1.concat(arr2)); //[5, 6, 1, 2, 3, 4]
+</code></pre>
+<pre><code class="language-js">//ES6 Spread Operator
+let arr1 = [5, 6];
+let arr2 = [1, 2, 3, 4, ...arr1];
+
+console.log(arr2); //[1, 2, 3, 4, 5, 6]
+console.log([1, 2, ...arr1, 3, 4]); //[1, 2, 5, 6, 3, 4]
+</code></pre>
+<p>단순히 앞, 뒤에 배열의 요소를 붙이는데는 <code>concat</code>이 성능이 더 좋다. 하지만 중간에 특정 배열의 값을 추가하고 싶다면 <code>Spread</code>연산자를 사용하는 것도 좋은 방법이다.</p>
+<ul>
+<li><strong>split</strong></li>
+</ul>
+<p>문자열을 배열로 변환할 때 많이 쓰이는 함수가 <code>split()</code>이다. 이 또한 Spread 연산자를 활용하면 좀 더 편하게 변환할 수 있다.</p>
+<pre><code class="language-js">//split
+
+var a = &quot;Hello&quot;;
+var arr = a.split(&quot;&quot;);
+
+console.log(arr); //[&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]
+</code></pre>
+<pre><code class="language-js">//ES6 Spread Operator
+
+let a = &quot;Hello&quot;;
+let arr = [...a];
+
+console.log(arr); //[&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]
+</code></pre>
+<ul>
+<li><strong>함수의 인자로 사용</strong></li>
+</ul>
+<p>기존에 ES5에서는 배열의 각 요소를 개별적인 파라미터로 전달하고 싶은 경우, <code>Function.prototype.apply</code>를 사용하는 것이 일반적이었다. <br/>하지만 ES6의 <code>Spread</code> 연산자를 활용하여 함수의 인자에 들어가는 배열을 개별요소로 전달할 수 있다.</p>
+<pre><code class="language-js">//ES5 apply
+var arr = [1, 2, 3];
+
+function sum(a, b, c) {
+  console.log(a, b, c); //1 2 3
+  return a + b + c;
+}
+
+console.log(sum.apply(null, arr)); //6
+</code></pre>
+<pre><code class="language-js">//ES6 Spread Operator
+let arr = [1, 2, 3];
+
+const sum = (a, b, c) =&gt; a + b + c;
+
+console.log(sum(...arr)); //6
+</code></pre>
+<ul>
+<li><strong>객체에서 사용</strong></li>
+</ul>
+<p>객체는 Iterable Object아니지만 Spread 연산자를 사용하면 객체를 손쉽게 병합 또는 변경할 수 있다.</p>
+<pre><code class="language-js">let obj1 = {
+  name: &quot;BKJang&quot;,
+  job: &quot;Developer&quot;
+};
+
+let obj2 = {
+  ...obj1,
+  lang: &quot;Korean&quot;
+};
+
+console.log(obj2); //{name: &quot;BKJang&quot;, job: &quot;Developer&quot;, lang: &quot;Korean&quot;}
+</code></pre>
+<p>Spread 연산자를 활용하면 유사배열객체(arguments, HTMLCollection 등)를 배열로 변환하기도 편하다.</p>
+<pre><code class="language-js">function foo() {
+  let args = arguments;
+  let arr = [...args];
+
+  console.log(Array.isArray(args)); //false
+  console.log(Array.isArray(arr)); //true
+  console.log(arr); //
+}
+
+foo(1, 2, 3, 4, 5); //[1, 2, 3, 4, 5]
+</code></pre>
+<hr />
+<a class="header" href="#-reference-9" id="-reference-9"><h4>🙏 Reference</h4></a>
+<ul>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax">MDN Web Docs - Spread 문법</a></li>
+<li><a href="https://jaeyeophan.github.io/2017/04/18/ES6-4-Spread-Rest-parameter/">[ES6] 4. Spread, Rest parameter</a></li>
+<li><a href="https://poiemaweb.com/es6-extended-parameter-handling">파라미터 기본값, Rest 파라미터, Spread 연산자</a></li>
+</ul>
 
                     </main>
 

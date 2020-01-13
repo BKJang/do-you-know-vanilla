@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Functional Scope vs Block Scope - Do you know vanilla?</title>
+        <title>Spread연산자 &amp; rest파라미터 - Do you know vanilla?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html" class="active"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="10-Spread.html" class="active"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -176,44 +176,152 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#functional-scope-vs-block-scope" id="functional-scope-vs-block-scope"><h2>Functional Scope vs Block Scope</h2></a>
-<a class="header" href="#functional-scope" id="functional-scope"><h2>Functional Scope</h2></a>
-<p>자바스크립트는 <strong>함수를 단위로 Scope를 구분한다.</strong> 즉 같은 함수 안에서 선언된 변수들은 같은 레벨의 Scope를 가지게 되는 것이다. 각각의 함수는 독립적인 Scope를 가지게 되어 다른 함수의 Scope에 접근을 할 수 없다.</p>
-<pre><code class="language-javascript">// Global Scope
-function someFunction() {
-  if (true) {
-    var name = &quot;BKJang&quot;;
-  }
-  console.log(name); //BKJang
-}
-</code></pre>
-<p>위와 같이 Global Scope에 <code>someFunction()</code> 을 선언하고 내부에 if문 괄호 안에 선언한 변수는 <strong>someFunction function Scope</strong> 에 붙게 된다. 함수를 단위로 스코프가 생기기 때문에 <code>name</code>을 출력하면 <code>undefined</code>가 아닌 <code>BKJang</code>이 출력된다.</p>
-<a class="header" href="#block-scope" id="block-scope"><h2>Block Scope</h2></a>
-<p>Block Statement는 우리가 많이 보는 if문, switch문, for, while문이다. 이러한 문장들은 괄호로 감싸진 부분이 존재하지만 새로운 Scope를 만들지는 않는다. Block Statement 안에서 정의한 변수는 가장 가까운 함수의 Scope에 붙게 된다.</p>
-<pre><code class="language-javascript">if (true) {
-  var name = &quot;BKJang&quot;;
+                        <a class="header" href="#spread연산자--rest파라미터" id="spread연산자--rest파라미터"><h2>Spread연산자 &amp; rest파라미터</h2></a>
+<a class="header" href="#rest-파라미터" id="rest-파라미터"><h3>rest 파라미터</h3></a>
+<p>rest 파라미터는 Spread 연산자(<code>...</code>)를 사용하여 파라미터를 정의한다.
+기존에 ES5에서는 가변 파라미터를 정의할 때 <code>arguments</code>객체를 사용할 수 있었지만 이를 <code>rest 파라미터</code>로 대체할 수 있다.</p>
+<pre><code class="language-js">//ES5
+function foo() {
+  console.log(Array.isArray(arguments));
+  console.log(arguments);
 }
 
-console.log(name); // BKJang
+foo(1, 2, 3, 4, 5);
+/*
+false
+{'0': 1, '1': 2, '2': 3, '3': 4, '4': 5, length: 5}
+*/
 </code></pre>
-<p><code>ES6</code>에서는 <code>let</code>, <code>const</code>가 추가 되었다. 이 2개는 <code>var</code> 대용으로 사용된다. 그러나 그보다 더 중요한 개념이 들어간다. 바로 <strong>Block Level Scope</strong> 라는 것이다. 기존의 자바스크립트는 위에서 본 것처럼 <strong>Functional Scope</strong> 이다. 그러나 <code>let</code>, <code>const</code> 를 사용하게 되면 <strong>Block Level Scope</strong> 지원이 가능하다.</p>
-<pre><code class="language-javascript">if (true) {
-  var name = &quot;BKJang&quot;;
-  let likes = &quot;Coding&quot;;
-  const lang = &quot;Javascript&quot;;
+<pre><code class="language-js">//ES6
+function foo(...rest) {
+  console.log(Array.isArray(rest));
+  console.log(rest);
 }
 
-console.log(name); // 'BKJang'
-console.log(likes); // Uncaught ReferenceError: likes is not defined
-console.log(lang); // Uncaught ReferenceError: lang is not defined
+foo(1, 2, 3, 4, 5);
+/*
+true
+[1, 2, 3, 4, 5]
+*/
 </code></pre>
-<p><code>var</code>와는 다르게 <code>let</code>, <code>const</code>는 Block Statement내에서 <strong>Local Scope</strong> 를 지원한다. 즉 이제 Scope가 가장 가까운 function에 붙는 것이 아닌 해당 Block에 붙게 되는 것이다.</p>
-<p><strong>참고로 Global Scope는 응용 프로그램이 살아있을 때까지 유효하며, Local Scope은 함수가 호출되고 실행되는한 유지가 된다.</strong></p>
+<p>위의 결과를 보면 arguments 객체와 rest 파라미터의 중요한 차이를 알 수 있다.</p>
+<p><strong><code>arguments</code>객체는 유사배열 객체</strong>다. 따라서 <code>Array.isArray(arguments)</code>의 결과는 false를 반환한다.</p>
+<p>여기서 큰 차이가 발생하는데 <strong>유사배열객체는 배열의 메서드를 사용할 수 없다.</strong> 배열의 메서드를 사용하기 위해서는 이를 <strong>배열로 변환하는 과정을 거쳐야하는 불편함</strong>이 있다. <br/>
+하지만 가변 인자 함수를 rest 파라미터로 정의하면 파라미터는 배열의 형태로 넘어온다.</p>
+<p>또한 ES6의 <a href="https://bkjang.github.io/arrow_function/">화살표 함수(Arrow Function)</a>에서는 <code>arguments</code>를 사용할 수 없다.</p>
+<pre><code class="language-js">//ES6 화살표 함수
+const foo = () =&gt; {
+  console.log(arguments);
+};
+
+foo(1, 2, 3, 4, 5); //Uncaught ReferenceError: arguments is not defined
+</code></pre>
+<blockquote>
+<ul>
+<li><code>rest</code> 파라미터는 <code>arguments</code>와 달리 <strong>배열</strong>로 파라미터가 넘어온다.</li>
+<li>ES6의 <strong>화살표 함수에서는 <code>arguments</code>를 사용할 수 없다.</strong></li>
+</ul>
+</blockquote>
+<a class="header" href="#spread-연산자" id="spread-연산자"><h3>Spread 연산자</h3></a>
+<p>Spread 연산자는 말그대로 전개 연산자다. <strong>배열 또는 Iterable object(반복 가능한 객체)의 엘리먼트를 하나씩 분리하여 전개</strong>한다.</p>
+<pre><code class="language-js">let a = &quot;Hello&quot;;
+let arr = [...a];
+
+console.log(arr); //[&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]
+</code></pre>
+<a class="header" href="#spread-연산자의-활용" id="spread-연산자의-활용"><h3>Spread 연산자의 활용</h3></a>
+<ul>
+<li><strong>concat</strong></li>
+</ul>
+<p>ES5에서는 배열을 합칠 때 <code>concat</code>을 사용했었다. 이를 <code>Spread</code>연산자로 대체할 수 있다.</p>
+<pre><code class="language-js">//concat
+var arr1 = [5, 6];
+var arr2 = [1, 2, 3, 4];
+
+console.log(arr2.concat(arr1)); //[1, 2, 3, 4, 5, 6]
+console.log(arr1.concat(arr2)); //[5, 6, 1, 2, 3, 4]
+</code></pre>
+<pre><code class="language-js">//ES6 Spread Operator
+let arr1 = [5, 6];
+let arr2 = [1, 2, 3, 4, ...arr1];
+
+console.log(arr2); //[1, 2, 3, 4, 5, 6]
+console.log([1, 2, ...arr1, 3, 4]); //[1, 2, 5, 6, 3, 4]
+</code></pre>
+<p>단순히 앞, 뒤에 배열의 요소를 붙이는데는 <code>concat</code>이 성능이 더 좋다. 하지만 중간에 특정 배열의 값을 추가하고 싶다면 <code>Spread</code>연산자를 사용하는 것도 좋은 방법이다.</p>
+<ul>
+<li><strong>split</strong></li>
+</ul>
+<p>문자열을 배열로 변환할 때 많이 쓰이는 함수가 <code>split()</code>이다. 이 또한 Spread 연산자를 활용하면 좀 더 편하게 변환할 수 있다.</p>
+<pre><code class="language-js">//split
+
+var a = &quot;Hello&quot;;
+var arr = a.split(&quot;&quot;);
+
+console.log(arr); //[&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]
+</code></pre>
+<pre><code class="language-js">//ES6 Spread Operator
+
+let a = &quot;Hello&quot;;
+let arr = [...a];
+
+console.log(arr); //[&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]
+</code></pre>
+<ul>
+<li><strong>함수의 인자로 사용</strong></li>
+</ul>
+<p>기존에 ES5에서는 배열의 각 요소를 개별적인 파라미터로 전달하고 싶은 경우, <code>Function.prototype.apply</code>를 사용하는 것이 일반적이었다. <br/>하지만 ES6의 <code>Spread</code> 연산자를 활용하여 함수의 인자에 들어가는 배열을 개별요소로 전달할 수 있다.</p>
+<pre><code class="language-js">//ES5 apply
+var arr = [1, 2, 3];
+
+function sum(a, b, c) {
+  console.log(a, b, c); //1 2 3
+  return a + b + c;
+}
+
+console.log(sum.apply(null, arr)); //6
+</code></pre>
+<pre><code class="language-js">//ES6 Spread Operator
+let arr = [1, 2, 3];
+
+const sum = (a, b, c) =&gt; a + b + c;
+
+console.log(sum(...arr)); //6
+</code></pre>
+<ul>
+<li><strong>객체에서 사용</strong></li>
+</ul>
+<p>객체는 Iterable Object아니지만 Spread 연산자를 사용하면 객체를 손쉽게 병합 또는 변경할 수 있다.</p>
+<pre><code class="language-js">let obj1 = {
+  name: &quot;BKJang&quot;,
+  job: &quot;Developer&quot;
+};
+
+let obj2 = {
+  ...obj1,
+  lang: &quot;Korean&quot;
+};
+
+console.log(obj2); //{name: &quot;BKJang&quot;, job: &quot;Developer&quot;, lang: &quot;Korean&quot;}
+</code></pre>
+<p>Spread 연산자를 활용하면 유사배열객체(arguments, HTMLCollection 등)를 배열로 변환하기도 편하다.</p>
+<pre><code class="language-js">function foo() {
+  let args = arguments;
+  let arr = [...args];
+
+  console.log(Array.isArray(args)); //false
+  console.log(Array.isArray(arr)); //true
+  console.log(arr); //
+}
+
+foo(1, 2, 3, 4, 5); //[1, 2, 3, 4, 5]
+</code></pre>
 <hr />
 <a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
 <ul>
-<li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Function.md">ImD/Dev-Docs - javascript Function</a></li>
-<li><a href="https://bkdevlog.netlify.com/posts/let-const">DEVLOG - [ES6]1. let과 const</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax">MDN Web Docs - Spread 문법</a></li>
+<li><a href="https://jaeyeophan.github.io/2017/04/18/ES6-4-Spread-Rest-parameter/">[ES6] 4. Spread, Rest parameter</a></li>
+<li><a href="https://poiemaweb.com/es6-extended-parameter-handling">파라미터 기본값, Rest 파라미터, Spread 연산자</a></li>
 </ul>
 
                     </main>
@@ -221,15 +329,11 @@ console.log(lang); // Uncaught ReferenceError: lang is not defined
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="02-conversion.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="09-Arrow-Function.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="04-this-binding.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -239,15 +343,11 @@ console.log(lang); // Uncaught ReferenceError: lang is not defined
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="02-conversion.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="09-Arrow-Function.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a href="04-this-binding.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
