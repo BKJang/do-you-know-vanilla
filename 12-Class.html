@@ -1,0 +1,475 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Class(클래스) - Do you know vanilla?</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="12-Class.html" class="active"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <style>
+  header.warning {
+    background-color: rgb(242, 222, 222);
+    border-bottom-color: rgb(238, 211, 215);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-style: solid;
+    border-bottom-width: 0.666667px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color: rgb(238, 211, 215);
+    border-left-style: solid;
+    border-left-width: 0.666667px;
+    border-right-color: rgb(238, 211, 215);
+    border-right-style: solid;
+    border-right-width: 0.666667px;
+    border-top-color: rgb(238, 211, 215);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top-style: solid;
+    border-top-width: 0.666667px;
+    color: rgb(185, 74, 72);
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 30px;
+    padding-bottom: 8px;
+    padding-left: 14px;
+    padding-right: 35px;
+    padding-top: 8px;
+    text-align: center;
+  }
+</style>
+
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Do you know vanilla?</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#클래스class" id="클래스class"><h2>클래스(class)</h2></a>
+<p><code>ES6</code>에서부터는 <code>ES5</code>까지는 존재하지 않았던 <code>class</code>가 생겨났다. <code>Java</code>에서의 <code>Class</code>와는 똑같은 기능을 한다고 생각해서는 안된다.
+<strong>자바스크립트는 기본적으로 <code>Prototype</code>기반의 객체지향 언어</strong>다. 즉, <code>ES6</code>의 <code>Class</code>또한 프로토타입을 기반으로 동작하며 이는 기존의 자바스크립트에서 객체지향적으로 설계할 때의 방식을 좀 더 편하게 보완한 <code>Syntatic Sugar</code>다.</p>
+<a class="header" href="#클래스의-정의" id="클래스의-정의"><h3>클래스의 정의</h3></a>
+<pre><code class="language-js">//ES5
+var Person = (function() {
+  //생성자 함수 정의
+  function Person(name, job) {
+    this.name = name;
+    this.job = job;
+  }
+
+  Person.prototype.sayInfo = function() {
+    console.log(&quot;Name : &quot; + this.name + &quot;, Job : &quot; + this.job);
+  };
+
+  return Person;
+})();
+
+var bkJang = new Person(&quot;BKJang&quot;, &quot;Developer&quot;);
+
+bkJang.sayInfo(); //Name : BKJang, Job : Developer
+</code></pre>
+<p><code>ES6</code>에서 <code>Class</code>가 생기기 전 우리는 위와 같은 방식으로 생성자 함수와 프로토타입을 이용해 객체지향 프로그래밍을 진행했었다. 위와 같은 코드를 <code>ES6</code>의 <code>Class</code>를 사용하여 구현하면 아래와 같이 좀 더 간결하게 구현할 수 있다.</p>
+<pre><code class="language-js">//ES6
+class Person {
+  constructor(name, job) {
+    this.name = name;
+    this.job = job;
+  }
+
+  sayInfo() {
+    console.log(`Name : ${this.name}, Job : ${this.job}`);
+  }
+}
+
+const bkJang = new Person(&quot;BKJang&quot;, &quot;Developer&quot;);
+
+bkJang.sayInfo(); //Name : BKJang, Job : Developer
+</code></pre>
+<p>클래스는 기본적으로 위와 같이 <strong><code>Class Person {}l</code>으로 정의하며, 흔치는 않지만 <code>const Person = class MyClass {};</code>처럼 함수 표현식으로도 정의 가능</strong>하다.</p>
+<p>둘의 또 다른 차이점은 생성자 함수를 이용하여 선언하면 <code>window</code>에 할당되지만, <strong><code>Class</code>를 이용하여 선언하면 <code>window</code>에 할당되지 않는다.</strong></p>
+<p>또한 <strong><code>Class</code> 안에 있는 코드는 항상 <code>strict mode</code> 로 실행</strong>되기 때문에 &quot;use strict&quot; 명령어가 없더라도 동일하게 동작한다.</p>
+<pre><code class="language-js">function Person() {}
+class Developer {}
+
+console.log(window.Person); //ƒ Person() {}
+console.log(window.Developer); //undefined
+</code></pre>
+<a class="header" href="#인스턴스의-생성과-호이스팅" id="인스턴스의-생성과-호이스팅"><h3>인스턴스의 생성과 호이스팅</h3></a>
+<p><code>Class</code>를 사용하여 인스턴스를 생성할 때는 반드시 <code>new</code>를 이용해 호출해야하며 <code>new</code>를 사용하지 않으면 <code>Type Error</code>가 발생한다.</p>
+<pre><code class="language-js">class Foo {}
+
+const foo = Foo(); //Uncaught TypeError: Class constructor Foo cannot be invoked without 'new'
+</code></pre>
+<p><code>ES6</code>의 <code>Class</code>는 <a href="https://bkdevlog.netlify.com/posts/let-const">let, const</a>와 마찬가지로 호이스팅이 일어나지만, <strong>선언이 일어나고 할당이 이뤄지기 전 <code>TDZ(Temporary Dead Zone)</code>에 빠지기 때문에 할당 이전에 호출하면 <code>Reference Error</code>가 발생</strong>한다.</p>
+<pre><code class="language-js">const foo = new Foo(); //Uncaught ReferenceError: Foo is not defined
+
+class Foo {}
+</code></pre>
+<a class="header" href="#constructor" id="constructor"><h3>constructor</h3></a>
+<p><code>constructor</code>는 인스턴스를 생성하고 <code>Class</code>의 <code>property</code>를 초기화한다. <code>ES5</code>에서는 생성자 함수를 이용해 <code>property</code>를 초기화하고 <strong>생성자 함수를 반환</strong>함으로써 객체지향을 구현했었다.</p>
+<ul>
+<li><strong>class는 constructor를 반환하며 생략할 수 있다.</strong></li>
+</ul>
+<p><code>const foo = new Foo()</code>와 같이 선언했을 때 <code>Foo</code>는 <code>class</code>명이 아닌 <code>constructor</code>다.</p>
+<pre><code class="language-js">class Foo {}
+
+const foo = new Foo();
+
+console.log(Foo == Foo.prototype.constructor); //true
+</code></pre>
+<p>위의 코드에서 볼 수 있듯이 <code>new</code>와 함께 호출한 <code>Foo</code>는 <code>constructor</code>와 같음을 확인할 수 있다.</p>
+<p>또 확인할 수 있는 것은 <code>class Foo</code>내부에 <code>constructor</code>를 선언하지 않았음에도 인스턴스의 생성이 잘 이뤄지는 것을 볼 수 있다.
+이는 <strong><code>Class</code>내부에 <code>constructor</code>는 생략할 수 있으며 생략하면 <code>Class</code>에 <code>constructor() {}</code>를 포함한 것과 동일하게 동작</strong>하기 때문이다.
+즉, 빈 객체를 생성하기 때문에 <code>property</code>를 선언하려면 인스턴스를 생성한 이후, <code>property</code>를 동적 할당해야 한다.</p>
+<pre><code class="language-js">console.log(foo); //Foo {}
+
+foo.name = &quot;BKJang&quot;;
+
+console.log(foo); //Foo {name: &quot;BKJang&quot;}
+</code></pre>
+<ul>
+<li><strong>class의 property는 constructor 내부에서 선언과 초기화가 이뤄진다.</strong></li>
+</ul>
+<p><code>class</code>의 몸체에는 메서드만 선언 가능하며, <code>property</code>는 <code>constructor</code>내부에서 선언하여야 한다.</p>
+<pre><code class="language-js">class Foo {
+  name = &quot;&quot;; //Syntax Error
+}
+</code></pre>
+<pre><code class="language-js">class Bar {
+  constructor(name = &quot;&quot;) {
+    this.name = name;
+  }
+}
+
+const bar = new Bar(&quot;BKJang&quot;);
+console.log(bar); //Bar {name: &quot;BKJang&quot;}
+</code></pre>
+<blockquote>
+<p><code>constructor</code>내부에서 선언한 <code>property</code>는 <code>Class</code>의 인스턴스를 가리키는 <code>this</code>에 바인딩 된다.</p>
+</blockquote>
+<a class="header" href="#getter-setter" id="getter-setter"><h3>getter, setter</h3></a>
+<p><code>class</code>의 프로퍼티에 접근하기 위한 인터페이스로서, <code>getter</code>와 <code>setter</code>를 정의할 수 있다.</p>
+<pre><code class="language-js">class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  //getter
+  get personName() {
+    return this.name ? this.name : null;
+  }
+
+  //setter
+  set personName(name) {
+    this.name = name;
+  }
+}
+
+const person = new Person(&quot;BKJang&quot;);
+
+console.log(person.personName); //BKJang
+person.personName = &quot;SHJo&quot;;
+console.log(person.personName); //SHJo
+</code></pre>
+<a class="header" href="#static-메서드" id="static-메서드"><h3>Static 메서드</h3></a>
+<p><code>class</code>에서는 정적 메서드를 정의할 때, <code>static</code> 키워드를 사용하여 정의한다. <strong>정적 메서드는 인스턴스를 생성하지 않아도 호출가능하며, 인스턴스가 아닌 <code>Class</code>의 이름으로 호출한다.</strong> 이와 같은 특징 때문에 애플리케이션을 위한 유틸리티성 함수를 생성하는데 주로 사용한다.</p>
+<p>또한 정적 메서드 내부에서는 <code>this</code>를 사용할 수 없다. 왜냐하면 <strong>정적 메서드 내부에서는 <code>this</code>가 <code>Class</code>의 인스턴스가 아닌 <code>Class</code>자기 자신을 가리키기 때문</strong>이다.</p>
+<pre><code class="language-js">class Person {
+  constructor(name) {
+    this.name = name;
+  }
+
+  //getter
+  get personName() {
+    return this.name ? this.name : null;
+  }
+
+  //setter
+  set personName(name) {
+    this.name = name;
+  }
+
+  static staticMethod() {
+    console.log(this);
+    return &quot;This is static&quot;;
+  }
+}
+
+console.log(Person.staticMethod());
+/*
+class Person { ... }
+This is static
+*/
+
+const instance = new Person(&quot;BKJang&quot;);
+
+console.log(instance.staticMethod()); //Uncaught TypeError: instance.staticMethod is not a function
+</code></pre>
+<p>위에서 볼 수 있듯이 인스턴스로는 <code>Class</code>의 정적 메서드를 호출할 수 없다.</p>
+<p>또한 <strong>정적 메서드는 <code>prototype</code>에 추가되지 않는다.</strong></p>
+<pre><code class="language-js">console.log(Person.staticMethod === Person.prototype.staticMethod); //false
+console.log(new Person().personName === Person.prototype.personName); //true
+</code></pre>
+<a class="header" href="#클래스의-상속" id="클래스의-상속"><h3>클래스의 상속</h3></a>
+<p><code>class</code>를 이용하여 <code>OOP</code>의 특징 중 하나인 상속을 구현할 수 있다.
+<code>class</code>의 상속을 위해서는 <code>extends</code>와 <code>super</code> 키워드에 대해서 알아야 한다.</p>
+<pre><code class="language-js">class Person {
+  constructor(name, sex) {
+    this.name = name;
+    this.sex = sex;
+  }
+
+  getInfo() {
+    return `Name : ${this.name}, Sex : ${this.sex}`;
+  }
+
+  getName() {
+    return `Name : ${this.name}`;
+  }
+
+  getSex() {
+    return `Sex : ${this.sex}`;
+  }
+}
+
+class Developer extends Person {
+  //extends를 사용하여 Person 클래스 상속
+  constructor(name, sex, job) {
+    //super메서드를 사용하여 부모 클래스의 인스턴스를 생성
+    super(name, sex);
+    this.job = job;
+  }
+
+  //오버라이딩
+  getInfo() {
+    //super 키워드를 사용하여 부모 클래스에 대한 참조
+    return `${super.getInfo()} , Job: ${this.job}`;
+  }
+
+  getJob() {
+    return `Job : ${this.job}`;
+  }
+}
+
+const person = new Person(&quot;SHJo&quot;, &quot;Male&quot;);
+const developer = new Developer(&quot;BKJang&quot;, &quot;Male&quot;, &quot;Developer&quot;);
+
+console.log(person); //Person {name: &quot;SHJo&quot;, sex: &quot;Male&quot;}
+console.log(developer); //Developer {name: &quot;BKJang&quot;, sex: &quot;Male&quot;, job: &quot;Developer&quot;}
+
+console.log(person.getInfo()); //Name : SHJo, Sex : Male
+
+console.log(developer.getName()); //Name : BKJang
+console.log(developer.getSex()); //Sex : Male
+console.log(developer.getJob()); //Job : Developer
+console.log(developer.getInfo()); //Name : BKJang, Sex : Male , Job: Developer
+
+console.log(developer instanceof Developer); //true
+console.log(developer instanceof Person); //true
+</code></pre>
+<p>위의 소스를 기준으로 중요한 특징을 정리하자면 다음과 같다.(대부분의 객체 지향 언어에서 상속의 특징과 거의 동일하다.)</p>
+<ul>
+<li>
+<p><strong>부모 클래스(슈퍼 클래스)의 메서드를 사용할 수 있다.</strong></p>
+</li>
+<li>
+<p><strong>부모 클래스의 메서드를 오버라이딩(Overriding)할 수 있다.</strong></p>
+</li>
+<li>
+<p><strong><code>super</code> 키워드를 통해 부모 클래스의 메서드에 접근</strong>할 수 있다.</p>
+</li>
+<li>
+<p><strong><code>super</code> 메서드</strong>(위의 Developer 클래스의 constructor내부에 선언)<strong>는 자식 클래스의 <code>constructor</code> 내부에서 부모 클래스의 constructor(<code>super-constructor</code>)를 호출</strong>한다.</p>
+</li>
+</ul>
+<hr />
+<a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
+<ul>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes">MDN Web Docs - Classes</a></li>
+<li><a href="https://jaeyeophan.github.io/2017/04/18/ES6-6-Class-sugar-syntax/">[ES6] 6. Class sugar syntax</a></li>
+<li><a href="https://poiemaweb.com/es6-class">Class 클래스</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="11-Destructuring.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="11-Destructuring.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
