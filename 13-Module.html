@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>명시적 변환 vs 암묵적 변환 - Do you know vanilla?</title>
+        <title>Module(모듈) - Do you know vanilla?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html" class="active"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="13-Module.html" class="active"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -176,97 +176,99 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#명시적-변환-vs-암묵적-변환" id="명시적-변환-vs-암묵적-변환"><h2>명시적 변환 vs 암묵적 변환</h2></a>
-<p><code>Number(value)</code> 와 같은 코드를 작성하여 변환할 의사를 명확하게 표현하는 것을 <strong>명시적 변환</strong>이라고 한다. <code>JavaScript</code>는 동적 타입 언어이므로 값을 자동으로 여러 유형간에 변환을 자동으로 한다. 이것을 <strong>암묵적 변환</strong> 이라고 한다.</p>
-<p>암묵적 변환을 하지 않는 연산자는 <code>===</code> 이며, 완전 항등 연산자 라고 한다. 반면에 느슨한 항등 연산자 <code>==</code> 는 필요하다면 비교와 타입 강제 변환을 수행한다.</p>
-<a class="header" href="#string-변환" id="string-변환"><h3>String 변환</h3></a>
-<pre><code class="language-js">String(123) // 명시적
-123 + ''    // 암시적
+                        <a class="header" href="#모듈module" id="모듈module"><h2>모듈(Module)</h2></a>
+<p>자바스크립트(<code>ES5</code>)에서 기본적으로 모듈 기능이 없다.
+기본적으로 자바스크립트에서 <strong>변수는 전역(global)에 할당되기 때문에 모듈을 구현하기 위해서는 <code>Namespace Pattern</code> 혹은 <a href="https://bkdevlog.netlify.com/posts/oop-encapsulation-of-js">Module Pattern</a>과 같은 기법이 필요</strong>했다.</p>
+<p>이러한 상황에서 클라이언트 사이드에서뿐만이 아니라 범용적인 사용이 일어나면서 모듈화의 필요성이 대두되었다. 이에 따라 <a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/AMD%EC%99%80%20CommonJS.md">CommonJS와 AMD</a> 이렇게 2개의 진영으로 나뉘게 되었다.
+우리가 잘 알고 있는 <code>Node.js</code>는 <code>CommonJS</code>의 모듈화 방식을 따르고 있다.</p>
+<p><code>ES6</code>에서는 <strong>클라이언트 사이드에서도 모듈화를 제공하기 위해 <code>export</code>와 <code>import</code>가 추가</strong>되었다.
+단, <code>ES6</code>의 모듈 기능은 대부분의 브라우저에서는 지원하지 않기 때문에 <code>RequireJS</code>와 같은 모듈 로더나 <code>Webpack</code>과 같은 모듈 번들러와 함께 <code>babel</code>과 같은 트랜스파일러를 사용하여야 한다.</p>
+<a class="header" href="#export" id="export"><h2>export</h2></a>
+<p>ES6의 모듈은 보통 <strong>파일 단위</strong>로 구성되며 독립적인 파일 스코프를 가지기 때문에 <strong>외부에서 모듈의 기능을 사용하고 싶다면 위와 같이 <code>export</code>를 해줘야한다.</strong></p>
+<pre><code class="language-js">//module.js
+export const message = &quot;this is variable&quot;;
+
+export function sayHello() {
+  console.log(&quot;Hello World&quot;);
+}
+
+export function sayName(name) {
+  console.log(`Hi ${name}`);
+}
+
+export class Person {
+  constructor(name, job) {
+    this.name = name;
+    this.job = job;
+  }
+}
 </code></pre>
-<pre><code class="language-js">String(123)                   // '123'
-String(-12.3)                 // '-12.3'
-String(null)                  // 'null'
-String(undefined)             // 'undefined'
-String(true)                  // 'true'
-String(false)                 // 'false'
+<p>위와 같이 각각의 변수, 함수, 클래스에 <code>export</code>키워드를 붙여 export할 수 있고 아래와 같이 <strong>하나의 객체로 묶어 한 번에 export할 수도 있다.</strong></p>
+<pre><code class="language-js">//module.js
+const message = &quot;this is variable&quot;;
+
+function sayHello() {
+  console.log(&quot;Hello World&quot;);
+}
+
+function sayName(name) {
+  console.log(`Hi ${name}`);
+}
+
+class Person {
+  constructor(name, job) {
+    this.name = name;
+    this.job = job;
+  }
+}
+
+export { message, sayHello, sayName, Person };
 </code></pre>
-<p><code>Symbol</code> 변환은 명시적으로만 변환될 수 있고, <strong>암시적 변환은 되지 않는다</strong>.</p>
-<pre><code class="language-js">String(Symbol('my symbol'))   // 'Symbol(my symbol)'
-'' + Symbol('my symbol')      // TypeError is thrown
+<a class="header" href="#import" id="import"><h2>import</h2></a>
+<p>ES6에서 export한 모듈을 사용하기 위해서는 해당 파일에서 <code>import</code>키워드를 사용하여 가져와 쓰면 된다.</p>
+<pre><code class="language-js">import { message, sayHello, sayName, Person } from &quot;./module&quot;;
+
+console.log(message); //this is variable
+console.log(sayHello()); //Hello World
+console.log(sayName(&quot;BKJang&quot;)); //Hi BKJang
+console.log(new Person(&quot;BKJang&quot;, &quot;Developer&quot;)); //Person { name : BKJang, job: Developer }
 </code></pre>
-<a class="header" href="#boolean-변환" id="boolean-변환"><h3>Boolean 변환</h3></a>
-<pre><code class="language-js">Boolean(2)          // 명시적
-if (2) { ... }      // 논리적 문맥 때문에 암시적
-!!2                 // 논리적 문맥 때문에 암시적
-2 || 'hello'        // 논리적 문맥 때문에 암시적
+<p>위와 같이 각각를 import하지 않고 <strong>한꺼번에 import하거나 이름을 변경하여 import 할 수도 있다.</strong></p>
+<pre><code class="language-js">//한꺼번에 묶어서 import
+import * as module from &quot;./module&quot;;
+
+console.log(module.sayName(&quot;BKJang&quot;)); //Hi BKJang
 </code></pre>
-<p>논리 연산자(예 : <code>||</code> 및 <code>&amp;&amp;</code> )에 따른 Boolean 변환을 내부적으로 수행하지만 Boolean값이 아니더라도 원래 피연산자의 값을 실제로 반환한다.</p>
-<pre><code class="language-js">// true를 반환하는 것이 아닌 123를 반환하고 있다.
-// 'hello' and 123 은 표현식을 계산하기 위해서 Boolean으로 강제 변환을 한다.
-let x = 'hello' &amp;&amp; 123;   // 123
+<pre><code class="language-js">//이름을 변경하여 import
+import { sayHello as hello } from &quot;./module&quot;;
+
+console.log(hello()); //Hello World
 </code></pre>
-<pre><code class="language-js">Boolean('')           // false
-Boolean(0)            // false     
-Boolean(-0)           // false
-Boolean(NaN)          // false
-Boolean(null)         // false
-Boolean(undefined)    // false
-Boolean(false)        // false
+<a class="header" href="#default" id="default"><h2>default</h2></a>
+<p>모듈에서 하나만 export할 경우에는 <code>default</code>키워드를 사용하면 된다.</p>
+<pre><code class="language-js">//Person.js
+export default class Person {
+  constructor(name) {
+    this.name = name;
+  }
+}
 </code></pre>
-<p><code>object</code>, <code>function</code>, <code>Array</code>, <code>Date</code>, 사용자 정의 유형등은 <code>true</code> 로 변환한다.</p>
-<pre><code class="language-js">Boolean({})             // true
-Boolean([])             // true
-Boolean(Symbol())       // true
-!!Symbol()              // true
-Boolean(function() {})  // true
+<pre><code class="language-js">//Person.js
+class Person {
+    //...
+}
+
+export default
 </code></pre>
-<a class="header" href="#numeric-변환" id="numeric-변환"><h3>Numeric 변환</h3></a>
-<p><code>Number()</code> 함수를 사용하면 된다. 암시적 변환은 많은 경우에서 작동이 되기 때문에 까다롭다.</p>
-<pre><code class="language-js">Number('123')   // 명시적 - 123
-+'123'          // 암시적 - 123
-123 != '456'    // 암시적 - true
-4 &gt; '5'         // 암시적 - false
-5 / null        // 암시적 - Infinity
-true | 0        // 암시적 - 1
-</code></pre>
-<pre><code class="language-js">Number(null) // 0
-Number(undefined) // NaN
-Number(true)  // 1
-Number(false) // 0
-Number(&quot; 12 &quot;) // 12
-Number(&quot;-12.34&quot;) // -12.34
-Number(&quot;\n&quot;) // 0
-Number(&quot; 12s &quot;) // NaN
-Number(123) // 123
-</code></pre>
-<ul>
-<li>문자열을 숫자로 변환할 때 엔진은 먼저 앞뒤의 공백, <code>\ n</code>, <code>\ t</code> 문자를 제거하고, 문자열이 유효한 숫자를 나타내지 않으면 <code>NaN</code> 을 반환한다. <strong><code>string</code>이 비어 있으면 <code>0</code>을 반환</strong>한다.</li>
-<li>null와 undefined는 다르게 처리가 되는데 null은 0으로 undefined는 NaN으로 된다.</li>
-</ul>
-<p><code>Symbol</code>은 명시적 또는 암시적으로 숫자로 변환될 수 없다. 또한 <code>TypeError</code>는 <code>undefined</code>로 발생하는 것처럼 <code>NaN</code>으로 자동 변환하는 대신 <code>throw</code> 된다.</p>
-<pre><code class="language-js">Number(Symbol('my symbol'))    // TypeError is thrown
-+Symbol('123')                 // TypeError is thrown
-</code></pre>
-<a class="header" href="#tips" id="tips"><h4>Tips</h4></a>
-<ul>
-<li><code>==</code> 를 <code>null</code> 또는 <code>undefined</code> 에 적용하면 숫자 변환이 발생하지 않는다. <code>null</code> 은 <code>null</code>, <code>undefined</code> 와 동일하다.</li>
-</ul>
-<pre><code class="language-js">null == 0 // false, null is not converted to 0
-null == null // true
-undefined == undefined // true
-null == undefined // true
-null === undefined // false
-</code></pre>
-<ul>
-<li><code>NaN</code>은 그 자체가 동등하지 않다.</li>
-</ul>
-<pre><code class="language-js">var value = NaN;
-if (value !== value) { console.log(&quot;we're dealing with NaN here&quot;) }
+<p>이를 import할 때는 <strong><code>{}</code>없이 해당 모듈을 임의의 이름으로 가져와 사용</strong>하면 된다.</p>
+<pre><code class="language-js">import Person from &quot;./Person&quot;;
 </code></pre>
 <hr />
 <a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
 <ul>
-<li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Type.md">ImD/Dev-Docs - javascript Type</a></li>
+<li><a href="https://poiemaweb.com/es6-module">모듈</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/import">import(MDN web docs)</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/export">export(MDN web docs)</a></li>
 </ul>
 
                     </main>
@@ -274,15 +276,11 @@ if (value !== value) { console.log(&quot;we're dealing with NaN here&quot;) }
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="01-PrimitivevsObject.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="12-Class.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="03-Scope.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -292,15 +290,11 @@ if (value !== value) { console.log(&quot;we're dealing with NaN here&quot;) }
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="01-PrimitivevsObject.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="12-Class.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a href="03-Scope.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
