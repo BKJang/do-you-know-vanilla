@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -1839,7 +1839,263 @@ export default
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/import">import(MDN web docs)</a></li>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/export">export(MDN web docs)</a></li>
 </ul>
-<a class="header" href="#promise와-async-await" id="promise와-async-await"><h1>Promise와 async-await</h1></a>
+<a class="header" href="#promise와-async-await" id="promise와-async-await"><h2>Promise와 async-await</h2></a>
+<a class="header" href="#promise" id="promise"><h3>Promise</h3></a>
+<p>이전에는 비동기 작업을 처리 할 때에는 콜백 함수로 처리를 해야 했다. 콜백 함수로 처리를 하게 된다면 비동기 작업이 많아질 경우 코드의 가독성이 떨어지게 되었다. 이를 <strong>콜백 지옥</strong>이라고 한다.</p>
+<p>Promise는 이러한 콜백 지옥에서 탈출하기 위해 <code>ES6</code>에서 도입된 문법이다.</p>
+<pre><code class="language-js">const printNumber = number =&gt; {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      const value = number + 1;
+      if (value === 4) {
+        const error = new Error(&quot;This is Error!&quot;);
+        reject(error);
+        return;
+      }
+      console.log(value);
+      resolve(value);
+    }, 1000);
+  });
+};
+
+printNumber(0)
+  .then(n =&gt; {
+    return printNumber(n);
+  })
+  .then(n =&gt; {
+    return printNumber(n);
+  })
+  .then(n =&gt; {
+    return printNumber(n);
+  })
+  .then(n =&gt; {
+    return printNumber(n);
+  })
+  .catch(error =&gt; {
+    console.log(error);
+  });
+</code></pre>
+<p><code>Promise</code>에서는 <code>resolve</code>와 <code>reject</code>를 파라미터로 전달하고 성공시에는 <code>resolve</code>를 실패시에는 <code>reject</code>를 실행한다. 다만, <code>Promise</code>를 사용했을 때는 어떤 부분에서 <code>error</code>를 잡아야할지가 조금 애매할 수 있고 조건 분기를 해줄 때 불편함이 있다. 이러한 점을 보완한 것이 <code>async-await</code> 문법이다.</p>
+<a class="header" href="#promiseall" id="promiseall"><h3>Promise.all()</h3></a>
+<p><code>Promise.all()</code>은 여러 개의 비동기적 처리를 한 번에 처리하고 싶을 때 사용한다. 단, 모든 비동기 함수가 처리가 완료되면 결과를 출력한다. 따라서 비동기 함수 중 하나라도 에러가 발생한다면 결과 값은 에러가 된다.</p>
+<pre><code class="language-js">const myPromise = time =&gt; {
+  return new Promise(resolve =&gt; setTimeout(resolve, time));
+};
+
+const printHello = async () =&gt; {
+  await myPromise(100);
+  return &quot;Hello&quot;;
+};
+
+const printName = async () =&gt; {
+  await myPromise(500);
+  return &quot;BKJang&quot;;
+};
+
+const printWorld = async () =&gt; {
+  await myPromise(300);
+  return &quot;world&quot;;
+};
+
+const printError = async () =&gt; {
+  await myPromise(600);
+  throw new Error(&quot;This is Error!&quot;);
+};
+
+const makeProcess = async () =&gt; {
+  try {
+    const result = await Promise.all([printHello(), printName(), printWorld()]);
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const makeProcessWithError = async () =&gt; {
+  try {
+    const result = await Promise.all([
+      printHello(),
+      printName(),
+      printWorld(),
+      printError()
+    ]);
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+makeProcess(); //['Hello', 'BKJang', 'world']
+makeProcessWithError(); //Error : This is Error!
+</code></pre>
+<a class="header" href="#promiserace" id="promiserace"><h3>Promise.race()</h3></a>
+<p><code>Promise.race()</code>도 <code>Promise.all()</code>과 마찬가지로 모든 비동기 함수를 동시에 요청하지만 가장 먼저 처리된 비동기 함수의 결과만을 반환한다.</p>
+<pre><code class="language-js">const myPromise = time =&gt; {
+  return new Promise(resolve =&gt; setTimeout(resolve, time));
+};
+
+const printHello = async () =&gt; {
+  await myPromise(100);
+  return &quot;Hello&quot;;
+};
+
+const printName = async () =&gt; {
+  await myPromise(500);
+  return &quot;BKJang&quot;;
+};
+
+const printWorld = async () =&gt; {
+  await myPromise(300);
+  return &quot;world&quot;;
+};
+
+const printError = async () =&gt; {
+  await myPromise(600);
+  throw new Error(&quot;This is Error!&quot;);
+};
+
+const makeProcessWithError = async () =&gt; {
+  try {
+    const result = await Promise.race([
+      printHello(),
+      printName(),
+      printWorld(),
+      printError()
+    ]);
+    console.log(result);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+makeProcessWithError(); //Hello
+</code></pre>
+<p>위의 코드를 보면 에러를 발생시키는 비동기 함수가 <code>printHello</code>함수보다 늦게 처리되기 때문에 에러가 아닌 <code>Hello</code>가 출력되는 것을 볼 수 있다.</p>
+<a class="header" href="#async-await" id="async-await"><h3>async-await</h3></a>
+<p><code>async-await</code>문법은 <code>ES8</code>에서 새롭게 도입된 문법으로 <code>Promise</code>를 좀 더 편하게 다룰 수 있게 해준다. 또한 <code>try-catch</code>구문을 사용할 수 있기 때문에 에러 처리도 좀 더 간편하게 할 수 있다.</p>
+<pre><code class="language-js">const printNumber = number =&gt; {
+  return new Promise((resolve, reject) =&gt; {
+    setTimeout(() =&gt; {
+      const value = number + 1;
+      if (value === 4) {
+        const error = new Error(&quot;This is Error!&quot;);
+        reject(error);
+        return;
+      }
+      console.log(value);
+      resolve(value);
+    }, 1000);
+  });
+};
+
+const makeProcess = async () =&gt; {
+  try {
+    const num1 = await printNumber(0);
+    const num2 = await printNumber(num1);
+    const num3 = await printNumber(num2);
+    const num4 = await printNumber(num3);
+  } catch (error) {
+    console.error(error);
+  }
+};
+makeProcess();
+</code></pre>
+<hr />
+<a class="header" href="#-reference-13" id="-reference-13"><h4>🙏 Reference</h4></a>
+<ul>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise">MDN Docs - Promise</a></li>
+<li><a href="https://joshua1988.github.io/web-development/javascript/promise-for-beginners/">Captain Pangyo - 자바스크립트 Promise 쉽게 이해하기</a></li>
+<li><a href="https://blueshw.github.io/2018/02/27/async-await/">bono's blog - [javascript] async, await를 사용하여 비동기 javascript를 동기식으로 만들자</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/async_function">MDN Docs - async function</a></li>
+<li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/Promise1.md">Im-D/Dev-Docs - Promise1</a></li>
+<li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/Promise2.md">Im-D/Dev-Docs - Promise2</a></li>
+<li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/PromisePattern.md">Im-D/Dev-Docs - Promise Pattern</a></li>
+</ul>
+<a class="header" href="#iteration-protocol" id="iteration-protocol"><h2>Iteration Protocol</h2></a>
+<p><code>Iteration Protocol</code>은 ES6에서 도입되었다. 이는 새로운 구문이 아닌 하나의 프로토콜, 규약이다. 즉, 같은 규칙을 준수하는 객체에 의해 구현될 수 있다. <code>Iteration Protocol</code>에는 <strong>Iterable Protocol</strong> 과 <strong>Iterator Protocol</strong> 이 있다.</p>
+<a class="header" href="#iterable" id="iterable"><h3>Iterable</h3></a>
+<p><code>Iterable</code>은 <code>Iterable Protocol</code>을 준수한 객체다. <code>Iterable</code>은 반복 가능한 객체이며 <code>Symbol.iterator</code> 메서드를 구현하거나 프로토타입 체인에 의해 상속한 객체를 말한다. <code>Iterable</code>은 <code>for...of</code>문에서 반복 가능하며 <a href="https://github.com/Im-D/Dev-Docs/blob/master/ECMAScript/Spread_Operator.md">Spread Operator</a>의 대상이 될 수 있다.</p>
+<p><code>Iterable</code>은 <code>Symbol.iterator</code>을 가지기 때문에 해당 메서드가 없는 객체는 Iterable 객체가 아니다.</p>
+<p>Iterable 객체로는 내장 객체인 <code>Array</code>, <code>Map</code>, <code>Set</code>, <code>String</code> 등이 있다.</p>
+<pre><code class="language-js">const iterator = [1, 2, 3][Symbol.iterator]();
+
+iterator.next().value; // 1
+iterator.next().value; // 2
+iterator.next().value; // 3
+iterator.next().done; // true
+</code></pre>
+<p>반면, 일반 객체는 <code>Symbol.iterator</code> 메서드를 가지고 있지 않다. 따라서 일반 객체는 Iterable 객체가 아니다.</p>
+<pre><code class="language-js">const obj = { a: 1, b: 2 };
+
+console.log(Symbol.iterator in obj); // false
+
+// TypeError: obj is not iterable
+for (const item of obj) {
+  console.log(item);
+}
+</code></pre>
+<p>하지만 일반 객체도 <code>Iterable Protocol</code>을 준수하도록 구현하면 Iterable 객체가 될 수 있다.</p>
+<pre><code class="language-js">const iterableObj = function(max) {
+  let i = 0;
+
+  return {
+    [Symbol.iterator]() {
+      return {
+        next() {
+          return {
+            value: ++i,
+            done: i === max
+          };
+        }
+      };
+    }
+  };
+};
+
+const iterator = iterableObj(10);
+
+for (let item of iterator) {
+  console.log(item);
+}
+</code></pre>
+<a class="header" href="#iterator" id="iterator"><h3>Iterator</h3></a>
+<p><code>Iterator Protocol</code>은 <code>next</code> 메서드를 가진다. <code>next</code> 메소드를 호출하면 Iterable 객체를 순회하며 <code>value</code>, <code>done</code> 프로퍼티를 갖는 Iterator Reuslt 객체를 반환한다. 이 규약을 준수한 객체가 Iterator 객체다.</p>
+<p>위에서 잠깐 봤던 코드의 일부분을 다시 한 번 살펴보자.</p>
+<pre><code class="language-js">[Symbol.iterator]() {
+  return {
+    next() {
+      return {
+        value: ++i,
+        done: i === max
+      };
+    }
+  };
+}
+</code></pre>
+<p><code>Symbol.iterator</code> 메서드를 실행하면 <code>next</code> 메서드를 가진 객체를 반환하고 <code>next</code> 메서드를 실행하면 <code>value</code>, <code>done</code> 프로퍼티를 가진 객체를 반환한다. 그렇다. <br/> Iterable 객체가 가진 <code>Symbol.iterator</code> 메서드를 실행하면 Iterator 객체를 반환한다.</p>
+<pre><code class="language-js">const array = [1, 2, 3];
+
+const iterator = array[Symbol.iterator]();
+
+console.log(&quot;next&quot; in iterator); // true
+
+iterator.next().value; // 1
+iterator.next().value; // 2
+iterator.next().value; // 3
+iterator.next(); // { value: undefined, done: true }
+</code></pre>
+<p>Iterator 객체의 <code>next</code> 메서드가 반환하는 Iterator Result 객체의 <code>value</code> 프로퍼티는 Iterable 객체의 값을 반환하고 <code>done</code> 프로퍼티는 Iterable 객체의 반복 완료 여부를 반환한다.</p>
+<a class="header" href="#iteration-protocol이-왜-필요할까" id="iteration-protocol이-왜-필요할까"><h3>Iteration Protocol이 왜 필요할까?</h3></a>
+<p><code>for...of</code>, <code>Spread Operator</code>, <code>Destructuring</code>, <code>Map/Set constructor</code>등을 <strong>데이터 소비자(Data Consumer)</strong> 라고 한다.<br/> 반면, <code>배열</code>, <code>문자열</code>, <code>Map</code>, <code>Set</code>, <code>DOM Data Structure</code> 등과 같은 Iterable 객체는 <strong>데이터 공급자(Data Provider)</strong> 라고 한다.</p>
+<p>만약, 위와 같은 Data Provider인 Iterable 객체들이 각각 다른 방식의 순회 방식을 갖는다면 어떨까? 당연히 효율적이지 못하다.</p>
+<p>순회 방식에 대한 하나의 규약을 정해놓고 사용한다면 Data Consumer가 여러 구조의 Iterable을 효율적으로 사용할 수 있을 것이다. 즉, Iteration Protocol은 Data Consumer와 Data Provider를 연결하는 인터페이스 역할을 해주기 때문에 필요하다고 볼 수 있다.</p>
+<hr />
+<a class="header" href="#-reference-14" id="-reference-14"><h4>🙏 Reference</h4></a>
+<ul>
+<li><a href="https://poiemaweb.com/es6-iteration-for-of">Poiemaweb - 이터레이션과 for...of 문</a></li>
+<li><a href="https://wonism.github.io/javascript-iteration-protocol/">wonism.github.io - JavaScript iterables와 iterator 이해하기</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Iteration_protocols">MDN Docs - Iteration protocols</a></li>
+</ul>
 
                     </main>
 

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Destructuring(비구조화 할당) - Do you know vanilla?</title>
+        <title>Iteration Protocol - Do you know vanilla?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="11-Destructuring.html" class="active"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="15-Iteration-Protocol.html" class="active"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -176,149 +176,90 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#destructuring비구조화-할당" id="destructuring비구조화-할당"><h2>Destructuring(비구조화 할당)</h2></a>
-<p>디스트럭처링은 <strong>구조화된 배열 혹은 객체를 분해하여 변수에 할당</strong>하는 방식이다. 이 개념을 몰랐더라도 <code>React</code>를 사용해봤던 개발자라면 아마 많이 봤을 문법이다.</p>
-<pre><code class="language-js">const { state } = this.props;
+                        <a class="header" href="#iteration-protocol" id="iteration-protocol"><h2>Iteration Protocol</h2></a>
+<p><code>Iteration Protocol</code>은 ES6에서 도입되었다. 이는 새로운 구문이 아닌 하나의 프로토콜, 규약이다. 즉, 같은 규칙을 준수하는 객체에 의해 구현될 수 있다. <code>Iteration Protocol</code>에는 <strong>Iterable Protocol</strong> 과 <strong>Iterator Protocol</strong> 이 있다.</p>
+<a class="header" href="#iterable" id="iterable"><h3>Iterable</h3></a>
+<p><code>Iterable</code>은 <code>Iterable Protocol</code>을 준수한 객체다. <code>Iterable</code>은 반복 가능한 객체이며 <code>Symbol.iterator</code> 메서드를 구현하거나 프로토타입 체인에 의해 상속한 객체를 말한다. <code>Iterable</code>은 <code>for...of</code>문에서 반복 가능하며 <a href="https://github.com/Im-D/Dev-Docs/blob/master/ECMAScript/Spread_Operator.md">Spread Operator</a>의 대상이 될 수 있다.</p>
+<p><code>Iterable</code>은 <code>Symbol.iterator</code>을 가지기 때문에 해당 메서드가 없는 객체는 Iterable 객체가 아니다.</p>
+<p>Iterable 객체로는 내장 객체인 <code>Array</code>, <code>Map</code>, <code>Set</code>, <code>String</code> 등이 있다.</p>
+<pre><code class="language-js">const iterator = [1, 2, 3][Symbol.iterator]();
+
+iterator.next().value; // 1
+iterator.next().value; // 2
+iterator.next().value; // 3
+iterator.next().done; // true
 </code></pre>
-<p>오른쪽의 특정 값을 해체하여 왼쪽에 할당하는 표현식을 **<code>Destructuring Assignment</code>**라고 한다.</p>
-<a class="header" href="#배열-디스트럭처링" id="배열-디스트럭처링"><h3>배열 디스트럭처링</h3></a>
-<pre><code class="language-js">//ES5
-var arr = [&quot;JS&quot;, &quot;Java&quot;, &quot;Node.js&quot;];
+<p>반면, 일반 객체는 <code>Symbol.iterator</code> 메서드를 가지고 있지 않다. 따라서 일반 객체는 Iterable 객체가 아니다.</p>
+<pre><code class="language-js">const obj = { a: 1, b: 2 };
 
-var x = arr[0];
-var y = arr[1];
-var z = arr[2];
+console.log(Symbol.iterator in obj); // false
 
-console.log(x, y, z); //JS Java Node.js
+// TypeError: obj is not iterable
+for (const item of obj) {
+  console.log(item);
+}
 </code></pre>
-<pre><code class="language-js">//ES6
-const arr = [&quot;JS&quot;, &quot;Java&quot;, &quot;Node.js&quot;];
+<p>하지만 일반 객체도 <code>Iterable Protocol</code>을 준수하도록 구현하면 Iterable 객체가 될 수 있다.</p>
+<pre><code class="language-js">const iterableObj = function(max) {
+  let i = 0;
 
-let [x, y, z] = arr;
-
-console.log(x, y, z); //JS Java Node.js
-</code></pre>
-<pre><code class="language-js">const numArr = [1, 2, 3, 4];
-
-let [x, y, , z] = numArr;
-
-console.log(x, y, z); //1 2 4
-</code></pre>
-<p>위의 결과를 보면 알 수 있듯이 배열을 디스트럭처링하면 각각의 변수에 배열의 <code>index</code>를 기준으로 할당된다.</p>
-<p>디스트럭처링을 사용했을 때 편한 대표적인 예는 <strong>변수의 swap처리</strong>를 할 때다.</p>
-<pre><code class="language-js">//ES5(For Swap)
-var x = 1;
-var y = 2;
-var tmp = y;
-
-console.log(x, y); //1 2
-
-y = x;
-x = tmp;
-
-console.log(x, y); //2 1
-</code></pre>
-<pre><code class="language-js">//ES6
-let x = 1;
-let y = 2;
-
-console.log(x, y); //1 2
-
-[x, y] = [y, x];
-
-console.log(x, y); //2 1
-</code></pre>
-<a class="header" href="#객체-디스트럭처링" id="객체-디스트럭처링"><h3>객체 디스트럭처링</h3></a>
-<p>객체 또한 디스트럭처링이 가능하며 배열과 크게 다르지 않다.</p>
-<pre><code class="language-js">//ES5
-var obj = { name: &quot;BKJang&quot;, lang: &quot;Korean&quot;, job: &quot;Developer&quot; };
-
-var name = obj.name;
-var lang = obj.lang;
-var job = obj.job;
-
-console.log(name, lang, job); //BKJang Korean Developer
-</code></pre>
-<pre><code class="language-js">//ES6
-const obj = { name: &quot;BKJang&quot;, lang: &quot;Korean&quot;, job: &quot;Developer&quot; };
-
-let { name, lang, job } = obj;
-
-console.log(name, lang, job); //BKJang Korean Developer
-</code></pre>
-<p>만약 변수 명을 다르게 하고 싶다면 다음과 같이 처리하면 된다.</p>
-<pre><code class="language-js">var obj = { a: 1, b: &quot;hello&quot; };
-var { a: key, b: value } = obj;
-
-console.log(key, value); // 1, 'hello'
-</code></pre>
-<p>중첩 객체의 경우에는 아래와 같이 사용한다.</p>
-<pre><code class="language-js">const developer = {
-  name: &quot;BKJang&quot;,
-  stack: {
-    front: &quot;HTML / CSS / JS&quot;,
-    back: &quot;Java / Node.js&quot;
-  }
+  return {
+    [Symbol.iterator]() {
+      return {
+        next() {
+          return {
+            value: ++i,
+            done: i === max
+          };
+        }
+      };
+    }
+  };
 };
 
-const {
-  name,
-  stack: { front }
-} = developer;
+const iterator = iterableObj(10);
 
-console.log(name, front); //BKJang HTML / CSS / JS
+for (let item of iterator) {
+  console.log(item);
+}
 </code></pre>
-<p>디스트럭처링을 사용하면 **기본 값(Default Value)**이나 **기본 파라미터(Default Parameter)**를 세팅할 수 있고, <a href="https://bkdevlog.netlify.com/posts/spread-rest">Speread Operator</a>또한 사용할 수도 있다.</p>
-<a class="header" href="#spread-operator-용" id="spread-operator-용"><h3>Spread Operator 용</h3></a>
-<pre><code class="language-js">const arr = [1, 2, 3, 4];
-
-let [x, y, ...z] = arr;
-
-console.log(x, y, z); //1 2 [3, 4]
+<a class="header" href="#iterator" id="iterator"><h3>Iterator</h3></a>
+<p><code>Iterator Protocol</code>은 <code>next</code> 메서드를 가진다. <code>next</code> 메소드를 호출하면 Iterable 객체를 순회하며 <code>value</code>, <code>done</code> 프로퍼티를 갖는 Iterator Reuslt 객체를 반환한다. 이 규약을 준수한 객체가 Iterator 객체다.</p>
+<p>위에서 잠깐 봤던 코드의 일부분을 다시 한 번 살펴보자.</p>
+<pre><code class="language-js">[Symbol.iterator]() {
+  return {
+    next() {
+      return {
+        value: ++i,
+        done: i === max
+      };
+    }
+  };
+}
 </code></pre>
-<pre><code class="language-js">const obj = { one: 1, two: 2, three: 3, four: 4 };
+<p><code>Symbol.iterator</code> 메서드를 실행하면 <code>next</code> 메서드를 가진 객체를 반환하고 <code>next</code> 메서드를 실행하면 <code>value</code>, <code>done</code> 프로퍼티를 가진 객체를 반환한다. 그렇다. <br/> Iterable 객체가 가진 <code>Symbol.iterator</code> 메서드를 실행하면 Iterator 객체를 반환한다.</p>
+<pre><code class="language-js">const array = [1, 2, 3];
 
-let { one, two, ...rest } = obj;
+const iterator = array[Symbol.iterator]();
 
-console.log(one, two, rest); //1 2 {three: 3, four: 4}
+console.log(&quot;next&quot; in iterator); // true
+
+iterator.next().value; // 1
+iterator.next().value; // 2
+iterator.next().value; // 3
+iterator.next(); // { value: undefined, done: true }
 </code></pre>
-<a class="header" href="#기본-값default-value" id="기본-값default-value"><h3>기본 값(Default Value)</h3></a>
-<pre><code class="language-js">const arr = [1, 2];
-
-let [x, y, z = 3] = arr;
-
-console.log(x, y, z); //1 2 3
-</code></pre>
-<pre><code class="language-js">const obj = { one: 1, two: 2 };
-
-let { one, two, three = 3 } = obj;
-
-console.log(one, two, three); //1 2 3
-</code></pre>
-<a class="header" href="#기본-파라미터default-parameter" id="기본-파라미터default-parameter"><h3>기본 파라미터(Default Parameter)</h3></a>
-<pre><code class="language-js">const doSomething = (name, stack = &quot;FrontEnd&quot;) =&gt; {
-  stack = stack === null ? &quot;FullStack&quot; : stack;
-
-  console.log(`${name}은 ${stack}개발자입니다.`);
-};
-
-doSomething(&quot;BKJang&quot;); //BKJang은 FrontEnd개발자입니다.
-doSomething(&quot;BKJang&quot;, &quot;BackEnd&quot;); //BKJang은 BackEnd개발자입니다.
-doSomething(&quot;BKJang&quot;, undefined); //BKJang은 FrontEnd개발자입니다.
-doSomething(&quot;BKJang&quot;, null); //BKJang은 FullStack개발자입니다.
-
-//Default Parameter는 함수의 length에 포함되지 않는다.
-console.log(doSomething.length); //1
-</code></pre>
-<p>자바스크립트에서 함수는 <code>length</code>프로퍼티를 가지는데 인자의 갯수를 나타낸다.
-<strong><code>Default Parameter</code>는 이 <code>length</code>프로퍼티에 포함되지 않는다.</strong></p>
+<p>Iterator 객체의 <code>next</code> 메서드가 반환하는 Iterator Result 객체의 <code>value</code> 프로퍼티는 Iterable 객체의 값을 반환하고 <code>done</code> 프로퍼티는 Iterable 객체의 반복 완료 여부를 반환한다.</p>
+<a class="header" href="#iteration-protocol이-왜-필요할까" id="iteration-protocol이-왜-필요할까"><h3>Iteration Protocol이 왜 필요할까?</h3></a>
+<p><code>for...of</code>, <code>Spread Operator</code>, <code>Destructuring</code>, <code>Map/Set constructor</code>등을 <strong>데이터 소비자(Data Consumer)</strong> 라고 한다.<br/> 반면, <code>배열</code>, <code>문자열</code>, <code>Map</code>, <code>Set</code>, <code>DOM Data Structure</code> 등과 같은 Iterable 객체는 <strong>데이터 공급자(Data Provider)</strong> 라고 한다.</p>
+<p>만약, 위와 같은 Data Provider인 Iterable 객체들이 각각 다른 방식의 순회 방식을 갖는다면 어떨까? 당연히 효율적이지 못하다.</p>
+<p>순회 방식에 대한 하나의 규약을 정해놓고 사용한다면 Data Consumer가 여러 구조의 Iterable을 효율적으로 사용할 수 있을 것이다. 즉, Iteration Protocol은 Data Consumer와 Data Provider를 연결하는 인터페이스 역할을 해주기 때문에 필요하다고 볼 수 있다.</p>
 <hr />
 <a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
 <ul>
-<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">MDN Web Docs - 구조 분해 할당</a></li>
-<li><a href="https://jaeyeophan.github.io/2017/04/18/ES6-4-Spread-Rest-parameter/">[ES6] 5. Destructuring and Default Parameter</a></li>
-<li><a href="https://poiemaweb.com/es6-destructuring">Destructuring 디스트럭처링</a></li>
-<li><a href="https://github.com/Im-D/Dev-Docs/blob/master/ECMAScript/Destructuring_Assignment.md">ImD/Dev-Docs - Destructuring_Assignment</a></li>
+<li><a href="https://poiemaweb.com/es6-iteration-for-of">Poiemaweb - 이터레이션과 for...of 문</a></li>
+<li><a href="https://wonism.github.io/javascript-iteration-protocol/">wonism.github.io - JavaScript iterables와 iterator 이해하기</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Iteration_protocols">MDN Docs - Iteration protocols</a></li>
 </ul>
 
                     </main>
@@ -326,15 +267,11 @@ console.log(doSomething.length); //1
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="10-Spread.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="14-Promise&amp;Async-Await.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="12-Class.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -344,15 +281,11 @@ console.log(doSomething.length); //1
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="10-Spread.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="14-Promise&amp;Async-Await.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a href="12-Class.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
