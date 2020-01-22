@@ -3,27 +3,27 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Primitive(값) vs Object(참조) - Do you know vanilla?</title>
+        <title>Functional Scope vs Block Scope - Do you know vanilla?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
         
@@ -33,7 +33,7 @@
     <body class="light">
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = "light";
         </script>
 
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="01-PrimitivevsObject.html" class="active"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="01-PrimitivevsObject.html" class="active"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li><a href="16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="../basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="../basic/03-Scope.html" class="active"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="../basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="../basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="../basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="../basic/07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="../basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="../basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="../basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="../basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="../basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="../basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="../14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="../15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li><a href="../16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -144,7 +144,7 @@
                         <h1 class="menu-title">Do you know vanilla?</h1> 
 
                         <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
                             
@@ -176,113 +176,44 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#primitive값-vs-object참조" id="primitive값-vs-object참조"><h2>Primitive(값) vs Object(참조)</h2></a>
-<a class="header" href="#primitive-type" id="primitive-type"><h2>Primitive Type</h2></a>
-<ul>
-<li>String : 텍스트를 셋팅하는데 사용하는 타입.</li>
-<li>Number : 숫자를 셋팅하는데 사용하는 타입. 기본적으로 소수점도 가능하다.(infinity, -inifinity, NaN 표현이 가능하다.)</li>
-<li>Null : null타입은 정확히는 1개의 값은 가지고 있지만 비어있다는 뜻이다.</li>
-<li>Undefined : 값이 할당되지 않는 것을 나타내는 타입.</li>
-<li>Boolean : true 또는 false 로 나타내는 타입.</li>
-<li>Symbol : 새로 추가된 타입으로 <strong>unique하고 immutable한 원시값</strong> 으로 사용된다.(ES6)</li>
-</ul>
-<a class="header" href="#primitive-type의-생성-방법" id="primitive-type의-생성-방법"><h3>Primitive Type의 생성 방법</h3></a>
-<ol>
-<li>Literal</li>
-</ol>
-<ul>
-<li>Literal로 생성한다고 하면 우리가 가장 많이 사용하는 방법</li>
-</ul>
-<pre><code class="language-js">var bol = true;
-var str = &quot;hello&quot;;
-var num = 3.14;
-var nullType = null;
-var undef = undefined;
-
-var bol2;
-var str2;
-bo2 = false
-str2 = &quot;world&quot;
-</code></pre>
-<ol start="2">
-<li>
-<p>Wrapper Object</p>
-</li>
-</ol>
-<ul>
-<li>Wrapper Object를 사용해서 만든다고 하면 Constructor를 사용해서 만드는 것</li>
-<li>즉, <code>new</code> 를 사용하여 생성</li>
-</ul>
-<pre><code class="language-js">new Boolean(false);
-new String(&quot;world&quot;);
-new Number(42);
-
-Symbol(&quot;foo&quot;); //Symbol 타입의 생성방법
-</code></pre>
-<a class="header" href="#literal-vs-wrapper" id="literal-vs-wrapper"><h3>Literal vs Wrapper</h3></a>
-<pre><code class="language-js">typeof true; //&quot;boolean&quot;
-typeof Boolean(true); //&quot;boolean&quot;
-typeof new Boolean(true); //&quot;object&quot;
-typeof (new Boolean(true)).valueOf(); //&quot;boolean&quot;
-     
-typeof &quot;abc&quot;; //&quot;string&quot;
-typeof String(&quot;abc&quot;); //&quot;string&quot;
-typeof new String(&quot;abc&quot;); //&quot;object&quot;
-typeof (new String(&quot;abc&quot;)).valueOf(); //&quot;string&quot;
-     
-typeof 123; //&quot;number&quot;
-typeof Number(123); //&quot;number&quot;
-typeof new Number(123); //&quot;object&quot;
-typeof (new Number(123)).valueOf(); //&quot;number&quot;
-</code></pre>
-<p>Literal로 생성한 것의 타입은 6가지 중 하나로 나오게 된다. 그런데 new를 사용하여 Wrapper Object로 만들게 되면 Object타입이 나오게 된다. 사용을 하려면 valueOf라는 Function을 사용해야만 입력한 값이 나오게 된다.</p>
-<a class="header" href="#값-타입" id="값-타입"><h3>값 타입</h3></a>
-<pre><code class="language-js">var a = 13         // assign `13` to `a`
-var b = a          // copy the value of `a` to `b`
-
-b = 37             // assign `37` to `b`
-
-console.log(a)     // =&gt; 13
-</code></pre>
-<p>b의 값을 변경을 했지만 a에는 영향이 가지 않았다. 이유는 2개의 값이 저장된 공간이 다르기 때문이다.</p>
-<a class="header" href="#object-type" id="object-type"><h2>Object Type</h2></a>
-<ul>
-<li>Array : 우리가 알고 있는 배열, 리스트의 형태를 가지고 있다.</li>
-<li>Function : Javascript에서는 Function Object가 존재하지만 결국 Function도 Object.</li>
-<li>Object : Map처럼 사용하는 즉, key : value의 형태로 사용하고 있는 Object.</li>
-</ul>
-<pre><code class="language-js">var a = { c: 13 }  // assign the reference of a new object to `a`
-var b = a          // copy the reference of the object inside `a` to new variable `b`
-b.c = 37           // modify the contents of the object `b` refers to
-console.log(a)     // =&gt; { c: 37 }
-</code></pre>
-<pre><code class="language-js">var a = [];
-var b = a;
-
-a.push(1);
-
-console.log(a); // [1]
-console.log(b); // [1]
-console.log(a === b); // true
-</code></pre>
-<pre><code class="language-js">function changeAgeImpure(person) {
-    person.age = 25;
-    return person;
+                        <a class="header" href="#functional-scope-vs-block-scope" id="functional-scope-vs-block-scope"><h2>Functional Scope vs Block Scope</h2></a>
+<a class="header" href="#functional-scope" id="functional-scope"><h2>Functional Scope</h2></a>
+<p>자바스크립트는 <strong>함수를 단위로 Scope를 구분한다.</strong> 즉 같은 함수 안에서 선언된 변수들은 같은 레벨의 Scope를 가지게 되는 것이다. 각각의 함수는 독립적인 Scope를 가지게 되어 다른 함수의 Scope에 접근을 할 수 없다.</p>
+<pre><code class="language-javascript">// Global Scope
+function someFunction() {
+  if (true) {
+    var name = &quot;BKJang&quot;;
+  }
+  console.log(name); //BKJang
 }
-var alex = {
-    name: 'Alex',
-    age: 30
-};
-var changedAlex = changeAgeImpure(alex);
-
-console.log(alex); // -&gt; { name: 'Alex', age: 25 }
-console.log(changedAlex); // -&gt; { name: 'Alex', age: 25 }
 </code></pre>
-<p>원시타입과는 다르게 복사한 것을 변경을 했더니 기존 객체에도 영향이 간다. 이유는 <strong>같은 값의 주소</strong>를 복사했기 때문이다.</p>
+<p>위와 같이 Global Scope에 <code>someFunction()</code> 을 선언하고 내부에 if문 괄호 안에 선언한 변수는 <strong>someFunction function Scope</strong> 에 붙게 된다. 함수를 단위로 스코프가 생기기 때문에 <code>name</code>을 출력하면 <code>undefined</code>가 아닌 <code>BKJang</code>이 출력된다.</p>
+<a class="header" href="#block-scope" id="block-scope"><h2>Block Scope</h2></a>
+<p>Block Statement는 우리가 많이 보는 if문, switch문, for, while문이다. 이러한 문장들은 괄호로 감싸진 부분이 존재하지만 새로운 Scope를 만들지는 않는다. Block Statement 안에서 정의한 변수는 가장 가까운 함수의 Scope에 붙게 된다.</p>
+<pre><code class="language-javascript">if (true) {
+  var name = &quot;BKJang&quot;;
+}
+
+console.log(name); // BKJang
+</code></pre>
+<p><code>ES6</code>에서는 <code>let</code>, <code>const</code>가 추가 되었다. 이 2개는 <code>var</code> 대용으로 사용된다. 그러나 그보다 더 중요한 개념이 들어간다. 바로 <strong>Block Level Scope</strong> 라는 것이다. 기존의 자바스크립트는 위에서 본 것처럼 <strong>Functional Scope</strong> 이다. 그러나 <code>let</code>, <code>const</code> 를 사용하게 되면 <strong>Block Level Scope</strong> 지원이 가능하다.</p>
+<pre><code class="language-javascript">if (true) {
+  var name = &quot;BKJang&quot;;
+  let likes = &quot;Coding&quot;;
+  const lang = &quot;Javascript&quot;;
+}
+
+console.log(name); // 'BKJang'
+console.log(likes); // Uncaught ReferenceError: likes is not defined
+console.log(lang); // Uncaught ReferenceError: lang is not defined
+</code></pre>
+<p><code>var</code>와는 다르게 <code>let</code>, <code>const</code>는 Block Statement내에서 <strong>Local Scope</strong> 를 지원한다. 즉 이제 Scope가 가장 가까운 function에 붙는 것이 아닌 해당 Block에 붙게 되는 것이다.</p>
+<p><strong>참고로 Global Scope는 응용 프로그램이 살아있을 때까지 유효하며, Local Scope은 함수가 호출되고 실행되는한 유지가 된다.</strong></p>
 <hr />
 <a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
 <ul>
-<li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Type.md">ImD/Dev-Docs - javascript Type</a></li>
+<li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Function.md">ImD/Dev-Docs - javascript Function</a></li>
+<li><a href="https://bkdevlog.netlify.com/posts/let-const">DEVLOG - [ES6]1. let과 const</a></li>
 </ul>
 
                     </main>
@@ -290,13 +221,13 @@ console.log(changedAlex); // -&gt; { name: 'Alex', age: 25 }
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="01-PrimitivevsObject.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../basic/02-conversion.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="01-PrimitivevsObject.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../basic/04-this-binding.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -308,13 +239,13 @@ console.log(changedAlex); // -&gt; { name: 'Alex', age: 25 }
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="01-PrimitivevsObject.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../basic/02-conversion.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="01-PrimitivevsObject.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../basic/04-this-binding.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -329,14 +260,14 @@ console.log(changedAlex); // -&gt; { name: 'Alex', age: 25 }
         
 
         
-        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
-        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
-        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
-        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
 
         <!-- Custom JS scripts -->
         
