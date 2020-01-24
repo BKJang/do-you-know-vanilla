@@ -2096,7 +2096,188 @@ iterator.next(); // { value: undefined, done: true }
 <li><a href="https://wonism.github.io/javascript-iteration-protocol/">wonism.github.io - JavaScript iterables와 iterator 이해하기</a></li>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Iteration_protocols">MDN Docs - Iteration protocols</a></li>
 </ul>
-<a class="header" href="#generator" id="generator"><h1>Generator</h1></a>
+<a class="header" href="#generator" id="generator"><h2>Generator</h2></a>
+<p><code>Generator</code>는 <code>ES6</code>에서 도입되었으며 <code>Iterable</code>을 생성하는 함수다. <code>Generator</code>를 사용하면 <code>Iteration Protocol</code>을 사용하여 <code>Iterable</code>을 생성하는 방식보다 간편하다.<br/>
+<code>Iteration Protocol</code>에 대한 자세한 내용은 <a href="https://github.com/Im-D/Dev-Docs/blob/master/ECMAScript/Iteration_Protocol.md">다음</a>을 참고하길 바란다.</p>
+<a class="header" href="#generator-함수의-정의" id="generator-함수의-정의"><h3>Generator 함수의 정의</h3></a>
+<p><code>Generator</code> 함수는 코드 블록을 한 번에 실행하지 않고 함수 코드 블록의 실행을 중지했다가 필요한 시점에 다시 시작할 수 있는 함수다.<br/>
+<code>Generator</code> 함수는 <code>function *</code> 키워드를 사용하며 하나 이상의 <code>yield</code> 문을 포함한다.</p>
+<pre><code class="language-js">// 함수 선언문
+function* decFunc() {
+  yield 1;
+}
+
+let genObj = decFunc();
+
+// 함수 표현식
+const expFunc = function*() {
+  yield 1;
+};
+
+genObj = expFunc();
+
+// 메서드
+const obj = {
+  *objectMethod() {
+    yield 1;
+  }
+};
+
+genObj = obj.objectMethod();
+
+// 클래스 메서드
+class GenClass {
+  *classMethod() {
+    yield 1;
+  }
+}
+
+const genClass = new GenClass();
+genObj = genClass.classMethod();
+</code></pre>
+<a class="header" href="#generator-객체" id="generator-객체"><h3>Generator 객체</h3></a>
+<p><code>Generator</code> 함수를 호출하면 코드 블록이 실행되는 것이 아니라 <code>Generator</code> 객체를 반환한다. <code>Generator</code> 객체는 이터러블이면서 동시에 이터레이터다. 따라서 <code>Symbol.iterator</code>를 사용하여 이터레이터를 생성할 필요 없다.</p>
+<pre><code class="language-js">function* counter() {
+  console.log(&quot;First&quot;);
+  yield 1;
+  console.log(&quot;Second&quot;);
+  yield 2;
+  console.log(&quot;Third&quot;);
+  yield 3;
+  console.log(&quot;The end&quot;);
+}
+
+const genObj = counter();
+
+console.log(genObj.next()); //{value: 1, done: false}
+console.log(genObj.next()); //{value: 2, done: false}
+console.log(genObj.next()); //{value: 3, done: false}
+console.log(genObj.next()); //{value: undefined, done: true}
+</code></pre>
+<p><code>Generator</code> 객체는 이터러블이면서 이터레이터이기 때문에 <code>next()</code>메서드를 가지고 있다. 따라서 <code>next()</code> 메서드를 호출하면 <code>yield</code>문까지 실행되고 일시 중지된다. 다시 <code>next()</code> 메서드를 호출하면 다음 <code>yield</code>문을 만날 때까지 실행된 뒤 일시 중지된다.</p>
+<a class="header" href="#generator-객체를-이용한-이터러블-구현" id="generator-객체를-이용한-이터러블-구현"><h3>Generator 객체를 이용한 이터러블 구현</h3></a>
+<pre><code class="language-js">const genObj = (function*() {
+  let i = 0;
+
+  while (true) {
+    yield ++i;
+  }
+})();
+
+for (let item of genObj) {
+  if (item === 10) break;
+  console.log(item);
+}
+</code></pre>
+<pre><code class="language-js">// Generator 함수에 파라미터 전달
+const genObj = function*(max) {
+  let i = 0;
+
+  while (true) {
+    if (i === max) break;
+    yield ++i;
+  }
+};
+
+for (let item of genObj(10)) {
+  console.log(item);
+}
+</code></pre>
+<pre><code class="language-js">// next 메서드에 파라미터 전달
+function* genFunc(n) {
+  let res;
+  res = yield n;
+
+  console.log(res);
+  res = yield res;
+
+  console.log(res);
+  res = yield res;
+
+  console.log(res);
+  return res;
+}
+const genObj = genFunc(0);
+
+console.log(genObj.next());
+console.log(genObj.next(1));
+console.log(genObj.next(2));
+console.log(genObj.next(3));
+</code></pre>
+<a class="header" href="#generator를-이용한-비동기-처리" id="generator를-이용한-비동기-처리"><h3>Generator를 이용한 비동기 처리</h3></a>
+<p><code>Generator</code>의 진면목은 비동기 프로그래밍에서 볼 수 있다. 함수가 실행 도중에 멈춘다니. 언제 응답이 올지 알 수 없기 때문에, callback을 등록하는 비동기 프로그래밍에 응용하면 callback hell을 탈출할 수 있지 않을까?</p>
+<pre><code class="language-js">function getId(phoneNumber) {
+  // …
+  iterator.next(result);
+}
+
+function getEmail(id) {
+  // …
+  iterator.next(result);
+}
+
+function getName(email) {
+  // …
+  iterator.next(result);
+}
+
+function order(name, menu) {
+  // …
+  iterator.next(result);
+}
+function* orderCoffee(phoneNumber) {
+  const id = yield getId(phoneNumber);
+  const email = yield getEmail(id);
+  const name = yield getName(email);
+  const result = yield order(name, &quot;coffee&quot;);
+  return result;
+}
+
+const iterator = orderCoffee(&quot;010-1234-1234&quot;);
+iterator.next();
+</code></pre>
+<a class="header" href="#generator는-어떻게-구현되어-있을까" id="generator는-어떻게-구현되어-있을까"><h3>Generator는 어떻게 구현되어 있을까?</h3></a>
+<pre><code class="language-js">// ES6
+function* foo() {
+  yield bar();
+}
+
+// ES5 Compiled
+(&quot;use strict&quot;);
+
+var _marked = /*#__PURE__*/ regeneratorRuntime.mark(foo);
+
+function foo() {
+  return regeneratorRuntime.wrap(
+    function foo$(_context) {
+      while (1) {
+        switch ((_context.prev = _context.next)) {
+          case 0:
+            _context.next = 2;
+            return bar();
+          case 2:
+          case &quot;end&quot;:
+            return _context.stop();
+        }
+      }
+    },
+    _marked,
+    this
+  );
+}
+</code></pre>
+<p><code>Genrator</code>는 결국 <code>iterable Protocol</code>를 구현하는 객체이다. 그러나 프로토콜과 관련된 어느것도 보이지 않는다.</p>
+<p>대신 <code>regeneratorRuntime</code>이 보인다.</p>
+<p><code>babel</code>에서는 <code>regeneratorRuntime</code>라이브러리를 사용해서 구현을 했다.</p>
+<p>코드의 역사를 따라가다 보면 <a href="https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js">facebook/regenerator</a> repository에 도달하게 된다.</p>
+<p>이 라이브러리는 2013년 Node.js v0.11.2에서 generator syntax를 지원하기 위해 만들어 졌으며, Babel에서는 이 라이브러리를 사용하여 generator를 구현하고 있다. 실제 코드를 들여다보면 Symbol과 Iterator를 이용해서 Iterable Protocol을 구현하고 있다.</p>
+<hr />
+<a class="header" href="#-reference-15" id="-reference-15"><h4>🙏 Reference</h4></a>
+<ul>
+<li><a href="https://poiemaweb.com/es6-generator">Poiemaweb-Generator와 async/await</a></li>
+<li><a href="https://meetup.toast.com/posts/73">ES6의 제너레이터를 사용한 비동기 프로그래밍</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Generator">MDN Docs-Genenrator</a></li>
+</ul>
 <a class="header" href="#이벤트-루프event-loop" id="이벤트-루프event-loop"><h2>이벤트 루프(Event Loop)</h2></a>
 <a class="header" href="#자바스크립트는-싱글쓰레드-기반이다" id="자바스크립트는-싱글쓰레드-기반이다"><h3>자바스크립트는 싱글쓰레드 기반이다.</h3></a>
 <p>자바스크립트를 공부해본 개발자라면 한 번쯤은 <code>자바스크립트는 싱글 쓰레드 기반의 언어다.</code>라는 말을 들어봤을 것이다. 하지만 우리는 실제 웹 애플리케이션에서 여러 개의 작업이 동시에 처리되는 것처럼(비동기적) 느끼는 일이 더 많다. 싱글 쓰레드 기반의 언어에서 즉, 한 번에 하나의 작업만 처리가능한 환경에서 어떻게 많은 작업이 동시에 처리되는 것처럼 느낄 수 있을까? 그 답은 <strong>이벤트 루프</strong>에 있다.</p>
@@ -2237,7 +2418,7 @@ setTimeout
 <li><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Task Queue와 Micro Task Queue의 처리 과정</a></li>
 </ul>
 <hr />
-<a class="header" href="#-reference-15" id="-reference-15"><h4>🙏 Reference</h4></a>
+<a class="header" href="#-reference-16" id="-reference-16"><h4>🙏 Reference</h4></a>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/%EC%9D%B4%EB%B2%A4%ED%8A%B8%20%EB%A3%A8%ED%94%84(Event%20Loop).md">Im-D/Dev-Docs</a></li>
 <li><a href="https://medium.com/front-end-weekly/javascript-event-loop-explained-4cd26af121d4">JavaScript Event Loop Explained</a></li>
@@ -2388,7 +2569,7 @@ setTimeout
 <li><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Task Queue와 Micro Task Queue의 처리 과정</a></li>
 </ul>
 <hr />
-<a class="header" href="#-reference-16" id="-reference-16"><h4>🙏 Reference</h4></a>
+<a class="header" href="#-reference-17" id="-reference-17"><h4>🙏 Reference</h4></a>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/%EC%9D%B4%EB%B2%A4%ED%8A%B8%20%EB%A3%A8%ED%94%84(Event%20Loop).md">Im-D/Dev-Docs</a></li>
 <li><a href="https://medium.com/front-end-weekly/javascript-event-loop-explained-4cd26af121d4">JavaScript Event Loop Explained</a></li>
