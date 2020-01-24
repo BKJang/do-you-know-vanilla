@@ -15,9 +15,9 @@
   - [Destructuring(비구조화 할당)](./basic/11-Destructuring.md)
   - [Class(클래스)](./basic/12-Class.md)
   - [Module(모듈)](./basic/13-Module.md)
-  - [Promise와 async-await](14-Promise&Async-Await.md)
-  - [Iteration Protocol](15-Iteration-Protocol.md)
-  - [Generator](16-Generator.md)
+  - [Promise와 async-await](./basic/14-Promise&Async-Await.md)
+  - [Iteration Protocol](./basic/15-Iteration-Protocol.md)
+  - [Generator](./basic/16-Generator.md)
 
 - [Advance](./advance/01-EventLoop.md)
   - [Event Loop](./advance/01-EventLoop.md)
