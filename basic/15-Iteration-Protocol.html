@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Spread연산자 &amp; rest파라미터 - Do you know vanilla?</title>
+        <title>Iteration Protocol - Do you know vanilla?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="../basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="../basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="../basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="../basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="../basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="../basic/07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="../basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="../basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="../basic/10-Spread.html" class="active"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="../basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="../basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="../basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="../basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="../basic/15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li><a href="../basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li><a href="../advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="../basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="../basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="../basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="../basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="../basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="../basic/07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="../basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="../basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="../basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="../basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="../basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="../basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="../basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="../basic/15-Iteration-Protocol.html" class="active"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li><a href="../basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li><a href="../advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -176,152 +176,90 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#spread연산자--rest파라미터" id="spread연산자--rest파라미터"><h2>Spread연산자 &amp; rest파라미터</h2></a>
-<a class="header" href="#rest-파라미터" id="rest-파라미터"><h3>rest 파라미터</h3></a>
-<p>rest 파라미터는 Spread 연산자(<code>...</code>)를 사용하여 파라미터를 정의한다.
-기존에 ES5에서는 가변 파라미터를 정의할 때 <code>arguments</code>객체를 사용할 수 있었지만 이를 <code>rest 파라미터</code>로 대체할 수 있다.</p>
-<pre><code class="language-js">//ES5
-function foo() {
-  console.log(Array.isArray(arguments));
-  console.log(arguments);
-}
+                        <a class="header" href="#iteration-protocol" id="iteration-protocol"><h2>Iteration Protocol</h2></a>
+<p><code>Iteration Protocol</code>은 ES6에서 도입되었다. 이는 새로운 구문이 아닌 하나의 프로토콜, 규약이다. 즉, 같은 규칙을 준수하는 객체에 의해 구현될 수 있다. <code>Iteration Protocol</code>에는 <strong>Iterable Protocol</strong> 과 <strong>Iterator Protocol</strong> 이 있다.</p>
+<a class="header" href="#iterable" id="iterable"><h3>Iterable</h3></a>
+<p><code>Iterable</code>은 <code>Iterable Protocol</code>을 준수한 객체다. <code>Iterable</code>은 반복 가능한 객체이며 <code>Symbol.iterator</code> 메서드를 구현하거나 프로토타입 체인에 의해 상속한 객체를 말한다. <code>Iterable</code>은 <code>for...of</code>문에서 반복 가능하며 <a href="https://github.com/Im-D/Dev-Docs/blob/master/ECMAScript/Spread_Operator.md">Spread Operator</a>의 대상이 될 수 있다.</p>
+<p><code>Iterable</code>은 <code>Symbol.iterator</code>을 가지기 때문에 해당 메서드가 없는 객체는 Iterable 객체가 아니다.</p>
+<p>Iterable 객체로는 내장 객체인 <code>Array</code>, <code>Map</code>, <code>Set</code>, <code>String</code> 등이 있다.</p>
+<pre><code class="language-js">const iterator = [1, 2, 3][Symbol.iterator]();
 
-foo(1, 2, 3, 4, 5);
-/*
-false
-{'0': 1, '1': 2, '2': 3, '3': 4, '4': 5, length: 5}
-*/
+iterator.next().value; // 1
+iterator.next().value; // 2
+iterator.next().value; // 3
+iterator.next().done; // true
 </code></pre>
-<pre><code class="language-js">//ES6
-function foo(...rest) {
-  console.log(Array.isArray(rest));
-  console.log(rest);
-}
+<p>반면, 일반 객체는 <code>Symbol.iterator</code> 메서드를 가지고 있지 않다. 따라서 일반 객체는 Iterable 객체가 아니다.</p>
+<pre><code class="language-js">const obj = { a: 1, b: 2 };
 
-foo(1, 2, 3, 4, 5);
-/*
-true
-[1, 2, 3, 4, 5]
-*/
+console.log(Symbol.iterator in obj); // false
+
+// TypeError: obj is not iterable
+for (const item of obj) {
+  console.log(item);
+}
 </code></pre>
-<p>위의 결과를 보면 arguments 객체와 rest 파라미터의 중요한 차이를 알 수 있다.</p>
-<p><strong><code>arguments</code>객체는 유사배열 객체</strong>다. 따라서 <code>Array.isArray(arguments)</code>의 결과는 false를 반환한다.</p>
-<p>여기서 큰 차이가 발생하는데 <strong>유사배열객체는 배열의 메서드를 사용할 수 없다.</strong> 배열의 메서드를 사용하기 위해서는 이를 <strong>배열로 변환하는 과정을 거쳐야하는 불편함</strong>이 있다. <br/>
-하지만 가변 인자 함수를 rest 파라미터로 정의하면 파라미터는 배열의 형태로 넘어온다.</p>
-<p>또한 ES6의 <a href="https://bkjang.github.io/arrow_function/">화살표 함수(Arrow Function)</a>에서는 <code>arguments</code>를 사용할 수 없다.</p>
-<pre><code class="language-js">//ES6 화살표 함수
-const foo = () =&gt; {
-  console.log(arguments);
+<p>하지만 일반 객체도 <code>Iterable Protocol</code>을 준수하도록 구현하면 Iterable 객체가 될 수 있다.</p>
+<pre><code class="language-js">const iterableObj = function(max) {
+  let i = 0;
+
+  return {
+    [Symbol.iterator]() {
+      return {
+        next() {
+          return {
+            value: ++i,
+            done: i === max
+          };
+        }
+      };
+    }
+  };
 };
 
-foo(1, 2, 3, 4, 5); //Uncaught ReferenceError: arguments is not defined
-</code></pre>
-<blockquote>
-<ul>
-<li><code>rest</code> 파라미터는 <code>arguments</code>와 달리 <strong>배열</strong>로 파라미터가 넘어온다.</li>
-<li>ES6의 <strong>화살표 함수에서는 <code>arguments</code>를 사용할 수 없다.</strong></li>
-</ul>
-</blockquote>
-<a class="header" href="#spread-연산자" id="spread-연산자"><h3>Spread 연산자</h3></a>
-<p>Spread 연산자는 말그대로 전개 연산자다. <strong>배열 또는 Iterable object(반복 가능한 객체)의 엘리먼트를 하나씩 분리하여 전개</strong>한다.</p>
-<pre><code class="language-js">let a = &quot;Hello&quot;;
-let arr = [...a];
+const iterator = iterableObj(10);
 
-console.log(arr); //[&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]
-</code></pre>
-<a class="header" href="#spread-연산자의-활용" id="spread-연산자의-활용"><h3>Spread 연산자의 활용</h3></a>
-<ul>
-<li><strong>concat</strong></li>
-</ul>
-<p>ES5에서는 배열을 합칠 때 <code>concat</code>을 사용했었다. 이를 <code>Spread</code>연산자로 대체할 수 있다.</p>
-<pre><code class="language-js">//concat
-var arr1 = [5, 6];
-var arr2 = [1, 2, 3, 4];
-
-console.log(arr2.concat(arr1)); //[1, 2, 3, 4, 5, 6]
-console.log(arr1.concat(arr2)); //[5, 6, 1, 2, 3, 4]
-</code></pre>
-<pre><code class="language-js">//ES6 Spread Operator
-let arr1 = [5, 6];
-let arr2 = [1, 2, 3, 4, ...arr1];
-
-console.log(arr2); //[1, 2, 3, 4, 5, 6]
-console.log([1, 2, ...arr1, 3, 4]); //[1, 2, 5, 6, 3, 4]
-</code></pre>
-<p>단순히 앞, 뒤에 배열의 요소를 붙이는데는 <code>concat</code>이 성능이 더 좋다. 하지만 중간에 특정 배열의 값을 추가하고 싶다면 <code>Spread</code>연산자를 사용하는 것도 좋은 방법이다.</p>
-<ul>
-<li><strong>split</strong></li>
-</ul>
-<p>문자열을 배열로 변환할 때 많이 쓰이는 함수가 <code>split()</code>이다. 이 또한 Spread 연산자를 활용하면 좀 더 편하게 변환할 수 있다.</p>
-<pre><code class="language-js">//split
-
-var a = &quot;Hello&quot;;
-var arr = a.split(&quot;&quot;);
-
-console.log(arr); //[&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]
-</code></pre>
-<pre><code class="language-js">//ES6 Spread Operator
-
-let a = &quot;Hello&quot;;
-let arr = [...a];
-
-console.log(arr); //[&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]
-</code></pre>
-<ul>
-<li><strong>함수의 인자로 사용</strong></li>
-</ul>
-<p>기존에 ES5에서는 배열의 각 요소를 개별적인 파라미터로 전달하고 싶은 경우, <code>Function.prototype.apply</code>를 사용하는 것이 일반적이었다. <br/>하지만 ES6의 <code>Spread</code> 연산자를 활용하여 함수의 인자에 들어가는 배열을 개별요소로 전달할 수 있다.</p>
-<pre><code class="language-js">//ES5 apply
-var arr = [1, 2, 3];
-
-function sum(a, b, c) {
-  console.log(a, b, c); //1 2 3
-  return a + b + c;
+for (let item of iterator) {
+  console.log(item);
 }
-
-console.log(sum.apply(null, arr)); //6
 </code></pre>
-<pre><code class="language-js">//ES6 Spread Operator
-let arr = [1, 2, 3];
-
-const sum = (a, b, c) =&gt; a + b + c;
-
-console.log(sum(...arr)); //6
-</code></pre>
-<ul>
-<li><strong>객체에서 사용</strong></li>
-</ul>
-<p>객체는 Iterable Object아니지만 Spread 연산자를 사용하면 객체를 손쉽게 병합 또는 변경할 수 있다.</p>
-<pre><code class="language-js">let obj1 = {
-  name: &quot;BKJang&quot;,
-  job: &quot;Developer&quot;
-};
-
-let obj2 = {
-  ...obj1,
-  lang: &quot;Korean&quot;
-};
-
-console.log(obj2); //{name: &quot;BKJang&quot;, job: &quot;Developer&quot;, lang: &quot;Korean&quot;}
-</code></pre>
-<p>Spread 연산자를 활용하면 유사배열객체(arguments, HTMLCollection 등)를 배열로 변환하기도 편하다.</p>
-<pre><code class="language-js">function foo() {
-  let args = arguments;
-  let arr = [...args];
-
-  console.log(Array.isArray(args)); //false
-  console.log(Array.isArray(arr)); //true
-  console.log(arr); //
+<a class="header" href="#iterator" id="iterator"><h3>Iterator</h3></a>
+<p><code>Iterator Protocol</code>은 <code>next</code> 메서드를 가진다. <code>next</code> 메소드를 호출하면 Iterable 객체를 순회하며 <code>value</code>, <code>done</code> 프로퍼티를 갖는 Iterator Reuslt 객체를 반환한다. 이 규약을 준수한 객체가 Iterator 객체다.</p>
+<p>위에서 잠깐 봤던 코드의 일부분을 다시 한 번 살펴보자.</p>
+<pre><code class="language-js">[Symbol.iterator]() {
+  return {
+    next() {
+      return {
+        value: ++i,
+        done: i === max
+      };
+    }
+  };
 }
-
-foo(1, 2, 3, 4, 5); //[1, 2, 3, 4, 5]
 </code></pre>
+<p><code>Symbol.iterator</code> 메서드를 실행하면 <code>next</code> 메서드를 가진 객체를 반환하고 <code>next</code> 메서드를 실행하면 <code>value</code>, <code>done</code> 프로퍼티를 가진 객체를 반환한다. 그렇다. <br/> Iterable 객체가 가진 <code>Symbol.iterator</code> 메서드를 실행하면 Iterator 객체를 반환한다.</p>
+<pre><code class="language-js">const array = [1, 2, 3];
+
+const iterator = array[Symbol.iterator]();
+
+console.log(&quot;next&quot; in iterator); // true
+
+iterator.next().value; // 1
+iterator.next().value; // 2
+iterator.next().value; // 3
+iterator.next(); // { value: undefined, done: true }
+</code></pre>
+<p>Iterator 객체의 <code>next</code> 메서드가 반환하는 Iterator Result 객체의 <code>value</code> 프로퍼티는 Iterable 객체의 값을 반환하고 <code>done</code> 프로퍼티는 Iterable 객체의 반복 완료 여부를 반환한다.</p>
+<a class="header" href="#iteration-protocol이-왜-필요할까" id="iteration-protocol이-왜-필요할까"><h3>Iteration Protocol이 왜 필요할까?</h3></a>
+<p><code>for...of</code>, <code>Spread Operator</code>, <code>Destructuring</code>, <code>Map/Set constructor</code>등을 <strong>데이터 소비자(Data Consumer)</strong> 라고 한다.<br/> 반면, <code>배열</code>, <code>문자열</code>, <code>Map</code>, <code>Set</code>, <code>DOM Data Structure</code> 등과 같은 Iterable 객체는 <strong>데이터 공급자(Data Provider)</strong> 라고 한다.</p>
+<p>만약, 위와 같은 Data Provider인 Iterable 객체들이 각각 다른 방식의 순회 방식을 갖는다면 어떨까? 당연히 효율적이지 못하다.</p>
+<p>순회 방식에 대한 하나의 규약을 정해놓고 사용한다면 Data Consumer가 여러 구조의 Iterable을 효율적으로 사용할 수 있을 것이다. 즉, Iteration Protocol은 Data Consumer와 Data Provider를 연결하는 인터페이스 역할을 해주기 때문에 필요하다고 볼 수 있다.</p>
 <hr />
 <a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
 <ul>
-<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax">MDN Web Docs - Spread 문법</a></li>
-<li><a href="https://jaeyeophan.github.io/2017/04/18/ES6-4-Spread-Rest-parameter/">[ES6] 4. Spread, Rest parameter</a></li>
-<li><a href="https://poiemaweb.com/es6-extended-parameter-handling">파라미터 기본값, Rest 파라미터, Spread 연산자</a></li>
+<li><a href="https://poiemaweb.com/es6-iteration-for-of">Poiemaweb - 이터레이션과 for...of 문</a></li>
+<li><a href="https://wonism.github.io/javascript-iteration-protocol/">wonism.github.io - JavaScript iterables와 iterator 이해하기</a></li>
+<li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Iteration_protocols">MDN Docs - Iteration protocols</a></li>
 </ul>
 
                     </main>
@@ -329,13 +267,13 @@ foo(1, 2, 3, 4, 5); //[1, 2, 3, 4, 5]
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../basic/09-Arrow-Function.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../basic/14-Promise&amp;Async-Await.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="../basic/11-Destructuring.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="../basic/16-Generator.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -347,13 +285,13 @@ foo(1, 2, 3, 4, 5); //[1, 2, 3, 4, 5]
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="../basic/09-Arrow-Function.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../basic/14-Promise&amp;Async-Await.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="../basic/11-Destructuring.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../basic/16-Generator.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
