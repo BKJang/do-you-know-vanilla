@@ -22,3 +22,4 @@
 - [Advance](./advance/01-EventLoop.md)
   - [Event Loop](./advance/01-EventLoop.md)
   - [repaint와 reflow](./advance/02-repaint&reflow.md)
+  - [모듈 패턴(Module Pattern)](./advance/03-Module-Pattern.md)
