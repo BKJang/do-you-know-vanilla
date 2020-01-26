@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>모듈 패턴(Module Pattern) - Do you know vanilla?</title>
+        <title>네임스페이스 패턴(Namespace Pattern)과 IIFE - Do you know vanilla?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="../basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="../basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="../basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="../basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="../basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="../basic/07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="../basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="../basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="../basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="../basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="../basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="../basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="../basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="../basic/15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li><a href="../basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li><a href="../advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li><li><a href="../advance/03-Module-Pattern.html" class="active"><strong aria-hidden="true">2.3.</strong> 모듈 패턴(Module Pattern)</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="../basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="../basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="../basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="../basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="../basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="../basic/07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="../basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="../basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="../basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="../basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="../basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="../basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="../basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="../basic/15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li><a href="../basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li><a href="../advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li><li><a href="../advance/03-Namespace.html" class="active"><strong aria-hidden="true">2.3.</strong> 네임스페이스 패턴(Namespace Pattern)과 IIFE</a></li><li><a href="../advance/04-Module-Pattern.html"><strong aria-hidden="true">2.4.</strong> 모듈 패턴(Module Pattern)</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -176,100 +176,81 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#모듈-패턴module-pattern" id="모듈-패턴module-pattern"><h2>모듈 패턴(Module Pattern)</h2></a>
-<pre><code class="language-javascript">var Developer = function(arg) {
-  var lang = arg ? arg : '';
+                        <a class="header" href="#네임스페이스-패턴namespace-pattern과-iife" id="네임스페이스-패턴namespace-pattern과-iife"><h2>네임스페이스 패턴(Namespace Pattern)과 IIFE</h2></a>
+<p>전역 변수를 많이 쓰면 안좋다고 흔히들 말한다.
+그 이유를 알 수 있는 간단한 예를 보자.</p>
+<pre><code class="language-javascript">var x = 100;
+
+function test() {
+    x = 10;
+    console.log('10이 나오겠지?', x);
+}
+
+test();
+console.log('100을 출력해볼까 ?', x);
+
+/*
+10이 나오겠지? 10
+100을 출력해볼까 ? 10
+*/
+</code></pre>
+<p><strong>지역 스코프에서 전역변수를 참조할 수 있으므로</strong> 전역변수의 값도 변경할 수 있다.
+<strong>내부 함수의 경우에는, 전역변수는 물론 상위 함수에서 선언한 변수에 접근/변경이 가능</strong>하다.</p>
+<p>프로젝트가 클수록, 협업이 이루어질수록 전역 변수가 많아지면 원하는 결과가 아닌 다른 결과가 나타날 수 있다.</p>
+<a class="header" href="#네임스페이스-패턴namespace-pattern" id="네임스페이스-패턴namespace-pattern"><h3>네임스페이스 패턴(Namespace Pattern)</h3></a>
+<p>네임스페이스 패턴은 <strong>말 그대로 이름 공간을 선언하여 다른 공간과 구분하는 패턴</strong>이라고 보면 된다.</p>
+<pre><code class="language-javascript">var APP_GLOBAL = {
+    name : 'BKJang',
+    age : '25',
+    getInfo : function() {
+        console.log('name :', this.name, 'age :', this.age);
+    }
+}
+
+console.log(APP_GLOBAL); //{name: &quot;BKJang&quot;, age: &quot;25&quot;, getInfo: ƒ}
+console.log(APP_GLOBAL.name, APP_GLOBAL.age); //BKJang 25
+APP_GLOBAL.getInfo(); //name : BKJang age : 25
+</code></pre>
+<p>이처럼 <strong>전역 변수 사용을 위해 전역 객체 하나를 만들어 사용</strong>하는 것이다.</p>
+<a class="header" href="#즉시-실행-함수-표현식iife-immediately-invoked-function-expression" id="즉시-실행-함수-표현식iife-immediately-invoked-function-expression"><h3>즉시 실행 함수 표현식(IIFE, Immediately-Invoked Function Expression)</h3></a>
+<p>즉시 실행 함수를 사용하면 <strong>함수가 실행되고 전역에서 사라진다.</strong> 이 방법으로 라이브러리를 많이 만들곤 한다.</p>
+<pre><code class="language-javascript">(function moduleFunction() {
+
+  var a = 3;
+  
+  function helloWorld(){
+    console.log('Hello');
+  }
+
+  helloWorld(); //Hello
+})();
+
+helloWorld(); //Uncaught ReferenceError: helloWorld is not defined
+</code></pre>
+<p>즉시실행함수가 실행되고 전역에서 사라지기 때문에 그 밖에선 출력 값이 에러가 발생하는 것을 볼 수 있다.</p>
+<pre><code class="language-javascript">var singleton = (function () {
+
+  var a = 3;
+  
+  function helloWorld(){
+    console.log('Hello');
+  }
 
   return {
-    getLang : function() {
-      return lang;
-    },
-    setLang : function(arg) {
-      lang = arg;
-    }
-  
+    a : a,
+    sayHello: helloWorld
   }
-};
+})();
 
-var bkjang = new Developer('javascript');
+singleton.sayHello(); //Hello
+console.log(singleton.a); //3
 
-console.log(bkjang.getLang()); //javascript
-
-bkjang.setLang('java');
-
-console.log(bkjang.getLang()); //java
 </code></pre>
-<p>위의 코드를 보면 Developer 생성자 함수에서 <strong><code>this</code>가 아닌 <code>var lang = arg ? arg : '';</code>으로 선언하면 자바스크립트는 함수형 스코프를 따르기 때문에 private해진다.</strong></p>
-<p>그리고 <code>getLang()</code> 과 <code>setLang()</code> 이라는 함수는 <strong>클로저</strong>이기 때문에 외부에서는 <code>lang</code>이라는 변수의 값에 접근할 수 있는 인터페이스가 된다.</p>
-<p>위와 같이 <code>getLang()</code>과 <code>setLang()</code>과 같은 public 메서드를 인터페이스로 제공하고 <code>lang</code>과 같은 private한 변수에 인터페이스를 통해서만 접근하도록 하는 것이 <strong>모듈 패턴</strong>이다.</p>
-<p>그렇다면 private 멤버 변수가 객체나 배열일 경우는 어떻게 될까?</p>
-<pre><code class="language-js">var Developer = function (obj) {
-  var developerInfo = obj;
-
-  return {
-    getDeveloperInfo: function() {
-      return developerInfo;
-    }
-  };
-};
-
-var developer = new Developer({ name: 'BKJang', lang: 'javascript' });
-
-var bkJang = developer.getDeveloperInfo();
-console.log('bkJang: ', bkJang);
-// bkJang:  {name: &quot;BKJang&quot;, lang: &quot;javascript&quot;}
-
-bkJang.lang = 'java'; //인터페이스가 아닌 직접 변경
-
-bkJang = developer.getDeveloperInfo();
-console.log('bkJang: ', bkJang);
-// bkJang:  {name: &quot;BKJang&quot;, lang: &quot;java&quot;}
-
-console.log(Developer.prototype === bkJang.__proto__); //false
-</code></pre>
-<p><strong>일반 변수가 아닌 객체나 배열을 멤버 변수로 가지고 이를 그대로 반환할 경우, 외부에서 이 멤버를 변경할 수 있다.</strong></p>
-<p>왜냐하면, 객체나 배열을 반환하는 경우는 얕은 복사(shallow copy)로 private 멤버의 <strong>참조값을 반환</strong>하게 된다.</p>
-<p>따라서, 반환할 객체나 배열의 정보를 담은 <strong>새로운 객체를 만들어 깊은 복사(deep copy)를 거친 후 반환</strong>해야 한다.</p>
-<p>또한, 위처럼 일반 객체를 반환하면 프로토타입 객체는 <code>Object.prototype</code> 객체가 되기 때문에 <strong>상속을 구현할 수 없다.</strong> 따라서 <strong>함수를 반환</strong>해야 한다.</p>
-<pre><code class="language-js">var Developer = (function() {
-  var lang;
-
-  //생성자 정의
-  function Developer(arg) {
-    lang = arg ? arg : '';
-  }
-
-  Developer.prototype = {
-    getLang : function() {
-      return lang;
-    },
-    setLang : function(arg) {
-      lang = arg;
-    }
-  }
-  
-  return Developer;
-}());
-
-var bkJang = new Developer('javscript');
-
-console.log(bkJang.getLang()); //javscript
-
-bkJang.lang = 'java'; //인터페이스를 통해서가 아닌 직접 변경
-console.log(bkJang.getLang()); //javscript
-
-bkJang.setLang('java');
-console.log(bkJang.getLang()); //java
-
-console.log(Developer.prototype === bkJang.__proto__); //true
-</code></pre>
-<p>마지막 출력 값을 보면 <strong>인스턴스인 <code>bkJang</code>의 프로토타입 객체가 <code>Developer.prototype</code> 객체임을 알 수 있고 이는 상속을 구현할 수 있음을 의미</strong>한다.</p>
+<p>위와 같이 <strong>반환 값을 변수에 담아 전역 변수를 한 번 만 사용</strong>하여 전역 변수의 사용을 줄일 수도 있다.</p>
 <hr />
 <a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
 <ul>
-<li>인사이드 자바스크립트 (송형주, 고형준)</li>
-<li><a href="https://poiemaweb.com/js-object-oriented-programming">자바스크립트 객체지향 프로그래밍</a></li>
-<li><a href="https://bkdevlog.netlify.com/posts/oop-encapsulation-of-js">[JavaScript] 8-3. 객체지향 프로그래밍(캡슐화)</a></li>
+<li><a href="http://www.nextree.co.kr/p7650/">JavaScript: 네임스페이스 패턴(Namespace Pattern) 바로 알기</a></li>
 </ul>
 
                     </main>
@@ -282,6 +263,10 @@ console.log(Developer.prototype === bkJang.__proto__); //true
                             </a>
                         
 
+                        
+                            <a rel="next" href="../advance/04-Module-Pattern.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -296,6 +281,10 @@ console.log(Developer.prototype === bkJang.__proto__); //true
                     </a>
                 
 
+                
+                    <a href="../advance/04-Module-Pattern.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
                 
             </nav>
 
