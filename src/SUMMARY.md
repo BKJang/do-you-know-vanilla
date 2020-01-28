@@ -25,3 +25,6 @@
   - [네임스페이스 패턴(Namespace Pattern)과 IIFE](./advance/03-Namespace.md)
   - [모듈 패턴(Module Pattern)](./advance/04-Module-Pattern.md)
   - [렉시컬 스코프(Lexical Scope)](./advance/05-Lexical-Scope.md)
+
+- [Skill](./skill/01-Deep-Copy.md)
+  - [Deep Copy](./skill/01-Deep-Copy.md)
