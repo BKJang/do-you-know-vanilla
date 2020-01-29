@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>이벤트 위임(Event Delegation) - Do you know vanilla?</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "../";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="../basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="../basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="../basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="../basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="../basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="../basic/07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="../basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="../basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="../basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="../basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="../basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="../basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="../basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="../basic/15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li><a href="../basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li><a href="../advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li><li><a href="../advance/03-Namespace.html"><strong aria-hidden="true">2.3.</strong> 네임스페이스 패턴(Namespace Pattern)과 IIFE</a></li><li><a href="../advance/04-Module-Pattern.html"><strong aria-hidden="true">2.4.</strong> 모듈 패턴(Module Pattern)</a></li><li><a href="../advance/05-Lexical-Scope.html"><strong aria-hidden="true">2.5.</strong> 렉시컬 스코프(Lexical Scope)</a></li></ol></li><li><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.</strong> Skill</a></li><li><ol class="section"><li><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.1.</strong> Deep Copy</a></li><li><a href="../skill/02-Event-Delegation.html" class="active"><strong aria-hidden="true">3.2.</strong> 이벤트 위임(Event Delegation)</a></li></ol></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <style>
+  header.warning {
+    background-color: rgb(242, 222, 222);
+    border-bottom-color: rgb(238, 211, 215);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-style: solid;
+    border-bottom-width: 0.666667px;
+    border-image-outset: 0 0 0 0;
+    border-image-repeat: stretch stretch;
+    border-image-slice: 100% 100% 100% 100%;
+    border-image-source: none;
+    border-image-width: 1 1 1 1;
+    border-left-color: rgb(238, 211, 215);
+    border-left-style: solid;
+    border-left-width: 0.666667px;
+    border-right-color: rgb(238, 211, 215);
+    border-right-style: solid;
+    border-right-width: 0.666667px;
+    border-top-color: rgb(238, 211, 215);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top-style: solid;
+    border-top-width: 0.666667px;
+    color: rgb(185, 74, 72);
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 30px;
+    padding-bottom: 8px;
+    padding-left: 14px;
+    padding-right: 35px;
+    padding-top: 8px;
+    text-align: center;
+  }
+</style>
+
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Do you know vanilla?</h1> 
+
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#이벤트-위임event-delegation" id="이벤트-위임event-delegation"><h2>이벤트 위임(Event Delegation)</h2></a>
+<p><strong>이벤트 위임</strong>의 이해에는 <strong>이벤트 버블링</strong>과 <strong>이벤트 캡쳐</strong>에 대한 이해가 수반된다.</p>
+<p>우선 그림으로 보면, 이벤트 버블링과 이벤트 캡쳐의 개념은 다음과 같다.</p>
+<p><img src="https://github.com/Im-D/Dev-Docs/raw/master/assets/images/event_delegation.png" alt="event_delegation" /></p>
+<a class="header" href="#이벤트-버블링event-bubbling" id="이벤트-버블링event-bubbling"><h3>이벤트 버블링(Event Bubbling)</h3></a>
+<pre><code class="language-html">&lt;body&gt;
+   &lt;div class=&quot;el1&quot;&gt;
+    &lt;div class=&quot;el2&quot;&gt;
+        &lt;div class=&quot;el3&quot;&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+   &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="language-javascript">var divs = document.querySelectorAll('div');
+divs.forEach(function(div) {
+    div.addEventListener('click', bubbleEvent);
+});
+
+function bubbleEvent(e) {
+    console.log(e.target.className);
+}
+
+
+/*
+el3
+el2
+el1
+*/
+</code></pre>
+<p>위의 코드에서는 class 명이 el3인 element(<code>&lt;div class=&quot;el3&quot;&gt;&lt;/div&gt;</code>)을 클릭했을 때, <strong>이벤트가 발생하는 요소인 <code>&lt;div class=&quot;el3&quot;&gt;&lt;/div&gt;</code>에서 상위에 있는 요소까지 이벤트를 전파시키고 있다.</strong>
+이에 따라 결과 값은 el3만 나오는 것이 아닌 el1까지 콘솔에 출력되고 있다.</p>
+<p>이처럼 이벤트가 발생한 요소로부터 상위요소로 전파시키는 이벤트 전파 방식을 <strong>이벤트 버블링</strong>이라고 한다.</p>
+<a class="header" href="#이벤트-캡쳐event-capture" id="이벤트-캡쳐event-capture"><h3>이벤트 캡쳐(Event Capture)</h3></a>
+<pre><code class="language-html">&lt;body&gt;
+   &lt;div class=&quot;el1&quot;&gt;
+       &lt;div class=&quot;el2&quot;&gt;
+      &lt;div class=&quot;el3&quot;&gt;
+      &lt;/div&gt;
+       &lt;/div&gt;
+   &lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="language-javascript">var divs = document.querySelectorAll('div');
+divs.forEach(function(div) {
+    div.addEventListener('click', captureEvent, {
+        capture : true
+    });
+});
+
+function captureEvent(e) {
+    console.log(e.target.className);
+}
+
+/*
+el1
+el2
+el3
+*/
+</code></pre>
+<p>이벤트 캡쳐(Event Capture)를 테스트하기 위해 <code>addEventListener()</code>함수에 <code>capture : true</code>라는 옵션을 추가했다.</p>
+<p>위의 코드에서는 마찬가지로 class 명이 el3인 element(<code>&lt;div class=&quot;el3&quot;&gt;&lt;/div&gt;</code>)을 클릭했을 때, 이벤트 버블링과 다르게 상위 요소에서 하위 요소로 즉, 이벤트 버블링과 반대 방향으로 이벤트를 전파하고 있다.</p>
+<p>이에 따라 결과 값은 el3부터 el1까지 상위 요소부터 콘솔에 출력되고 있다.</p>
+<p>이처럼, 이벤트가 발생했을 때, 상위 요소부터 하위요소로 전파시키는 이벤트 전파 방식을 <strong>이벤트 캡쳐</strong>라고 한다.</p>
+<a class="header" href="#이벤트-위임event-delegation-1" id="이벤트-위임event-delegation-1"><h3>이벤트 위임(Event Delegation)</h3></a>
+<p><strong>이벤트 위임</strong>은 하위 요소 각각에 이벤트를 구현하지 않고 상위 요소에서 하위요소의 이벤트를 제어하는 방식이다.</p>
+<pre><code class="language-html">&lt;body&gt;
+   &lt;ul class=&quot;list&quot;&gt;
+      &lt;li&gt;
+         &lt;input type=&quot;checkbox&quot; id=&quot;one&quot;/&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+         &lt;input type=&quot;checkbox&quot; id=&quot;two&quot;/&gt;
+      &lt;/li&gt;
+   &lt;/ul&gt; 
+&lt;/body&gt;
+
+</code></pre>
+<pre><code class="language-javascript">var items = document.querySelectorAll('input');
+items.forEach(function(item) {
+    item.addEventListener('click', function(e) {
+       console.log(e.target.id);
+    });
+});
+
+</code></pre>
+<p>위의 코드를 보면 각각의 <code>input</code> 요소를 클릭했을 때, 해당 요소의 id 값을 콘솔에 출력하도록 코드가 짜여있다.
+하지만 이런 방식으로, 이벤트를 줄 요소를 for문을 돌려 이벤트를 구현할 시, <strong>동적으로 추가되는 요소는 이벤트가 적용되지 않는다</strong>는 치명적인 단점이 있다.</p>
+<p>쉽게 말해, <strong>위의 코드에서 li를 특정 버튼을 눌러 추가한 이후, 그 요소를 클릭하면 위의 js코드가 작동하지 않는다는 것</strong>이다.
+이러한 문제를 해결할 수 있는 방법이 <strong>이벤트 위임(Event Delegation)을 적용</strong>하는 것이다.</p>
+<pre><code class="language-javascript">/*
+var items = document.querySelectorAll('input');
+items.forEach(function(item) {
+    item.addEventListener('click', function(e) {
+       console.log(e.target.id);
+    });
+});
+*/
+
+//이벤트 위임 방식으로 코드 변경
+var items = document.querySelector('.list');
+items.addEventListener('click', function(e) {
+    console.log(e.target.id);
+});
+
+</code></pre>
+<p>위의 수정된 코드를 보면, 이벤트 줄 요소를 해당 요소가 아닌 그 상위 요소인 <code>&lt;ul class=&quot;list&quot;&gt;&lt;/ul&gt;</code>을 지정하고 있다.
+<strong>이벤트를 줄 요소가 아닌 그 요소의 부모 요소를 지정하여 이벤트 리스너를 달고, 하위에서 발생한 클릭 이벤틀를 감지하도록 한다.</strong>
+이렇게 코드를 짜면, 동적으로 추가된 요소에 대해서도 이벤트가 동작하도록 할 수 있다.</p>
+<a class="header" href="#이벤트-위임event-delegation의-장점" id="이벤트-위임event-delegation의-장점"><h3>이벤트 위임(Event Delegation)의 장점</h3></a>
+<ul>
+<li>
+<p>상위 요소에서 이벤트 리스너를 관리하기 때문에 하위 요소에는 자유롭게 요소를 추가할 수 있다. 즉, <strong>동적인 element를 관리하기에 수월하다.</strong></p>
+</li>
+<li>
+<p><strong>이벤트 핸들러를 한 곳에서 관리하기 때문에 관리하기 수월하다.</strong></p>
+</li>
+<li>
+<p>동적으로 추가되는 요소에 대한 이벤트가 없기 때문에 <strong>메모리의 사용이 줄어든다.</strong></p>
+</li>
+<li>
+<p>이벤트 핸들러가 줄어들기 때문에 <strong>메모리 누수의 가능성도 줄어든다.</strong></p>
+</li>
+</ul>
+<a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
+<ul>
+<li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/%EC%9D%B4%EB%B2%A4%ED%8A%B8%20%EC%9C%84%EC%9E%84(Event%20Delegation).md">ImD/Dev-Docs - javascript Event Delegation</a></li>
+<li><a href="https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/">이벤트 버블링, 이벤트 캡처 그리고 이벤트 위임까지</a></li>
+<li><a href="http://paiai.tistory.com/42">Event delegation(이벤트 위임)</a></li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="../skill/01-Deep-Copy.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="../skill/01-Deep-Copy.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="../elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="../clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
