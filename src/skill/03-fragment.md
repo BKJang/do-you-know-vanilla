@@ -1,4 +1,4 @@
-## document.createDocumentFragment()
+## DocumentFragment
 
 `DocumentFragment`를 활용하는 것은 `reflow`를 줄이기 위한 방법 중 하나다.
 
