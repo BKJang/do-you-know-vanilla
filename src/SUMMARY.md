@@ -30,3 +30,4 @@
   - [Deep Copy](./skill/01-Deep-Copy.md)
   - [이벤트 위임(Event Delegation)](./skill/02-Event-Delegation.md)
   - [DocumentFragment](./skill/03-fragment.md)
+  - [repaint와 reflow 최적화](./skill/04-reflow&repaint.md)
