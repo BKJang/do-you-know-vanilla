@@ -32,3 +32,5 @@
   - [DocumentFragment](./skill/03-fragment.md)
   - [repaint와 reflow 최적화](./skill/04-reflow&repaint.md)
   - [쓰로틀링 vs 디바운싱](./skill/05-throttle&debounce.md)
+  - [스크롤 이벤트 최적화 (rAF)](./skill/06-scroll-event-raf.md)
+  
