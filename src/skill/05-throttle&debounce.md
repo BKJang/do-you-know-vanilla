@@ -58,7 +58,7 @@ document.querySelector('#input').addEventListener('input', function (e) {
 
 ---
 
-#### 🙏  Reference
+#### 🙏Reference
 
 - [[JS] 쓰로틀링(Throttling)과 디바운싱(Debouncing)](https://jm-web.tistory.com/33)
 - [zerocho blog - 쓰로틀링과 디바운싱](https://www.zerocho.com/category/JavaScript/post/59a8e9cb15ac0000182794fa)

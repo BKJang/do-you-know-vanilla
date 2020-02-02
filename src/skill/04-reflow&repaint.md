@@ -68,7 +68,7 @@ DOM 요소에 접근하여 동적으로 이벤트를 주어 layout을 바꾸게 
 
 ---
 
-#### 🙏  Reference
+#### 🙏Reference
 
 - [Im-D/Dev-Docs - Refaint와 Reflow](https://github.com/Im-D/Dev-Docs/blob/master/Performance/Repaint%EC%99%80%20Reflow.md)
 - [Reflow or Repaint(or ReDraw)과정 설명 및 최적화 방법](http://webclub.tistory.com/346)
