@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>쓰로틀링 vs 디바운싱 - Do you know vanilla?</title>
+        <title>값 비교하기 (Array, String, Object ...) - Do you know vanilla?</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,7 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="../basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="../basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="../basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="../basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="../basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="../basic/07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="../basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="../basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="../basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="../basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="../basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="../basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="../basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="../basic/15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li><a href="../basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li><a href="../advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li><li><a href="../advance/03-Namespace.html"><strong aria-hidden="true">2.3.</strong> 네임스페이스 패턴(Namespace Pattern)과 IIFE</a></li><li><a href="../advance/04-Module-Pattern.html"><strong aria-hidden="true">2.4.</strong> 모듈 패턴(Module Pattern)</a></li><li><a href="../advance/05-Lexical-Scope.html"><strong aria-hidden="true">2.5.</strong> 렉시컬 스코프(Lexical Scope)</a></li></ol></li><li><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.</strong> Skill</a></li><li><ol class="section"><li><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.1.</strong> Deep Copy</a></li><li><a href="../skill/02-Event-Delegation.html"><strong aria-hidden="true">3.2.</strong> 이벤트 위임(Event Delegation)</a></li><li><a href="../skill/03-fragment.html"><strong aria-hidden="true">3.3.</strong> DocumentFragment</a></li><li><a href="../skill/04-reflow&repaint.html"><strong aria-hidden="true">3.4.</strong> repaint와 reflow 최적화</a></li><li><a href="../skill/05-throttle&debounce.html" class="active"><strong aria-hidden="true">3.5.</strong> 쓰로틀링 vs 디바운싱</a></li><li><a href="../skill/06-scroll-event-raf.html"><strong aria-hidden="true">3.6.</strong> 스크롤 이벤트 최적화 (rAF)</a></li><li><a href="../skill/07-Array=String-Object.html"><strong aria-hidden="true">3.7.</strong> 값 비교하기 (Array, String, Object ...)</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="../basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="../basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="../basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="../basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="../basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="../basic/07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="../basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="../basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="../basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="../basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="../basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="../basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="../basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="../basic/15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li><a href="../basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li><a href="../advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li><li><a href="../advance/03-Namespace.html"><strong aria-hidden="true">2.3.</strong> 네임스페이스 패턴(Namespace Pattern)과 IIFE</a></li><li><a href="../advance/04-Module-Pattern.html"><strong aria-hidden="true">2.4.</strong> 모듈 패턴(Module Pattern)</a></li><li><a href="../advance/05-Lexical-Scope.html"><strong aria-hidden="true">2.5.</strong> 렉시컬 스코프(Lexical Scope)</a></li></ol></li><li><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.</strong> Skill</a></li><li><ol class="section"><li><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.1.</strong> Deep Copy</a></li><li><a href="../skill/02-Event-Delegation.html"><strong aria-hidden="true">3.2.</strong> 이벤트 위임(Event Delegation)</a></li><li><a href="../skill/03-fragment.html"><strong aria-hidden="true">3.3.</strong> DocumentFragment</a></li><li><a href="../skill/04-reflow&repaint.html"><strong aria-hidden="true">3.4.</strong> repaint와 reflow 최적화</a></li><li><a href="../skill/05-throttle&debounce.html"><strong aria-hidden="true">3.5.</strong> 쓰로틀링 vs 디바운싱</a></li><li><a href="../skill/06-scroll-event-raf.html"><strong aria-hidden="true">3.6.</strong> 스크롤 이벤트 최적화 (rAF)</a></li><li><a href="../skill/07-Array=String-Object.html" class="active"><strong aria-hidden="true">3.7.</strong> 값 비교하기 (Array, String, Object ...)</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -176,54 +176,50 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#쓰로틀링-vs-디바운싱" id="쓰로틀링-vs-디바운싱"><h2>쓰로틀링 vs 디바운싱</h2></a>
-<p>함수를 호출할 때 호출이 너무 많이 되어 과부화 됨을 방지하기 위한 기술이다.</p>
-<p>함수 호출이 잦은 예로는 브라우저의 이벤트가 있다. onscroll 이나 onchange 와 같은 이벤트의 콜백으로 함수를 호출하는 경우 굉장히 많은 호출이 발생할 수 있다.</p>
-<p>infinite scroll 이나 자동완성 기능의 경우 사용자의 특정 이벤트에 따라 비동기 콜백을 호출하는 방식이다. 이 경우 이벤트가 매우 빈번하게 일어나며 많은 호출을 제어하지 않으면 브라우저가 버티지 못할 것이다. 이 때 사용하는 것이 쓰로틀링과 디바운싱이다.</p>
-<a class="header" href="#쓰로틀링" id="쓰로틀링"><h3>쓰로틀링</h3></a>
-<p>Throttle 은 정해진 시간동안 특정 행위를 한 번만 호출하도록 하는 것이다. 예를 들어 스크롤 행위가 1 초에 500 번이 발생한다면 이를 0.2 초에 한 번만 실행하게 만들 수 있다.</p>
-<p>Throttle 처리가 되지 않은 경우 콜백이 500 번 발생한다. 하지만 Throttle 처리가 된다면 5 번만 실행되게 만드는 기술이다.</p>
-<p>스크롤 이벤트의 경우 작은 움직임에도 엄청나게 많은 이벤트가 발생한다. 따라서 1 초 미만으로 쓰로틀링을 하여 같은 동작의 여러번 호출을 1 번으로 제어하는 것이 좋다.</p>
-<pre><code class="language-js">var timer;
-document.querySelector('#input').addEventListener('input', function (e) {
-    // 1. timer 값이 undefined니까 if문 실행
-    if (!timer) {
-        // 2. timer 에 time함수 설정
-        timer = setTimeout(function () {
-            // 3. 설정시간에 맞춰 timer 초기화 및 함수 실행
-            timer = null;
-            console.log('비동기 요청', e.target.value);
-        }, 2000);
-    }
-});
-</code></pre>
-<a class="header" href="#디바운싱" id="디바운싱"><h3>디바운싱</h3></a>
-<p>Debounce 는 한 행위를 여러 번 반복하는 경우, 마지막 행위 이후 특정 시간이 흐른 뒤에 콜백을 호출하도록 하는 방식이다. 자동완성 즉 autocomplete 를 떠올리면 편하다.</p>
-<p>input 의 <code>onChange</code>가 일어나면 callback 으로 AJAX 를 이용해 관련 데이터를 긁어온다. 그런데 사용자의 모든 입력에 AJAX 호출을 한다면 브라우저가 견디지 못할 것이다.
-그래서 일정시간동안 Timer 를 만든다. 이 타이머의 시간동안 입력이 발생해 변경이 일어나면 Timer 를 초기화 한다.
-입력이 멈추어 Timer 가 다 되면 AJAX 를 호출한다.</p>
-<pre><code class="language-js">var timer;
-document.querySelector('#input').addEventListener('input', function (e) {
-    // 1. timer 값이 undefined니까 if문 실행
-    if (timer) {
-        // 3-1. setTimeout이 끝나기 전에 다시 이벤트 실행 시 time함수 클리어 (이벤트 호출 시 마다 반복)
-        clearTimeout(timer);
-    }
-    // 2. 함수 할당
-    // 3-2. 함수 할당 (이벤트 호출 시 마다 반복)
-    timer = setTimeout(function () {
-        console.log('비동기 요청', e.target.value);
-    }, 2000);
-    // 4. 설정 시간 지나면 함수 종료
-});
-</code></pre>
-<p><a href="https://lodash.com/">Lodash</a> 와 <a href="https://underscorejs.org/">Underscore</a>에는 해당 기능들이 구현되어 있다.</p>
-<hr />
-<a class="header" href="#reference" id="reference"><h4>🙏Reference</h4></a>
+                        <a class="header" href="#값-비교하기-array-string-object-" id="값-비교하기-array-string-object-"><h2>값 비교하기 (Array, String, Object ...)</h2></a>
 <ul>
-<li><a href="https://jm-web.tistory.com/33">[JS] 쓰로틀링(Throttling)과 디바운싱(Debouncing)</a></li>
-<li><a href="https://www.zerocho.com/category/JavaScript/post/59a8e9cb15ac0000182794fa">zerocho blog - 쓰로틀링과 디바운싱</a></li>
-<li><a href="https://css-tricks.com/debouncing-throttling-explained-examples/">CSS-Tricks 의 Throttling 과 Debouncing</a> =&gt; 예시가 구현되어 있음</li>
+<li><code>react-router-dom</code>에서 사용 중인 <code>value-equal</code> 라이브러리</li>
+</ul>
+<pre><code class="language-js">function valueOf(obj) {
+  return obj.valueOf ? obj.valueOf() : Object.prototype.valueOf.call(obj);
+}
+
+function valueEqual(a, b) {
+  // Test for strict equality first.
+  if (a === b) return true;
+
+  // Otherwise, if either of them == null they are not equal.
+  if (a == null || b == null) return false;
+
+  if (Array.isArray(a)) {
+    return (
+      Array.isArray(b) &amp;&amp;
+      a.length === b.length &amp;&amp;
+      a.every(function(item, index) {
+        return valueEqual(item, b[index]);
+      })
+    );
+  }
+
+  if (typeof a === 'object' || typeof b === 'object') {
+    var aValue = valueOf(a);
+    var bValue = valueOf(b);
+
+    if (aValue !== a || bValue !== b) return valueEqual(aValue, bValue);
+
+    return Object.keys(Object.assign({}, a, b)).every(function(key) {
+      return valueEqual(a[key], b[key]);
+    });
+  }
+
+  return false;
+}
+</code></pre>
+<hr />
+<a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
+<ul>
+<li><a href="https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom">react-router-dom</a></li>
+<li><a href="https://github.com/mjackson/value-equal">value-equal</a></li>
 </ul>
 
                     </main>
@@ -231,15 +227,11 @@ document.querySelector('#input').addEventListener('input', function (e) {
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="../skill/04-reflow&amp;repaint.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../skill/06-scroll-event-raf.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="../skill/06-scroll-event-raf.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -249,15 +241,11 @@ document.querySelector('#input').addEventListener('input', function (e) {
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="../skill/04-reflow&amp;repaint.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../skill/06-scroll-event-raf.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a href="../skill/06-scroll-event-raf.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
