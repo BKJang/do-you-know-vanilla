@@ -33,4 +33,5 @@
   - [repaint와 reflow 최적화](./skill/04-reflow&repaint.md)
   - [쓰로틀링 vs 디바운싱](./skill/05-throttle&debounce.md)
   - [스크롤 이벤트 최적화 (rAF)](./skill/06-scroll-event-raf.md)
-  - [값 비교하기 (Array, String, Object ...)](./skill/07-Array=String-Object.md)
+  - [값 비교하기 (Array, String, Object ...)](./skill/07-Array-String-Object.md)
+  - [배열 내장함수](./skill/08-Array-Function.md)
