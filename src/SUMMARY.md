@@ -35,3 +35,4 @@
   - [스크롤 이벤트 최적화 (rAF)](./skill/06-scroll-event-raf.md)
   - [값 비교하기 (Array, String, Object ...)](./skill/07-Array-String-Object.md)
   - [배열 내장함수](./skill/08-Array-Function.md)
+  - [Object.[Function]](./skill/09-Object-Function.md)
