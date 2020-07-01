@@ -1,14 +1,23 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js">
+<html lang="en" class="sidebar-visible no-js light">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>클로저(Closure) - Do you know vanilla?</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
+        <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
@@ -17,8 +26,9 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        
 
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
@@ -30,11 +40,11 @@
 
         
     </head>
-    <body class="light">
+    <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "../";
-            var default_theme = "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -56,10 +66,13 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme + ' js';
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
@@ -75,7 +88,10 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="../basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="../basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="../basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="../basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="../basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="../basic/07-Closure.html" class="active"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="../basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="../basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="../basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="../basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="../basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="../basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="../basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="../basic/15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li><a href="../basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li><a href="../advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li><li><a href="../advance/03-Namespace.html"><strong aria-hidden="true">2.3.</strong> 네임스페이스 패턴(Namespace Pattern)과 IIFE</a></li><li><a href="../advance/04-Module-Pattern.html"><strong aria-hidden="true">2.4.</strong> 모듈 패턴(Module Pattern)</a></li><li><a href="../advance/05-Lexical-Scope.html"><strong aria-hidden="true">2.5.</strong> 렉시컬 스코프(Lexical Scope)</a></li></ol></li><li><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.</strong> Skill</a></li><li><ol class="section"><li><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.1.</strong> Deep Copy</a></li><li><a href="../skill/02-Event-Delegation.html"><strong aria-hidden="true">3.2.</strong> 이벤트 위임(Event Delegation)</a></li><li><a href="../skill/03-fragment.html"><strong aria-hidden="true">3.3.</strong> DocumentFragment</a></li><li><a href="../skill/04-reflow&repaint.html"><strong aria-hidden="true">3.4.</strong> repaint와 reflow 최적화</a></li><li><a href="../skill/05-throttle&debounce.html"><strong aria-hidden="true">3.5.</strong> 쓰로틀링 vs 디바운싱</a></li><li><a href="../skill/06-scroll-event-raf.html"><strong aria-hidden="true">3.6.</strong> 스크롤 이벤트 최적화 (rAF)</a></li><li><a href="../skill/07-Array-String-Object.html"><strong aria-hidden="true">3.7.</strong> 값 비교하기 (Array, String, Object ...)</a></li><li><a href="../skill/08-Array-Function.html"><strong aria-hidden="true">3.8.</strong> 배열 내장함수</a></li><li><a href="../skill/09-Object-Function.html"><strong aria-hidden="true">3.9.</strong> Object.[Function]</a></li></ol></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li class="chapter-item expanded "><a href="../basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li class="chapter-item expanded "><a href="../basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li class="chapter-item expanded "><a href="../basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li class="chapter-item expanded "><a href="../basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li class="chapter-item expanded "><a href="../basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li class="chapter-item expanded "><a href="../basic/07-Closure.html" class="active"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li class="chapter-item expanded "><a href="../basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li class="chapter-item expanded "><a href="../basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li class="chapter-item expanded "><a href="../basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li class="chapter-item expanded "><a href="../basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li class="chapter-item expanded "><a href="../basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li class="chapter-item expanded "><a href="../basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li class="chapter-item expanded "><a href="../basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li class="chapter-item expanded "><a href="../basic/15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li class="chapter-item expanded "><a href="../basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li class="chapter-item expanded "><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li class="chapter-item expanded "><a href="../advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li><li class="chapter-item expanded "><a href="../advance/03-Namespace.html"><strong aria-hidden="true">2.3.</strong> 네임스페이스 패턴(Namespace Pattern)과 IIFE</a></li><li class="chapter-item expanded "><a href="../advance/04-Module-Pattern.html"><strong aria-hidden="true">2.4.</strong> 모듈 패턴(Module Pattern)</a></li><li class="chapter-item expanded "><a href="../advance/05-Lexical-Scope.html"><strong aria-hidden="true">2.5.</strong> 렉시컬 스코프(Lexical Scope)</a></li></ol></li><li class="chapter-item expanded "><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.</strong> Skill</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.1.</strong> Deep Copy</a></li><li class="chapter-item expanded "><a href="../skill/02-Event-Delegation.html"><strong aria-hidden="true">3.2.</strong> 이벤트 위임(Event Delegation)</a></li><li class="chapter-item expanded "><a href="../skill/03-fragment.html"><strong aria-hidden="true">3.3.</strong> DocumentFragment</a></li><li class="chapter-item expanded "><a href="../skill/04-reflow&repaint.html"><strong aria-hidden="true">3.4.</strong> repaint와 reflow 최적화</a></li><li class="chapter-item expanded "><a href="../skill/05-throttle&debounce.html"><strong aria-hidden="true">3.5.</strong> 쓰로틀링 vs 디바운싱</a></li><li class="chapter-item expanded "><a href="../skill/06-scroll-event-raf.html"><strong aria-hidden="true">3.6.</strong> 스크롤 이벤트 최적화 (rAF)</a></li><li class="chapter-item expanded "><a href="../skill/07-Array-String-Object.html"><strong aria-hidden="true">3.7.</strong> 값 비교하기 (Array, String, Object ...)</a></li><li class="chapter-item expanded "><a href="../skill/08-Array-Function.html"><strong aria-hidden="true">3.8.</strong> 배열 내장함수</a></li><li class="chapter-item expanded "><a href="../skill/09-Object-Function.html"><strong aria-hidden="true">3.9.</strong> Object.[Function]</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -118,37 +134,36 @@
   }
 </style>
 
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                            
-                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            
-                        </div>
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
 
-                        <h1 class="menu-title">Do you know vanilla?</h1> 
+                    <h1 class="menu-title">Do you know vanilla?</h1>
 
-                        <div class="right-buttons">
-                            <a href="../print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                            
-                        </div>
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
                     </div>
                 </div>
 
@@ -176,14 +191,14 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#클로저closure" id="클로저closure"><h2>클로저(Closure)</h2></a>
+                        <h2><a class="header" href="#클로저closure" id="클로저closure">클로저(Closure)</a></h2>
 <p>클로저는 <a href="./06-execution-context.html">실행 컨텍스트</a>와 밀접한 관련이 있다.</p>
 <p>생성된 함수 객체는 <code>[[Scopes]]</code> 프로퍼티를 가지게 된다.</p>
 <p><code>[[Scopes]]</code> 프로퍼티는 <strong>함수 객체만이 소유하는 내부 프로퍼티(Internal Property)로서 현재 실행 컨텍스트의 스코프 체인이 참조하고 있는 객체를 값으로 설정</strong>한다.</p>
 <p><img src="https://bkdevlog.netlify.com/assets/img/js_scope_property.png" alt="JavaScript" /></p>
 <p>내부 함수의 <code>[[Scopes]]</code> 프로퍼티는 <strong>자신의 실행 환경(Lexical Enviroment)</strong> 과 자신을 포함하는 <strong>외부 함수의 실행 환경과 전역 객체</strong>를 가리킨다.</p>
 <p>이 때, 자신을 포함하는 <strong>외부 함수의 실행 컨텍스트가 소멸하여도 <code>[[Scopes]]</code>프로퍼티가 가리키는 외부 함수의 실행 환경(Activation Object)은 소멸하지 않고 참조</strong>할 수 있다. 이것이 <strong>클로저</strong>이다.</p>
-<p><br/></p>
+<br/>
 <p>외부함수에서 내부함수를 반환하는 코드를 보자.</p>
 <pre><code class="language-js">function foo() {
   var x = &quot;variable of outerFunc&quot;;
@@ -209,7 +224,7 @@ innerFunc(); //variable of outerFunc
 <blockquote>
 <p>클로저를 사용하면 <strong>클로저에서의 스코프 체인 접근 방식</strong>, <strong>메모리의 부담</strong> 등의 이유로 성능적인 면과 자원적인 면에서 손해를 볼 수 있다. <br/>그렇기 때문에 좋은 구현을 위해서는 충분한 경험을 쌓을 필요가 있다.</p>
 </blockquote>
-<a class="header" href="#클로저를-활용한-전역-변수의-사용-억제" id="클로저를-활용한-전역-변수의-사용-억제"><h3>클로저를 활용한 전역 변수의 사용 억제</h3></a>
+<h3><a class="header" href="#클로저를-활용한-전역-변수의-사용-억제" id="클로저를-활용한-전역-변수의-사용-억제">클로저를 활용한 전역 변수의 사용 억제</a></h3>
 <p>클로저를 활용한 대표적인 예로 카운터가 있다.
 우선, 전역 변수를 사용한 예를 한 번 살펴보자.</p>
 <pre><code class="language-js">var counter = 0;
@@ -239,7 +254,7 @@ outerFunc(); //2
 outerFunc(); //3
 </code></pre>
 <p>위의 코드와 같이 클로저를 이용하면 전역 변수의 사용을 줄일 수 있다.</p>
-<a class="header" href="#루프-안에서의-클로저-활용" id="루프-안에서의-클로저-활용"><h3>루프 안에서의 클로저 활용</h3></a>
+<h3><a class="header" href="#루프-안에서의-클로저-활용" id="루프-안에서의-클로저-활용">루프 안에서의 클로저 활용</a></h3>
 <p>클로저를 활용하는데 있어 주의할 사항에 대해 설명할 때 가장 많이 등장하는게 이 경우다.</p>
 <pre><code class="language-js">function count(numberOfCount) {
   for (var i = 1; i &lt;= numberOfCount; i++) {
@@ -282,7 +297,7 @@ count(4);
 </code></pre>
 <p>첫 번째 코드에서 <code>var</code>를 <code>let</code>으로만 바꿔주면 위의 코드처럼 깔끔하게 구현할 수 있다.</p>
 <hr />
-<a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference" id="-reference">🙏 Reference</a></h4>
 <ul>
 <li>[인사이드 자바스크립트 (송형주, 고형준)]</li>
 <li><a href="https://poiemaweb.com/js-closure">Poiemaweb - Closure</a></li>
@@ -311,13 +326,13 @@ count(4);
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="../basic/06-execution-context.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../basic/06-execution-context.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="../basic/08-Template-Literal.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next" href="../basic/08-Template-Literal.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -327,6 +342,14 @@ count(4);
 
         
 
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
         
 
         

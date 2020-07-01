@@ -1,14 +1,25 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js">
+<html lang="en" class="sidebar-visible no-js light">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Do you know vanilla?</title>
+        
+        <meta name="robots" content="noindex" />
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
+        <link rel="icon" href="favicon.svg">
         <link rel="shortcut icon" href="favicon.png">
         <link rel="stylesheet" href="css/variables.css">
         <link rel="stylesheet" href="css/general.css">
@@ -17,8 +28,9 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
 
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
@@ -30,11 +42,11 @@
 
         
     </head>
-    <body class="light">
+    <body>
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "";
-            var default_theme = "light";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -56,10 +68,13 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            document.body.className = theme;
-            document.querySelector('html').className = theme + ' js';
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
@@ -75,7 +90,10 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="basic/07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="basic/15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li><a href="basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li><a href="advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li><a href="advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li><a href="advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li><li><a href="advance/03-Namespace.html"><strong aria-hidden="true">2.3.</strong> 네임스페이스 패턴(Namespace Pattern)과 IIFE</a></li><li><a href="advance/04-Module-Pattern.html"><strong aria-hidden="true">2.4.</strong> 모듈 패턴(Module Pattern)</a></li><li><a href="advance/05-Lexical-Scope.html"><strong aria-hidden="true">2.5.</strong> 렉시컬 스코프(Lexical Scope)</a></li></ol></li><li><a href="skill/01-Deep-Copy.html"><strong aria-hidden="true">3.</strong> Skill</a></li><li><ol class="section"><li><a href="skill/01-Deep-Copy.html"><strong aria-hidden="true">3.1.</strong> Deep Copy</a></li><li><a href="skill/02-Event-Delegation.html"><strong aria-hidden="true">3.2.</strong> 이벤트 위임(Event Delegation)</a></li><li><a href="skill/03-fragment.html"><strong aria-hidden="true">3.3.</strong> DocumentFragment</a></li><li><a href="skill/04-reflow&repaint.html"><strong aria-hidden="true">3.4.</strong> repaint와 reflow 최적화</a></li><li><a href="skill/05-throttle&debounce.html"><strong aria-hidden="true">3.5.</strong> 쓰로틀링 vs 디바운싱</a></li><li><a href="skill/06-scroll-event-raf.html"><strong aria-hidden="true">3.6.</strong> 스크롤 이벤트 최적화 (rAF)</a></li><li><a href="skill/07-Array-String-Object.html"><strong aria-hidden="true">3.7.</strong> 값 비교하기 (Array, String, Object ...)</a></li><li><a href="skill/08-Array-Function.html"><strong aria-hidden="true">3.8.</strong> 배열 내장함수</a></li><li><a href="skill/09-Object-Function.html"><strong aria-hidden="true">3.9.</strong> Object.[Function]</a></li></ol></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li class="chapter-item expanded "><a href="basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li class="chapter-item expanded "><a href="basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li class="chapter-item expanded "><a href="basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li class="chapter-item expanded "><a href="basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li class="chapter-item expanded "><a href="basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li class="chapter-item expanded "><a href="basic/07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li class="chapter-item expanded "><a href="basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li class="chapter-item expanded "><a href="basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li class="chapter-item expanded "><a href="basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li class="chapter-item expanded "><a href="basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li class="chapter-item expanded "><a href="basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li class="chapter-item expanded "><a href="basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li class="chapter-item expanded "><a href="basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li class="chapter-item expanded "><a href="basic/15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li class="chapter-item expanded "><a href="basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li class="chapter-item expanded "><a href="advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li class="chapter-item expanded "><a href="advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li><li class="chapter-item expanded "><a href="advance/03-Namespace.html"><strong aria-hidden="true">2.3.</strong> 네임스페이스 패턴(Namespace Pattern)과 IIFE</a></li><li class="chapter-item expanded "><a href="advance/04-Module-Pattern.html"><strong aria-hidden="true">2.4.</strong> 모듈 패턴(Module Pattern)</a></li><li class="chapter-item expanded "><a href="advance/05-Lexical-Scope.html"><strong aria-hidden="true">2.5.</strong> 렉시컬 스코프(Lexical Scope)</a></li></ol></li><li class="chapter-item expanded "><a href="skill/01-Deep-Copy.html"><strong aria-hidden="true">3.</strong> Skill</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="skill/01-Deep-Copy.html"><strong aria-hidden="true">3.1.</strong> Deep Copy</a></li><li class="chapter-item expanded "><a href="skill/02-Event-Delegation.html"><strong aria-hidden="true">3.2.</strong> 이벤트 위임(Event Delegation)</a></li><li class="chapter-item expanded "><a href="skill/03-fragment.html"><strong aria-hidden="true">3.3.</strong> DocumentFragment</a></li><li class="chapter-item expanded "><a href="skill/04-reflow&repaint.html"><strong aria-hidden="true">3.4.</strong> repaint와 reflow 최적화</a></li><li class="chapter-item expanded "><a href="skill/05-throttle&debounce.html"><strong aria-hidden="true">3.5.</strong> 쓰로틀링 vs 디바운싱</a></li><li class="chapter-item expanded "><a href="skill/06-scroll-event-raf.html"><strong aria-hidden="true">3.6.</strong> 스크롤 이벤트 최적화 (rAF)</a></li><li class="chapter-item expanded "><a href="skill/07-Array-String-Object.html"><strong aria-hidden="true">3.7.</strong> 값 비교하기 (Array, String, Object ...)</a></li><li class="chapter-item expanded "><a href="skill/08-Array-Function.html"><strong aria-hidden="true">3.8.</strong> 배열 내장함수</a></li><li class="chapter-item expanded "><a href="skill/09-Object-Function.html"><strong aria-hidden="true">3.9.</strong> Object.[Function]</a></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -118,37 +136,36 @@
   }
 </style>
 
-                <div id="menu-bar" class="menu-bar">
-                    <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
-                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                                <i class="fa fa-bars"></i>
-                            </button>
-                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                                <i class="fa fa-paint-brush"></i>
-                            </button>
-                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                            </ul>
-                            
-                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                                <i class="fa fa-search"></i>
-                            </button>
-                            
-                        </div>
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
 
-                        <h1 class="menu-title">Do you know vanilla?</h1> 
+                    <h1 class="menu-title">Do you know vanilla?</h1>
 
-                        <div class="right-buttons">
-                            <a href="print.html" title="Print this book" aria-label="Print this book">
-                                <i id="print-button" class="fa fa-print"></i>
-                            </a>
-                            
-                        </div>
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
                     </div>
                 </div>
 
@@ -176,8 +193,8 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#primitive값-vs-object참조" id="primitive값-vs-object참조"><h2>Primitive(값) vs Object(참조)</h2></a>
-<a class="header" href="#primitive-type" id="primitive-type"><h2>Primitive Type</h2></a>
+                        <h2><a class="header" href="#primitive값-vs-object참조" id="primitive값-vs-object참조">Primitive(값) vs Object(참조)</a></h2>
+<h2><a class="header" href="#primitive-type" id="primitive-type">Primitive Type</a></h2>
 <ul>
 <li>String : 텍스트를 셋팅하는데 사용하는 타입.</li>
 <li>Number : 숫자를 셋팅하는데 사용하는 타입. 기본적으로 소수점도 가능하다.(infinity, -inifinity, NaN 표현이 가능하다.)</li>
@@ -186,7 +203,7 @@
 <li>Boolean : true 또는 false 로 나타내는 타입.</li>
 <li>Symbol : 새로 추가된 타입으로 <strong>unique하고 immutable한 원시값</strong> 으로 사용된다.(ES6)</li>
 </ul>
-<a class="header" href="#primitive-type의-생성-방법" id="primitive-type의-생성-방법"><h3>Primitive Type의 생성 방법</h3></a>
+<h3><a class="header" href="#primitive-type의-생성-방법" id="primitive-type의-생성-방법">Primitive Type의 생성 방법</a></h3>
 <ol>
 <li>Literal</li>
 </ol>
@@ -205,9 +222,7 @@ bo2 = false
 str2 = &quot;world&quot;
 </code></pre>
 <ol start="2">
-<li>
-<p>Wrapper Object</p>
-</li>
+<li>Wrapper Object</li>
 </ol>
 <ul>
 <li>Wrapper Object를 사용해서 만든다고 하면 Constructor를 사용해서 만드는 것</li>
@@ -219,7 +234,7 @@ new Number(42);
 
 Symbol(&quot;foo&quot;); //Symbol 타입의 생성방법
 </code></pre>
-<a class="header" href="#literal-vs-wrapper" id="literal-vs-wrapper"><h3>Literal vs Wrapper</h3></a>
+<h3><a class="header" href="#literal-vs-wrapper" id="literal-vs-wrapper">Literal vs Wrapper</a></h3>
 <pre><code class="language-js">typeof true; //&quot;boolean&quot;
 typeof Boolean(true); //&quot;boolean&quot;
 typeof new Boolean(true); //&quot;object&quot;
@@ -236,7 +251,7 @@ typeof new Number(123); //&quot;object&quot;
 typeof (new Number(123)).valueOf(); //&quot;number&quot;
 </code></pre>
 <p>Literal로 생성한 것의 타입은 6가지 중 하나로 나오게 된다. 그런데 new를 사용하여 Wrapper Object로 만들게 되면 Object타입이 나오게 된다. 사용을 하려면 valueOf라는 Function을 사용해야만 입력한 값이 나오게 된다.</p>
-<a class="header" href="#값-타입" id="값-타입"><h3>값 타입</h3></a>
+<h3><a class="header" href="#값-타입" id="값-타입">값 타입</a></h3>
 <pre><code class="language-js">var a = 13         // assign `13` to `a`
 var b = a          // copy the value of `a` to `b`
 
@@ -245,7 +260,7 @@ b = 37             // assign `37` to `b`
 console.log(a)     // =&gt; 13
 </code></pre>
 <p>b의 값을 변경을 했지만 a에는 영향이 가지 않았다. 이유는 2개의 값이 저장된 공간이 다르기 때문이다.</p>
-<a class="header" href="#object-type" id="object-type"><h2>Object Type</h2></a>
+<h2><a class="header" href="#object-type" id="object-type">Object Type</a></h2>
 <ul>
 <li>Array : 우리가 알고 있는 배열, 리스트의 형태를 가지고 있다.</li>
 <li>Function : Javascript에서는 Function Object가 존재하지만 결국 Function도 Object.</li>
@@ -280,12 +295,12 @@ console.log(changedAlex); // -&gt; { name: 'Alex', age: 25 }
 </code></pre>
 <p>원시타입과는 다르게 복사한 것을 변경을 했더니 기존 객체에도 영향이 간다. 이유는 <strong>같은 값의 주소</strong>를 복사했기 때문이다.</p>
 <hr />
-<a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference" id="-reference">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Type.md">ImD/Dev-Docs - javascript Type</a></li>
 </ul>
-<a class="header" href="#primitive값-vs-object참조-1" id="primitive값-vs-object참조-1"><h2>Primitive(값) vs Object(참조)</h2></a>
-<a class="header" href="#primitive-type-1" id="primitive-type-1"><h2>Primitive Type</h2></a>
+<h2><a class="header" href="#primitive값-vs-object참조-1" id="primitive값-vs-object참조-1">Primitive(값) vs Object(참조)</a></h2>
+<h2><a class="header" href="#primitive-type-1" id="primitive-type-1">Primitive Type</a></h2>
 <ul>
 <li>String : 텍스트를 셋팅하는데 사용하는 타입.</li>
 <li>Number : 숫자를 셋팅하는데 사용하는 타입. 기본적으로 소수점도 가능하다.(infinity, -inifinity, NaN 표현이 가능하다.)</li>
@@ -294,7 +309,7 @@ console.log(changedAlex); // -&gt; { name: 'Alex', age: 25 }
 <li>Boolean : true 또는 false 로 나타내는 타입.</li>
 <li>Symbol : 새로 추가된 타입으로 <strong>unique하고 immutable한 원시값</strong> 으로 사용된다.(ES6)</li>
 </ul>
-<a class="header" href="#primitive-type의-생성-방법-1" id="primitive-type의-생성-방법-1"><h3>Primitive Type의 생성 방법</h3></a>
+<h3><a class="header" href="#primitive-type의-생성-방법-1" id="primitive-type의-생성-방법-1">Primitive Type의 생성 방법</a></h3>
 <ol>
 <li>Literal</li>
 </ol>
@@ -313,9 +328,7 @@ bo2 = false
 str2 = &quot;world&quot;
 </code></pre>
 <ol start="2">
-<li>
-<p>Wrapper Object</p>
-</li>
+<li>Wrapper Object</li>
 </ol>
 <ul>
 <li>Wrapper Object를 사용해서 만든다고 하면 Constructor를 사용해서 만드는 것</li>
@@ -327,7 +340,7 @@ new Number(42);
 
 Symbol(&quot;foo&quot;); //Symbol 타입의 생성방법
 </code></pre>
-<a class="header" href="#literal-vs-wrapper-1" id="literal-vs-wrapper-1"><h3>Literal vs Wrapper</h3></a>
+<h3><a class="header" href="#literal-vs-wrapper-1" id="literal-vs-wrapper-1">Literal vs Wrapper</a></h3>
 <pre><code class="language-js">typeof true; //&quot;boolean&quot;
 typeof Boolean(true); //&quot;boolean&quot;
 typeof new Boolean(true); //&quot;object&quot;
@@ -344,7 +357,7 @@ typeof new Number(123); //&quot;object&quot;
 typeof (new Number(123)).valueOf(); //&quot;number&quot;
 </code></pre>
 <p>Literal로 생성한 것의 타입은 6가지 중 하나로 나오게 된다. 그런데 new를 사용하여 Wrapper Object로 만들게 되면 Object타입이 나오게 된다. 사용을 하려면 valueOf라는 Function을 사용해야만 입력한 값이 나오게 된다.</p>
-<a class="header" href="#값-타입-1" id="값-타입-1"><h3>값 타입</h3></a>
+<h3><a class="header" href="#값-타입-1" id="값-타입-1">값 타입</a></h3>
 <pre><code class="language-js">var a = 13         // assign `13` to `a`
 var b = a          // copy the value of `a` to `b`
 
@@ -353,7 +366,7 @@ b = 37             // assign `37` to `b`
 console.log(a)     // =&gt; 13
 </code></pre>
 <p>b의 값을 변경을 했지만 a에는 영향이 가지 않았다. 이유는 2개의 값이 저장된 공간이 다르기 때문이다.</p>
-<a class="header" href="#object-type-1" id="object-type-1"><h2>Object Type</h2></a>
+<h2><a class="header" href="#object-type-1" id="object-type-1">Object Type</a></h2>
 <ul>
 <li>Array : 우리가 알고 있는 배열, 리스트의 형태를 가지고 있다.</li>
 <li>Function : Javascript에서는 Function Object가 존재하지만 결국 Function도 Object.</li>
@@ -388,14 +401,14 @@ console.log(changedAlex); // -&gt; { name: 'Alex', age: 25 }
 </code></pre>
 <p>원시타입과는 다르게 복사한 것을 변경을 했더니 기존 객체에도 영향이 간다. 이유는 <strong>같은 값의 주소</strong>를 복사했기 때문이다.</p>
 <hr />
-<a class="header" href="#-reference-1" id="-reference-1"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-1" id="-reference-1">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Type.md">ImD/Dev-Docs - javascript Type</a></li>
 </ul>
-<a class="header" href="#명시적-변환-vs-암묵적-변환" id="명시적-변환-vs-암묵적-변환"><h2>명시적 변환 vs 암묵적 변환</h2></a>
+<h2><a class="header" href="#명시적-변환-vs-암묵적-변환" id="명시적-변환-vs-암묵적-변환">명시적 변환 vs 암묵적 변환</a></h2>
 <p><code>Number(value)</code> 와 같은 코드를 작성하여 변환할 의사를 명확하게 표현하는 것을 <strong>명시적 변환</strong>이라고 한다. <code>JavaScript</code>는 동적 타입 언어이므로 값을 자동으로 여러 유형간에 변환을 자동으로 한다. 이것을 <strong>암묵적 변환</strong> 이라고 한다.</p>
 <p>암묵적 변환을 하지 않는 연산자는 <code>===</code> 이며, 완전 항등 연산자 라고 한다. 반면에 느슨한 항등 연산자 <code>==</code> 는 필요하다면 비교와 타입 강제 변환을 수행한다.</p>
-<a class="header" href="#string-변환" id="string-변환"><h3>String 변환</h3></a>
+<h3><a class="header" href="#string-변환" id="string-변환">String 변환</a></h3>
 <pre><code class="language-js">String(123) // 명시적
 123 + ''    // 암시적
 </code></pre>
@@ -406,17 +419,17 @@ String(undefined)             // 'undefined'
 String(true)                  // 'true'
 String(false)                 // 'false'
 </code></pre>
-<p><code>Symbol</code> 변환은 명시적으로만 변환될 수 있고, <strong>암시적 변환은 되지 않는다</strong>.</p>
+<p><code>Symbol</code> 변환은 명시적으로만 변환될 수 있고, <strong>암시적 변환은 되지 않는다</strong>. </p>
 <pre><code class="language-js">String(Symbol('my symbol'))   // 'Symbol(my symbol)'
 '' + Symbol('my symbol')      // TypeError is thrown
 </code></pre>
-<a class="header" href="#boolean-변환" id="boolean-변환"><h3>Boolean 변환</h3></a>
+<h3><a class="header" href="#boolean-변환" id="boolean-변환">Boolean 변환</a></h3>
 <pre><code class="language-js">Boolean(2)          // 명시적
 if (2) { ... }      // 논리적 문맥 때문에 암시적
 !!2                 // 논리적 문맥 때문에 암시적
 2 || 'hello'        // 논리적 문맥 때문에 암시적
 </code></pre>
-<p>논리 연산자(예 : <code>||</code> 및 <code>&amp;&amp;</code> )에 따른 Boolean 변환을 내부적으로 수행하지만 Boolean값이 아니더라도 원래 피연산자의 값을 실제로 반환한다.</p>
+<p>논리 연산자(예 : <code>||</code> 및 <code>&amp;&amp;</code> )에 따른 Boolean 변환을 내부적으로 수행하지만 Boolean값이 아니더라도 원래 피연산자의 값을 실제로 반환한다. </p>
 <pre><code class="language-js">// true를 반환하는 것이 아닌 123를 반환하고 있다.
 // 'hello' and 123 은 표현식을 계산하기 위해서 Boolean으로 강제 변환을 한다.
 let x = 'hello' &amp;&amp; 123;   // 123
@@ -436,7 +449,7 @@ Boolean(Symbol())       // true
 !!Symbol()              // true
 Boolean(function() {})  // true
 </code></pre>
-<a class="header" href="#numeric-변환" id="numeric-변환"><h3>Numeric 변환</h3></a>
+<h3><a class="header" href="#numeric-변환" id="numeric-변환">Numeric 변환</a></h3>
 <p><code>Number()</code> 함수를 사용하면 된다. 암시적 변환은 많은 경우에서 작동이 되기 때문에 까다롭다.</p>
 <pre><code class="language-js">Number('123')   // 명시적 - 123
 +'123'          // 암시적 - 123
@@ -463,7 +476,7 @@ Number(123) // 123
 <pre><code class="language-js">Number(Symbol('my symbol'))    // TypeError is thrown
 +Symbol('123')                 // TypeError is thrown
 </code></pre>
-<a class="header" href="#tips" id="tips"><h4>Tips</h4></a>
+<h4><a class="header" href="#tips" id="tips">Tips</a></h4>
 <ul>
 <li><code>==</code> 를 <code>null</code> 또는 <code>undefined</code> 에 적용하면 숫자 변환이 발생하지 않는다. <code>null</code> 은 <code>null</code>, <code>undefined</code> 와 동일하다.</li>
 </ul>
@@ -480,12 +493,12 @@ null === undefined // false
 if (value !== value) { console.log(&quot;we're dealing with NaN here&quot;) }
 </code></pre>
 <hr />
-<a class="header" href="#-reference-2" id="-reference-2"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-2" id="-reference-2">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Type.md">ImD/Dev-Docs - javascript Type</a></li>
 </ul>
-<a class="header" href="#functional-scope-vs-block-scope" id="functional-scope-vs-block-scope"><h2>Functional Scope vs Block Scope</h2></a>
-<a class="header" href="#functional-scope" id="functional-scope"><h2>Functional Scope</h2></a>
+<h2><a class="header" href="#functional-scope-vs-block-scope" id="functional-scope-vs-block-scope">Functional Scope vs Block Scope</a></h2>
+<h2><a class="header" href="#functional-scope" id="functional-scope">Functional Scope</a></h2>
 <p>자바스크립트는 <strong>함수를 단위로 Scope를 구분한다.</strong> 즉 같은 함수 안에서 선언된 변수들은 같은 레벨의 Scope를 가지게 되는 것이다. 각각의 함수는 독립적인 Scope를 가지게 되어 다른 함수의 Scope에 접근을 할 수 없다.</p>
 <pre><code class="language-javascript">// Global Scope
 function someFunction() {
@@ -496,7 +509,7 @@ function someFunction() {
 }
 </code></pre>
 <p>위와 같이 Global Scope에 <code>someFunction()</code> 을 선언하고 내부에 if문 괄호 안에 선언한 변수는 <strong>someFunction function Scope</strong> 에 붙게 된다. 함수를 단위로 스코프가 생기기 때문에 <code>name</code>을 출력하면 <code>undefined</code>가 아닌 <code>BKJang</code>이 출력된다.</p>
-<a class="header" href="#block-scope" id="block-scope"><h2>Block Scope</h2></a>
+<h2><a class="header" href="#block-scope" id="block-scope">Block Scope</a></h2>
 <p>Block Statement는 우리가 많이 보는 if문, switch문, for, while문이다. 이러한 문장들은 괄호로 감싸진 부분이 존재하지만 새로운 Scope를 만들지는 않는다. Block Statement 안에서 정의한 변수는 가장 가까운 함수의 Scope에 붙게 된다.</p>
 <pre><code class="language-javascript">if (true) {
   var name = &quot;BKJang&quot;;
@@ -518,12 +531,12 @@ console.log(lang); // Uncaught ReferenceError: lang is not defined
 <p><code>var</code>와는 다르게 <code>let</code>, <code>const</code>는 Block Statement내에서 <strong>Local Scope</strong> 를 지원한다. 즉 이제 Scope가 가장 가까운 function에 붙는 것이 아닌 해당 Block에 붙게 되는 것이다.</p>
 <p><strong>참고로 Global Scope는 응용 프로그램이 살아있을 때까지 유효하며, Local Scope은 함수가 호출되고 실행되는한 유지가 된다.</strong></p>
 <hr />
-<a class="header" href="#-reference-3" id="-reference-3"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-3" id="-reference-3">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Function.md">ImD/Dev-Docs - javascript Function</a></li>
 <li><a href="https://bkdevlog.netlify.com/posts/let-const">DEVLOG - [ES6]1. let과 const</a></li>
 </ul>
-<a class="header" href="#javascript의-this" id="javascript의-this"><h2>JavaScript의 this</h2></a>
+<h2><a class="header" href="#javascript의-this" id="javascript의-this">JavaScript의 this</a></h2>
 <p>자바스크립트에서 <code>this</code>의 바인딩은 함수의 호출 방식에 따라 결정된다.</p>
 <ul>
 <li><strong>객체의 메서드 호출</strong></li>
@@ -532,7 +545,7 @@ console.log(lang); // Uncaught ReferenceError: lang is not defined
 <li><strong><code>call</code>과 <code>apply</code>를 이용한 <code>this</code> 바인딩</strong></li>
 <li><strong>ES6의 화살표 함수</strong></li>
 </ul>
-<a class="header" href="#객체의-메서드-호출" id="객체의-메서드-호출"><h3>객체의 메서드 호출</h3></a>
+<h3><a class="header" href="#객체의-메서드-호출" id="객체의-메서드-호출">객체의 메서드 호출</a></h3>
 <pre><code class="language-js">var obj = {
   organization: &quot;Im-D&quot;,
   sayHello: function() {
@@ -543,7 +556,7 @@ console.log(lang); // Uncaught ReferenceError: lang is not defined
 console.log(obj.sayHello());
 </code></pre>
 <p>객체의 메서드를 호출할 때 <code>this</code>는 <strong>해당 객체에 바인딩</strong>된다.</p>
-<a class="header" href="#일반-함수-호출" id="일반-함수-호출"><h3>일반 함수 호출</h3></a>
+<h3><a class="header" href="#일반-함수-호출" id="일반-함수-호출">일반 함수 호출</a></h3>
 <pre><code class="language-js">var organization = &quot;Im-D&quot;;
 
 function sayHello() {
@@ -554,7 +567,7 @@ function sayHello() {
 console.log(sayHello());
 </code></pre>
 <p>일반 함수를 호출할 때, 자바스크립트의 <code>this</code>는 <strong>전역 객체(window 객체)에 바인딩</strong> 된다.</p>
-<a class="header" href="#생성자-함수의-호출" id="생성자-함수의-호출"><h3>생성자 함수의 호출</h3></a>
+<h3><a class="header" href="#생성자-함수의-호출" id="생성자-함수의-호출">생성자 함수의 호출</a></h3>
 <pre><code class="language-js">function Organization(name, country) {
   this.name = name;
   this.country = country;
@@ -568,8 +581,8 @@ console.log(imD);
 console.log(kyonggi);
 </code></pre>
 <p>생성자 함수를 <code>new</code>키워드를 통해 호출할 경우, <strong>새로 생성되는 빈 객체에 바인딩</strong> 된다. 단, <code>new</code>키워드를 사용하지 않으면 <code>this</code>는 전역객체에 바인딩된다.</p>
-<a class="header" href="#call-apply-bind를-활용한-this바인딩" id="call-apply-bind를-활용한-this바인딩"><h3><code>call</code>, <code>apply</code>, <code>bind</code>를 활용한 <code>this</code>바인딩</h3></a>
-<a class="header" href="#call" id="call"><h4>call</h4></a>
+<h3><a class="header" href="#call-apply-bind를-활용한-this바인딩" id="call-apply-bind를-활용한-this바인딩"><code>call</code>, <code>apply</code>, <code>bind</code>를 활용한 <code>this</code>바인딩</a></h3>
+<h4><a class="header" href="#call" id="call">call</a></h4>
 <pre><code class="language-js">function Module(name) {
   this.name = name;
 }
@@ -587,7 +600,7 @@ const module = new Module(&quot;BKJang&quot;);
 
 console.log(module.getName());
 </code></pre>
-<a class="header" href="#apply" id="apply"><h4>apply</h4></a>
+<h4><a class="header" href="#apply" id="apply">apply</a></h4>
 <pre><code class="language-js">function Module(name) {
   this.name = name;
 }
@@ -633,7 +646,7 @@ const module = new Module(&quot;BKJang&quot;);
 
 console.log(module.getName());
 </code></pre>
-<a class="header" href="#화살표-함수" id="화살표-함수"><h3>화살표 함수</h3></a>
+<h3><a class="header" href="#화살표-함수" id="화살표-함수">화살표 함수</a></h3>
 <pre><code class="language-js">var obj = {
   organization: &quot;Im-D&quot;,
   outerFunc: function() {
@@ -671,14 +684,14 @@ obj.outerFunc();
 이에 따라 내부함수에서 <code>var that=this;</code>와 같은 구문을 사용할 필요가 없다.
 이처럼 정적으로 <code>this</code>가 바인딩되기 때문에 <strong>Lexical this</strong>라고 한다.</p>
 <hr />
-<a class="header" href="#-reference-4" id="-reference-4"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-4" id="-reference-4">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://seonhyungjo.github.io/Javascript-Book/Basic/11-Call-Apply-Bind.html">SeonHyungJo - Javascript-Book</a></li>
 <li><a href="https://github.com/Im-D/Dev-Docs/edit/master/Javascript/JavaScript%EC%9D%98%20this.md">Im-D/Dev-Docs -Javascript의 this</a></li>
 <li><a href="https://www.zerocho.com/category/JavaScript/post/5b0645cc7e3e36001bf676eb">Zerocho - 자바스크립트의 this는 무엇인가</a></li>
 </ul>
-<a class="header" href="#prototype" id="prototype"><h2>Prototype</h2></a>
-<a class="header" href="#프로토타입-체인" id="프로토타입-체인"><h3>프로토타입 체인</h3></a>
+<h2><a class="header" href="#prototype" id="prototype">Prototype</a></h2>
+<h3><a class="header" href="#프로토타입-체인" id="프로토타입-체인">프로토타입 체인</a></h3>
 <p>특정 객체의 메서드나 프로퍼티에 접근하고자할 때, <strong>해당 객체에 접근하려고 하는 프로퍼티나 객체가 없다면</strong> 프로토타입 링크([[Prototype]] 프로퍼티)를 따라 <strong>자신의 부모 역할을 하는 프로토타입 객체를 차례로 검색</strong>한다. 이를 프로토타입 체인이라 한다.</p>
 <pre><code class="language-javascript">var developer = {
   name: &quot;BKJang&quot;,
@@ -692,7 +705,7 @@ console.log(Object.prototype.hasOwnProperty(&quot;hasOwnProperty&quot;)); //true
 </code></pre>
 <p><code>developer</code>객체에는 <code>hasOwnProperty()</code>메서드가 존재하지 않지만 에러가 나지 않는다.
 이는 <code>developer</code> 객체의 <strong>부모 객체인 <code>Object.prototype</code> 해당 메서드를 검색하기 때문</strong>이다.</p>
-<a class="header" href="#객체-리터럴-방식으로-생성했을-때-프로토타입-체인" id="객체-리터럴-방식으로-생성했을-때-프로토타입-체인"><h3>객체 리터럴 방식으로 생성했을 때 프로토타입 체인</h3></a>
+<h3><a class="header" href="#객체-리터럴-방식으로-생성했을-때-프로토타입-체인" id="객체-리터럴-방식으로-생성했을-때-프로토타입-체인">객체 리터럴 방식으로 생성했을 때 프로토타입 체인</a></h3>
 <pre><code class="language-javascript">var developer = {
   name: &quot;BKJang&quot;,
   age: 25,
@@ -709,7 +722,7 @@ console.log(Function.prototype.__proto__ === Object.prototype); //4.true
 <blockquote>
 <p>객체리터럴 방식으로 객체를 생성하면 해당 객체의 프로토타입 객체는 <code>Object.prototype</code> 객체다.</p>
 </blockquote>
-<a class="header" href="#생성자-함수를-생성했을-때-프로토타입-체인" id="생성자-함수를-생성했을-때-프로토타입-체인"><h3>생성자 함수를 생성했을 때 프로토타입 체인</h3></a>
+<h3><a class="header" href="#생성자-함수를-생성했을-때-프로토타입-체인" id="생성자-함수를-생성했을-때-프로토타입-체인">생성자 함수를 생성했을 때 프로토타입 체인</a></h3>
 <pre><code class="language-javascript">function Developer(name) {
   this.name = name;
 }
@@ -724,11 +737,11 @@ console.log(Function.prototype.__proto__ === Object.prototype); //5.true
 </code></pre>
 <p><code>Developer.prototype</code> 객체와 Developer() 생성자 함수의 프로토타입 객체인 <code>Function.prototype</code> 객체의 <strong>프로토타입 객체는 <code>Object.prototype</code> 객체</strong>다.</p>
 <p><img src="https://bkdevlog.netlify.com/assets/img/prototype_Func.png" alt="JavaScript" /></p>
-<a class="header" href="#프로토타입-체인의-종점end-of-prototype-chain" id="프로토타입-체인의-종점end-of-prototype-chain"><h4>프로토타입 체인의 종점(End of prototype chain)</h4></a>
+<h4><a class="header" href="#프로토타입-체인의-종점end-of-prototype-chain" id="프로토타입-체인의-종점end-of-prototype-chain">프로토타입 체인의 종점(End of prototype chain)</a></h4>
 <blockquote>
 <p>객체 리터럴 방식으로 객체를 생성하든 생성자 함수를 이용해 객체를 생성하든 <strong>결국 모든 객체의 부모 객체(프로토타입 객체)는 <code>Object.prototype</code> 객체</strong>다. 이 때 <code>Object.prototype</code> 객체를 <strong>프로토타입 체인의 종점</strong>이라 한다.</p>
 </blockquote>
-<a class="header" href="#프로토타입-객체의-확장" id="프로토타입-객체의-확장"><h3>프로토타입 객체의 확장</h3></a>
+<h3><a class="header" href="#프로토타입-객체의-확장" id="프로토타입-객체의-확장">프로토타입 객체의 확장</a></h3>
 <p>프로토타입 객체 역시 객체다. 따라서, 객체의 <strong>프로퍼티를 동적으로 추가하거나 삭제할 수 있다.</strong></p>
 <pre><code class="language-javascript">function Developer(name) {
   this.name = name;
@@ -754,7 +767,7 @@ web.printAge(25); // The age of this developer is 25
 <p>web 객체의 프로토타입 객체(부모 객체)인 <code>Developer.prototype</code> 객체에 <code>printAge(age)</code>라는 메서드를 추가했다.</p>
 <p>이에 따라 <strong>web 객체에서 <code>printAge(age)</code>메서드에 접근하면 결과 값을 출력</strong>하는 것을 볼 수 있다.</p>
 <p><img src="https://bkdevlog.netlify.com/assets/img/prototype_extenstion.png" alt="JavaScript" /></p>
-<a class="header" href="#기본-데이터-타입의-확장" id="기본-데이터-타입의-확장"><h3>기본 데이터 타입의 확장</h3></a>
+<h3><a class="header" href="#기본-데이터-타입의-확장" id="기본-데이터-타입의-확장">기본 데이터 타입의 확장</a></h3>
 <p>자바스크립트에서 <strong>숫자, 문자열과 같은 기본 데이터 타입에서 사용되는 표준 메서드의 경우 <code>Number.prototype</code>과 <code>String.prototype</code> 객체에 정의</strong>되어 있다.</p>
 <pre><code class="language-javascript">var str = &quot;hello world&quot;;
 
@@ -792,7 +805,7 @@ console.log(Function.prototype.__proto__ === Object.prototype); //5.true
 str.printStr(&quot;This is the test&quot;); //This is the test
 </code></pre>
 <p><img src="https://bkdevlog.netlify.com/assets/img/prototype_extenstion_primitive.png" alt="JavaScript" /></p>
-<a class="header" href="#프로토타입-객체의-변경" id="프로토타입-객체의-변경"><h3>프로토타입 객체의 변경</h3></a>
+<h3><a class="header" href="#프로토타입-객체의-변경" id="프로토타입-객체의-변경">프로토타입 객체의 변경</a></h3>
 <p>자바스크립트에서 특정 객체는 <strong>부모 객체인 프로토타입 객체를 임의로 변경할 수 있다.</strong></p>
 <pre><code class="language-javascript">function Developer(name) {
   this.name = name;
@@ -825,7 +838,7 @@ console.log(android.constructor); //Object()
 <li>프로토타입 객체를 변경한 후에는 <strong>프로토타입 객체의 constructor 프로퍼티와 생성자 함수와의 연결이 깨진다.</strong></li>
 </ul>
 </blockquote>
-<a class="header" href="#프로토타입-체인의-동작-조건" id="프로토타입-체인의-동작-조건"><h3>프로토타입 체인의 동작 조건</h3></a>
+<h3><a class="header" href="#프로토타입-체인의-동작-조건" id="프로토타입-체인의-동작-조건">프로토타입 체인의 동작 조건</a></h3>
 <blockquote>
 <p>프로토타입 체인은 객체의 특정 프로퍼티에 접근할 때, 그 프로퍼티가 해당 객체에 없는 경우 동작한다.</p>
 </blockquote>
@@ -857,12 +870,12 @@ console.log(android.sex); //3.female
 </li>
 </ol>
 <hr />
-<a class="header" href="#-reference-5" id="-reference-5"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-5" id="-reference-5">🙏 Reference</a></h4>
 <ul>
 <li>인사이드 자바스크립트 (송형주, 고형준)</li>
 <li><a href="https://poiemaweb.com/js-prototype">Poiemaweb - Prototype</a></li>
 </ul>
-<a class="header" href="#실행-컨텍스트" id="실행-컨텍스트"><h2>실행 컨텍스트</h2></a>
+<h2><a class="header" href="#실행-컨텍스트" id="실행-컨텍스트">실행 컨텍스트</a></h2>
 <p>실행 컨텍스트는 자바스크립트가 동작하는 원리라고 할 수 있다.</p>
 <p>쉽게 말하면, <strong>코드가 실행되는 환경</strong>이라고 보면 된다.</p>
 <ul>
@@ -879,7 +892,7 @@ console.log(android.sex); //3.female
 <p><strong>함수 실행이 끝나면 해당 컨텍스트는 사라지고, 페이지가 종료되면 전역 컨텍스트는 사라진다.</strong></p>
 </li>
 </ul>
-<a class="header" href="#실행-컨텍스트-스택" id="실행-컨텍스트-스택"><h3>실행 컨텍스트 스택</h3></a>
+<h3><a class="header" href="#실행-컨텍스트-스택" id="실행-컨텍스트-스택">실행 컨텍스트 스택</a></h3>
 <p>코드가 실행 될 때, <strong>실행 컨텍스트 스택(Stack)</strong> 이 생성하고 소멸한다.</p>
 <p>현재 <strong>실행 중인 컨텍스트에서 관련없는 코드(예를 들어, 다른 함수)가 실행되면 새로운 컨텍스트가 생성</strong>된다.</p>
 <pre><code class="language-js">var global = &quot;global&quot;;
@@ -898,19 +911,19 @@ function foo() {
 foo();
 </code></pre>
 <p><img src="https://bkdevlog.netlify.com/assets/img/js_ec_stack.png" alt="JavaScript" /></p>
-<a class="header" href="#변수-객체variable-object" id="변수-객체variable-object"><h3>변수 객체(Variable Object)</h3></a>
+<h3><a class="header" href="#변수-객체variable-object" id="변수-객체variable-object">변수 객체(Variable Object)</a></h3>
 <p>실행 컨텍스트가 생성되면 자바스크립트 엔진은 <strong>실행에 필요한 여러 정보들을 담을 객체를 생성</strong>한다. 이를 <strong>Variable Object(VO / 변수 객체)</strong> 라고 한다.</p>
 <p>변수 객체는 <strong>arguments(인수 정보)</strong> 와 <strong>variable(스코프의 변수)</strong> 을 담고 있고, 전역 컨텍스의 경우와 함수 컨텍스트의 경우에 가리키는 객체가 다르다.</p>
-<a class="header" href="#전역-컨텍스트" id="전역-컨텍스트"><h4>전역 컨텍스트</h4></a>
+<h4><a class="header" href="#전역-컨텍스트" id="전역-컨텍스트">전역 컨텍스트</a></h4>
 <p>전역 컨텍스트의 경우, 변수 객체는 <code>arguments</code>를 가지지 않는다.</p>
 <p>그리고 <strong>변수 객체는 모든 전역 변수, 전역 함수 등을 포함하는 전역 객체(Global Object / GO)를 가리킨다.</strong></p>
 <p>전역 객체는 전역 변수와 전역 함수를 프로퍼티로 가진다.</p>
 <p><img src="https://bkdevlog.netlify.com/assets/img/js_global_context.png" alt="JavaScript" /></p>
-<a class="header" href="#함수-컨텍스트" id="함수-컨텍스트"><h4>함수 컨텍스트</h4></a>
+<h4><a class="header" href="#함수-컨텍스트" id="함수-컨텍스트">함수 컨텍스트</a></h4>
 <p>함수 컨텍스트의 경우, <strong>변수 객체는 Activation Object(AO / 활성 객체)를 가리킨다.</strong></p>
 <p>또한, 전역 컨텍스트와 다르게 매개변수와 인수들의 정보를 배열의 형태로 담고 있는 유사 배열 객체 <code>arguments</code>도 가진다.</p>
 <p><img src="https://bkdevlog.netlify.com/assets/img/js_function_context.png" alt="JavaScript" /></p>
-<a class="header" href="#스코프-체인scope-chain" id="스코프-체인scope-chain"><h3>스코프 체인(Scope Chain)</h3></a>
+<h3><a class="header" href="#스코프-체인scope-chain" id="스코프-체인scope-chain">스코프 체인(Scope Chain)</a></h3>
 <p>스코프 체인은 <strong>현재 컨텍스트의 유효 범위를 나타내는 스코프 정보를 담고 있으며</strong>, 연결 리스트의 형태와 유사하게 생성된다.</p>
 <p>이 리스트를 이용해 현재 컨텍스트의 변수와 상위 실행 컨텍스트의 변수에도 접근할 수 있다.</p>
 <p>이 리스트는 <strong>현재 실행 컨텍스트의 활성 객체</strong>를 먼저 가리키고 순차적으로 <strong>상위 컨텍스트의 활성 객체</strong>를 가리키고 마지막으로 <strong>전역 객체</strong>를 가리킨다.</p>
@@ -919,19 +932,19 @@ foo();
 <p>즉, 스코프 체인은 식별자 중 <strong>변수를 검색하는 것</strong>을 말하고, 변수가 아닌 <strong>객체의 프로퍼티를 검색하는 것</strong>을 프로토타입 체인이라고 한다.</p>
 </blockquote>
 <hr />
-<a class="header" href="#-reference-6" id="-reference-6"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-6" id="-reference-6">🙏 Reference</a></h4>
 <ul>
 <li>인사이드 자바스크립트 (송형주, 고형준)</li>
 <li><a href="https://poiemaweb.com/js-execution-context">Poiemaweb - 실행 컨텍스트와 자바스크립트의 동작 원리</a></li>
 </ul>
-<a class="header" href="#클로저closure" id="클로저closure"><h2>클로저(Closure)</h2></a>
+<h2><a class="header" href="#클로저closure" id="클로저closure">클로저(Closure)</a></h2>
 <p>클로저는 <a href="basic/./06-execution-context.html">실행 컨텍스트</a>와 밀접한 관련이 있다.</p>
 <p>생성된 함수 객체는 <code>[[Scopes]]</code> 프로퍼티를 가지게 된다.</p>
 <p><code>[[Scopes]]</code> 프로퍼티는 <strong>함수 객체만이 소유하는 내부 프로퍼티(Internal Property)로서 현재 실행 컨텍스트의 스코프 체인이 참조하고 있는 객체를 값으로 설정</strong>한다.</p>
 <p><img src="https://bkdevlog.netlify.com/assets/img/js_scope_property.png" alt="JavaScript" /></p>
 <p>내부 함수의 <code>[[Scopes]]</code> 프로퍼티는 <strong>자신의 실행 환경(Lexical Enviroment)</strong> 과 자신을 포함하는 <strong>외부 함수의 실행 환경과 전역 객체</strong>를 가리킨다.</p>
 <p>이 때, 자신을 포함하는 <strong>외부 함수의 실행 컨텍스트가 소멸하여도 <code>[[Scopes]]</code>프로퍼티가 가리키는 외부 함수의 실행 환경(Activation Object)은 소멸하지 않고 참조</strong>할 수 있다. 이것이 <strong>클로저</strong>이다.</p>
-<p><br/></p>
+<br/>
 <p>외부함수에서 내부함수를 반환하는 코드를 보자.</p>
 <pre><code class="language-js">function foo() {
   var x = &quot;variable of outerFunc&quot;;
@@ -957,7 +970,7 @@ innerFunc(); //variable of outerFunc
 <blockquote>
 <p>클로저를 사용하면 <strong>클로저에서의 스코프 체인 접근 방식</strong>, <strong>메모리의 부담</strong> 등의 이유로 성능적인 면과 자원적인 면에서 손해를 볼 수 있다. <br/>그렇기 때문에 좋은 구현을 위해서는 충분한 경험을 쌓을 필요가 있다.</p>
 </blockquote>
-<a class="header" href="#클로저를-활용한-전역-변수의-사용-억제" id="클로저를-활용한-전역-변수의-사용-억제"><h3>클로저를 활용한 전역 변수의 사용 억제</h3></a>
+<h3><a class="header" href="#클로저를-활용한-전역-변수의-사용-억제" id="클로저를-활용한-전역-변수의-사용-억제">클로저를 활용한 전역 변수의 사용 억제</a></h3>
 <p>클로저를 활용한 대표적인 예로 카운터가 있다.
 우선, 전역 변수를 사용한 예를 한 번 살펴보자.</p>
 <pre><code class="language-js">var counter = 0;
@@ -987,7 +1000,7 @@ outerFunc(); //2
 outerFunc(); //3
 </code></pre>
 <p>위의 코드와 같이 클로저를 이용하면 전역 변수의 사용을 줄일 수 있다.</p>
-<a class="header" href="#루프-안에서의-클로저-활용" id="루프-안에서의-클로저-활용"><h3>루프 안에서의 클로저 활용</h3></a>
+<h3><a class="header" href="#루프-안에서의-클로저-활용" id="루프-안에서의-클로저-활용">루프 안에서의 클로저 활용</a></h3>
 <p>클로저를 활용하는데 있어 주의할 사항에 대해 설명할 때 가장 많이 등장하는게 이 경우다.</p>
 <pre><code class="language-js">function count(numberOfCount) {
   for (var i = 1; i &lt;= numberOfCount; i++) {
@@ -1030,12 +1043,12 @@ count(4);
 </code></pre>
 <p>첫 번째 코드에서 <code>var</code>를 <code>let</code>으로만 바꿔주면 위의 코드처럼 깔끔하게 구현할 수 있다.</p>
 <hr />
-<a class="header" href="#-reference-7" id="-reference-7"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-7" id="-reference-7">🙏 Reference</a></h4>
 <ul>
 <li>[인사이드 자바스크립트 (송형주, 고형준)]</li>
 <li><a href="https://poiemaweb.com/js-closure">Poiemaweb - Closure</a></li>
 </ul>
-<a class="header" href="#템플릿-리터럴template-literal" id="템플릿-리터럴template-literal"><h2>템플릿 리터럴(Template Literal)</h2></a>
+<h2><a class="header" href="#템플릿-리터럴template-literal" id="템플릿-리터럴template-literal">템플릿 리터럴(Template Literal)</a></h2>
 <p>ES6(ECMA Script2015)에서는 새로운 문자열 표기법이 도입됐는데 이것이 <strong>템플릿 리터럴</strong>이다.</p>
 <p>템플릿 리터럴을 사용하면 기존 문자열 표기 방법의 불편함을 어느 정도 해결할 수 있다.</p>
 <ul>
@@ -1083,12 +1096,12 @@ console.log(url); //http://localhost:3000/api/user/bkjang
 console.log(`1 더하기 2 는 ${1 + 2} 입니다.`);
 </code></pre>
 <hr />
-<a class="header" href="#-reference-8" id="-reference-8"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-8" id="-reference-8">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://poiemaweb.com/es6-template-literals">템플릿 리터럴</a></li>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals">Template literals</a></li>
 </ul>
-<a class="header" href="#화살표-함수arrow-function" id="화살표-함수arrow-function"><h2>화살표 함수(Arrow Function)</h2></a>
+<h2><a class="header" href="#화살표-함수arrow-function" id="화살표-함수arrow-function">화살표 함수(Arrow Function)</a></h2>
 <p><strong>화살표 함수는 <code>function</code> 대신 <code>=&gt;</code>를 사용</strong>함으로써 좀 더 간결하게 함수를 선언할 수 있다.</p>
 <p>또한 화살표 함수는 익명 함수로만 사용할 수 있기 때문에 <strong>함수 표현식</strong>을 사용한다.</p>
 <pre><code class="language-js">const foo = () =&gt; {...} //매개변수가 없을 때
@@ -1120,7 +1133,7 @@ const foo = arr.map(element =&gt; {
 
 console.log(foo); //[{Lang: &quot;JS&quot;}, {Lang: &quot;Java&quot;}, {Lang: &quot;Go&quot;}]
 </code></pre>
-<a class="header" href="#화살표-함수에서의-this-바인딩" id="화살표-함수에서의-this-바인딩"><h3>화살표 함수에서의 this 바인딩</h3></a>
+<h3><a class="header" href="#화살표-함수에서의-this-바인딩" id="화살표-함수에서의-this-바인딩">화살표 함수에서의 this 바인딩</a></h3>
 <p>ES5에서는 <strong>함수의 호출 방식에 따라 this가 동적으로 바인딩</strong>이 이뤄진다.</p>
 <p><a href="https://github.com/BKJang/do-you-know-vanilla/issues/7">ES5의 this 바인</a></p>
 <p>하지만 화살표 함수에서는 this가 무조건 상위 스코프의 this를 가리킨다.</p>
@@ -1156,9 +1169,9 @@ innerFunc1 : English
 innerFunc2 : Engilsh
 */
 </code></pre>
-<a class="header" href="#항상-화살표-함수일까" id="항상-화살표-함수일까"><h3>항상 화살표 함수일까?</h3></a>
+<h3><a class="header" href="#항상-화살표-함수일까" id="항상-화살표-함수일까">항상 화살표 함수일까?</a></h3>
 <p>화살표 함수는 위에서 본 것 처럼 정적으로 this를 바인딩(Lexical this)를 지원하기 때문에 콜백 함수로 쓰기 매우 편하다. 하지만, 주의해서 써야할 경우가 몇 가지 있다.</p>
-<a class="header" href="#addeventlistener의-콜백-함수-선언" id="addeventlistener의-콜백-함수-선언"><h3>addEventListener의 콜백 함수 선언</h3></a>
+<h3><a class="header" href="#addeventlistener의-콜백-함수-선언" id="addeventlistener의-콜백-함수-선언">addEventListener의 콜백 함수 선언</a></h3>
 <pre><code class="language-js">const btn = document.getElementById(&quot;submitBtn&quot;);
 
 btn.addEventListener(&quot;click&quot;, () =&gt; {
@@ -1166,7 +1179,7 @@ btn.addEventListener(&quot;click&quot;, () =&gt; {
 });
 </code></pre>
 <p>위에서 볼 수 있듯이 <code>addEventListener</code>의 <strong>콜백 함수를 화살표 함수로 선언하면 <code>this</code>는 <code>window</code>에 바인딩되므로 그냥 일반함수를 사용하여 선언</strong>하여야 한다.</p>
-<a class="header" href="#객체의-메서드에-선언" id="객체의-메서드에-선언"><h3>객체의 메서드에 선언</h3></a>
+<h3><a class="header" href="#객체의-메서드에-선언" id="객체의-메서드에-선언">객체의 메서드에 선언</a></h3>
 <p>객체의 메서드를 선언할 때, <strong>화살표 함수를 쓰면 그 객체에 this가 바인딩되지 않고 전역(window)에 바인딩</strong>된다.</p>
 <pre><code class="language-js">var lang = &quot;Korean&quot;;
 
@@ -1192,7 +1205,7 @@ const obj = {
 
 obj.foo(); //outerFunc : English
 </code></pre>
-<a class="header" href="#프로토타입-객체의-메서드-선언" id="프로토타입-객체의-메서드-선언"><h3>프로토타입 객체의 메서드 선언</h3></a>
+<h3><a class="header" href="#프로토타입-객체의-메서드-선언" id="프로토타입-객체의-메서드-선언">프로토타입 객체의 메서드 선언</a></h3>
 <p>프로토타입 객체에 메서드를 화살표 함수로 정의하면 객체의 메서드에 화살표 함수로 선언할 때와 같이 <strong><code>this</code>가 <code>window</code>에 바인딩</strong>된다.</p>
 <pre><code class="language-js">const devleoper = {
   name: &quot;BKJang&quot;
@@ -1202,7 +1215,7 @@ Object.prototype.renderData = () =&gt; console.log(this.name);
 
 devleoper.renderData(); //undefined
 </code></pre>
-<a class="header" href="#생성자-함수-선언" id="생성자-함수-선언"><h3>생성자 함수 선언</h3></a>
+<h3><a class="header" href="#생성자-함수-선언" id="생성자-함수-선언">생성자 함수 선언</a></h3>
 <p>결론부터 말하면, <strong>화살표 함수는 <code>prototype</code> 프로퍼티를 갖고 있지 않다.</strong> 따라서 생성자 함수를 선언할 때 화살표 함수를 쓰면 인스턴스를 생성할 수 없다.</p>
 <pre><code class="language-js">const Person = name =&gt; {
   this.name = name;
@@ -1210,8 +1223,8 @@ devleoper.renderData(); //undefined
 
 const jang = new Person(&quot;BKJang&quot;); //Uncaught TypeError: Person is not a constructor
 </code></pre>
-<a class="header" href="#spread연산자--rest파라미터" id="spread연산자--rest파라미터"><h2>Spread연산자 &amp; rest파라미터</h2></a>
-<a class="header" href="#rest-파라미터" id="rest-파라미터"><h3>rest 파라미터</h3></a>
+<h2><a class="header" href="#spread연산자--rest파라미터" id="spread연산자--rest파라미터">Spread연산자 &amp; rest파라미터</a></h2>
+<h3><a class="header" href="#rest-파라미터" id="rest-파라미터">rest 파라미터</a></h3>
 <p>rest 파라미터는 Spread 연산자(<code>...</code>)를 사용하여 파라미터를 정의한다.
 기존에 ES5에서는 가변 파라미터를 정의할 때 <code>arguments</code>객체를 사용할 수 있었지만 이를 <code>rest 파라미터</code>로 대체할 수 있다.</p>
 <pre><code class="language-js">//ES5
@@ -1256,14 +1269,14 @@ foo(1, 2, 3, 4, 5); //Uncaught ReferenceError: arguments is not defined
 <li>ES6의 <strong>화살표 함수에서는 <code>arguments</code>를 사용할 수 없다.</strong></li>
 </ul>
 </blockquote>
-<a class="header" href="#spread-연산자" id="spread-연산자"><h3>Spread 연산자</h3></a>
+<h3><a class="header" href="#spread-연산자" id="spread-연산자">Spread 연산자</a></h3>
 <p>Spread 연산자는 말그대로 전개 연산자다. <strong>배열 또는 Iterable object(반복 가능한 객체)의 엘리먼트를 하나씩 분리하여 전개</strong>한다.</p>
 <pre><code class="language-js">let a = &quot;Hello&quot;;
 let arr = [...a];
 
 console.log(arr); //[&quot;H&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot;]
 </code></pre>
-<a class="header" href="#spread-연산자의-활용" id="spread-연산자의-활용"><h3>Spread 연산자의 활용</h3></a>
+<h3><a class="header" href="#spread-연산자의-활용" id="spread-연산자의-활용">Spread 연산자의 활용</a></h3>
 <ul>
 <li><strong>concat</strong></li>
 </ul>
@@ -1351,18 +1364,19 @@ console.log(obj2); //{name: &quot;BKJang&quot;, job: &quot;Developer&quot;, lang
 foo(1, 2, 3, 4, 5); //[1, 2, 3, 4, 5]
 </code></pre>
 <hr />
-<a class="header" href="#-reference-9" id="-reference-9"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-9" id="-reference-9">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Spread_syntax">MDN Web Docs - Spread 문법</a></li>
-<li><a href="https://jaeyeophan.github.io/2017/04/18/ES6-4-Spread-Rest-parameter/">[ES6] 4. Spread, Rest parameter</a></li>
+<li><a href="https://jaeyeophan.github.io/2017/04/18/ES6-4-Spread-Rest-parameter/">[ES6] 4. Spread, Rest parameter
+</a></li>
 <li><a href="https://poiemaweb.com/es6-extended-parameter-handling">파라미터 기본값, Rest 파라미터, Spread 연산자</a></li>
 </ul>
-<a class="header" href="#destructuring비구조화-할당" id="destructuring비구조화-할당"><h2>Destructuring(비구조화 할당)</h2></a>
+<h2><a class="header" href="#destructuring비구조화-할당" id="destructuring비구조화-할당">Destructuring(비구조화 할당)</a></h2>
 <p>디스트럭처링은 <strong>구조화된 배열 혹은 객체를 분해하여 변수에 할당</strong>하는 방식이다. 이 개념을 몰랐더라도 <code>React</code>를 사용해봤던 개발자라면 아마 많이 봤을 문법이다.</p>
 <pre><code class="language-js">const { state } = this.props;
 </code></pre>
 <p>오른쪽의 특정 값을 해체하여 왼쪽에 할당하는 표현식을 **<code>Destructuring Assignment</code>**라고 한다.</p>
-<a class="header" href="#배열-디스트럭처링" id="배열-디스트럭처링"><h3>배열 디스트럭처링</h3></a>
+<h3><a class="header" href="#배열-디스트럭처링" id="배열-디스트럭처링">배열 디스트럭처링</a></h3>
 <pre><code class="language-js">//ES5
 var arr = [&quot;JS&quot;, &quot;Java&quot;, &quot;Node.js&quot;];
 
@@ -1409,7 +1423,7 @@ console.log(x, y); //1 2
 
 console.log(x, y); //2 1
 </code></pre>
-<a class="header" href="#객체-디스트럭처링" id="객체-디스트럭처링"><h3>객체 디스트럭처링</h3></a>
+<h3><a class="header" href="#객체-디스트럭처링" id="객체-디스트럭처링">객체 디스트럭처링</a></h3>
 <p>객체 또한 디스트럭처링이 가능하며 배열과 크게 다르지 않다.</p>
 <pre><code class="language-js">//ES5
 var obj = { name: &quot;BKJang&quot;, lang: &quot;Korean&quot;, job: &quot;Developer&quot; };
@@ -1450,7 +1464,7 @@ const {
 console.log(name, front); //BKJang HTML / CSS / JS
 </code></pre>
 <p>디스트럭처링을 사용하면 **기본 값(Default Value)**이나 **기본 파라미터(Default Parameter)**를 세팅할 수 있고, <a href="https://bkdevlog.netlify.com/posts/spread-rest">Speread Operator</a>또한 사용할 수도 있다.</p>
-<a class="header" href="#spread-operator-용" id="spread-operator-용"><h3>Spread Operator 용</h3></a>
+<h3><a class="header" href="#spread-operator-용" id="spread-operator-용">Spread Operator 용</a></h3>
 <pre><code class="language-js">const arr = [1, 2, 3, 4];
 
 let [x, y, ...z] = arr;
@@ -1463,7 +1477,7 @@ let { one, two, ...rest } = obj;
 
 console.log(one, two, rest); //1 2 {three: 3, four: 4}
 </code></pre>
-<a class="header" href="#기본-값default-value" id="기본-값default-value"><h3>기본 값(Default Value)</h3></a>
+<h3><a class="header" href="#기본-값default-value" id="기본-값default-value">기본 값(Default Value)</a></h3>
 <pre><code class="language-js">const arr = [1, 2];
 
 let [x, y, z = 3] = arr;
@@ -1476,7 +1490,7 @@ let { one, two, three = 3 } = obj;
 
 console.log(one, two, three); //1 2 3
 </code></pre>
-<a class="header" href="#기본-파라미터default-parameter" id="기본-파라미터default-parameter"><h3>기본 파라미터(Default Parameter)</h3></a>
+<h3><a class="header" href="#기본-파라미터default-parameter" id="기본-파라미터default-parameter">기본 파라미터(Default Parameter)</a></h3>
 <pre><code class="language-js">const doSomething = (name, stack = &quot;FrontEnd&quot;) =&gt; {
   stack = stack === null ? &quot;FullStack&quot; : stack;
 
@@ -1494,17 +1508,17 @@ console.log(doSomething.length); //1
 <p>자바스크립트에서 함수는 <code>length</code>프로퍼티를 가지는데 인자의 갯수를 나타낸다.
 <strong><code>Default Parameter</code>는 이 <code>length</code>프로퍼티에 포함되지 않는다.</strong></p>
 <hr />
-<a class="header" href="#-reference-10" id="-reference-10"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-10" id="-reference-10">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">MDN Web Docs - 구조 분해 할당</a></li>
 <li><a href="https://jaeyeophan.github.io/2017/04/18/ES6-4-Spread-Rest-parameter/">[ES6] 5. Destructuring and Default Parameter</a></li>
 <li><a href="https://poiemaweb.com/es6-destructuring">Destructuring 디스트럭처링</a></li>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/ECMAScript/Destructuring_Assignment.md">ImD/Dev-Docs - Destructuring_Assignment</a></li>
 </ul>
-<a class="header" href="#클래스class" id="클래스class"><h2>클래스(class)</h2></a>
+<h2><a class="header" href="#클래스class" id="클래스class">클래스(class)</a></h2>
 <p><code>ES6</code>에서부터는 <code>ES5</code>까지는 존재하지 않았던 <code>class</code>가 생겨났다. <code>Java</code>에서의 <code>Class</code>와는 똑같은 기능을 한다고 생각해서는 안된다.
 <strong>자바스크립트는 기본적으로 <code>Prototype</code>기반의 객체지향 언어</strong>다. 즉, <code>ES6</code>의 <code>Class</code>또한 프로토타입을 기반으로 동작하며 이는 기존의 자바스크립트에서 객체지향적으로 설계할 때의 방식을 좀 더 편하게 보완한 <code>Syntatic Sugar</code>다.</p>
-<a class="header" href="#클래스의-정의" id="클래스의-정의"><h3>클래스의 정의</h3></a>
+<h3><a class="header" href="#클래스의-정의" id="클래스의-정의">클래스의 정의</a></h3>
 <pre><code class="language-js">//ES5
 var Person = (function() {
   //생성자 함수 정의
@@ -1550,7 +1564,7 @@ class Developer {}
 console.log(window.Person); //ƒ Person() {}
 console.log(window.Developer); //undefined
 </code></pre>
-<a class="header" href="#인스턴스의-생성과-호이스팅" id="인스턴스의-생성과-호이스팅"><h3>인스턴스의 생성과 호이스팅</h3></a>
+<h3><a class="header" href="#인스턴스의-생성과-호이스팅" id="인스턴스의-생성과-호이스팅">인스턴스의 생성과 호이스팅</a></h3>
 <p><code>Class</code>를 사용하여 인스턴스를 생성할 때는 반드시 <code>new</code>를 이용해 호출해야하며 <code>new</code>를 사용하지 않으면 <code>Type Error</code>가 발생한다.</p>
 <pre><code class="language-js">class Foo {}
 
@@ -1561,7 +1575,7 @@ const foo = Foo(); //Uncaught TypeError: Class constructor Foo cannot be invoked
 
 class Foo {}
 </code></pre>
-<a class="header" href="#constructor" id="constructor"><h3>constructor</h3></a>
+<h3><a class="header" href="#constructor" id="constructor">constructor</a></h3>
 <p><code>constructor</code>는 인스턴스를 생성하고 <code>Class</code>의 <code>property</code>를 초기화한다. <code>ES5</code>에서는 생성자 함수를 이용해 <code>property</code>를 초기화하고 <strong>생성자 함수를 반환</strong>함으로써 객체지향을 구현했었다.</p>
 <ul>
 <li><strong>class는 constructor를 반환하며 생략할 수 있다.</strong></li>
@@ -1603,7 +1617,7 @@ console.log(bar); //Bar {name: &quot;BKJang&quot;}
 <blockquote>
 <p><code>constructor</code>내부에서 선언한 <code>property</code>는 <code>Class</code>의 인스턴스를 가리키는 <code>this</code>에 바인딩 된다.</p>
 </blockquote>
-<a class="header" href="#getter-setter" id="getter-setter"><h3>getter, setter</h3></a>
+<h3><a class="header" href="#getter-setter" id="getter-setter">getter, setter</a></h3>
 <p><code>class</code>의 프로퍼티에 접근하기 위한 인터페이스로서, <code>getter</code>와 <code>setter</code>를 정의할 수 있다.</p>
 <pre><code class="language-js">class Person {
   constructor(name) {
@@ -1627,7 +1641,7 @@ console.log(person.personName); //BKJang
 person.personName = &quot;SHJo&quot;;
 console.log(person.personName); //SHJo
 </code></pre>
-<a class="header" href="#static-메서드" id="static-메서드"><h3>Static 메서드</h3></a>
+<h3><a class="header" href="#static-메서드" id="static-메서드">Static 메서드</a></h3>
 <p><code>class</code>에서는 정적 메서드를 정의할 때, <code>static</code> 키워드를 사용하여 정의한다. <strong>정적 메서드는 인스턴스를 생성하지 않아도 호출가능하며, 인스턴스가 아닌 <code>Class</code>의 이름으로 호출한다.</strong> 이와 같은 특징 때문에 애플리케이션을 위한 유틸리티성 함수를 생성하는데 주로 사용한다.</p>
 <p>또한 정적 메서드 내부에서는 <code>this</code>를 사용할 수 없다. 왜냐하면 <strong>정적 메서드 내부에서는 <code>this</code>가 <code>Class</code>의 인스턴스가 아닌 <code>Class</code>자기 자신을 가리키기 때문</strong>이다.</p>
 <pre><code class="language-js">class Person {
@@ -1666,7 +1680,7 @@ console.log(instance.staticMethod()); //Uncaught TypeError: instance.staticMetho
 <pre><code class="language-js">console.log(Person.staticMethod === Person.prototype.staticMethod); //false
 console.log(new Person().personName === Person.prototype.personName); //true
 </code></pre>
-<a class="header" href="#클래스의-상속" id="클래스의-상속"><h3>클래스의 상속</h3></a>
+<h3><a class="header" href="#클래스의-상속" id="클래스의-상속">클래스의 상속</a></h3>
 <p><code>class</code>를 이용하여 <code>OOP</code>의 특징 중 하나인 상속을 구현할 수 있다.
 <code>class</code>의 상속을 위해서는 <code>extends</code>와 <code>super</code> 키워드에 대해서 알아야 한다.</p>
 <pre><code class="language-js">class Person {
@@ -1739,20 +1753,20 @@ console.log(developer instanceof Person); //true
 </li>
 </ul>
 <hr />
-<a class="header" href="#-reference-11" id="-reference-11"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-11" id="-reference-11">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes">MDN Web Docs - Classes</a></li>
 <li><a href="https://jaeyeophan.github.io/2017/04/18/ES6-6-Class-sugar-syntax/">[ES6] 6. Class sugar syntax</a></li>
 <li><a href="https://poiemaweb.com/es6-class">Class 클래스</a></li>
 </ul>
-<a class="header" href="#모듈module" id="모듈module"><h2>모듈(Module)</h2></a>
+<h2><a class="header" href="#모듈module" id="모듈module">모듈(Module)</a></h2>
 <p>자바스크립트(<code>ES5</code>)에서 기본적으로 모듈 기능이 없다.
 기본적으로 자바스크립트에서 <strong>변수는 전역(global)에 할당되기 때문에 모듈을 구현하기 위해서는 <code>Namespace Pattern</code> 혹은 <a href="https://bkdevlog.netlify.com/posts/oop-encapsulation-of-js">Module Pattern</a>과 같은 기법이 필요</strong>했다.</p>
 <p>이러한 상황에서 클라이언트 사이드에서뿐만이 아니라 범용적인 사용이 일어나면서 모듈화의 필요성이 대두되었다. 이에 따라 <a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/AMD%EC%99%80%20CommonJS.md">CommonJS와 AMD</a> 이렇게 2개의 진영으로 나뉘게 되었다.
 우리가 잘 알고 있는 <code>Node.js</code>는 <code>CommonJS</code>의 모듈화 방식을 따르고 있다.</p>
 <p><code>ES6</code>에서는 <strong>클라이언트 사이드에서도 모듈화를 제공하기 위해 <code>export</code>와 <code>import</code>가 추가</strong>되었다.
 단, <code>ES6</code>의 모듈 기능은 대부분의 브라우저에서는 지원하지 않기 때문에 <code>RequireJS</code>와 같은 모듈 로더나 <code>Webpack</code>과 같은 모듈 번들러와 함께 <code>babel</code>과 같은 트랜스파일러를 사용하여야 한다.</p>
-<a class="header" href="#export" id="export"><h2>export</h2></a>
+<h2><a class="header" href="#export" id="export">export</a></h2>
 <p>ES6의 모듈은 보통 <strong>파일 단위</strong>로 구성되며 독립적인 파일 스코프를 가지기 때문에 <strong>외부에서 모듈의 기능을 사용하고 싶다면 위와 같이 <code>export</code>를 해줘야한다.</strong></p>
 <pre><code class="language-js">//module.js
 export const message = &quot;this is variable&quot;;
@@ -1793,7 +1807,7 @@ class Person {
 
 export { message, sayHello, sayName, Person };
 </code></pre>
-<a class="header" href="#import" id="import"><h2>import</h2></a>
+<h2><a class="header" href="#import" id="import">import</a></h2>
 <p>ES6에서 export한 모듈을 사용하기 위해서는 해당 파일에서 <code>import</code>키워드를 사용하여 가져와 쓰면 된다.</p>
 <pre><code class="language-js">import { message, sayHello, sayName, Person } from &quot;./module&quot;;
 
@@ -1813,7 +1827,7 @@ import { sayHello as hello } from &quot;./module&quot;;
 
 console.log(hello()); //Hello World
 </code></pre>
-<a class="header" href="#default" id="default"><h2>default</h2></a>
+<h2><a class="header" href="#default" id="default">default</a></h2>
 <p>모듈에서 하나만 export할 경우에는 <code>default</code>키워드를 사용하면 된다.</p>
 <pre><code class="language-js">//Person.js
 export default class Person {
@@ -1833,14 +1847,14 @@ export default
 <pre><code class="language-js">import Person from &quot;./Person&quot;;
 </code></pre>
 <hr />
-<a class="header" href="#-reference-12" id="-reference-12"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-12" id="-reference-12">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://poiemaweb.com/es6-module">모듈</a></li>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/import">import(MDN web docs)</a></li>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/export">export(MDN web docs)</a></li>
 </ul>
-<a class="header" href="#promise와-async-await" id="promise와-async-await"><h2>Promise와 async-await</h2></a>
-<a class="header" href="#promise" id="promise"><h3>Promise</h3></a>
+<h2><a class="header" href="#promise와-async-await" id="promise와-async-await">Promise와 async-await</a></h2>
+<h3><a class="header" href="#promise" id="promise">Promise</a></h3>
 <p>이전에는 비동기 작업을 처리 할 때에는 콜백 함수로 처리를 해야 했다. 콜백 함수로 처리를 하게 된다면 비동기 작업이 많아질 경우 코드의 가독성이 떨어지게 되었다. 이를 <strong>콜백 지옥</strong>이라고 한다.</p>
 <p>Promise는 이러한 콜백 지옥에서 탈출하기 위해 <code>ES6</code>에서 도입된 문법이다.</p>
 <pre><code class="language-js">const printNumber = number =&gt; {
@@ -1876,7 +1890,7 @@ printNumber(0)
   });
 </code></pre>
 <p><code>Promise</code>에서는 <code>resolve</code>와 <code>reject</code>를 파라미터로 전달하고 성공시에는 <code>resolve</code>를 실패시에는 <code>reject</code>를 실행한다. 다만, <code>Promise</code>를 사용했을 때는 어떤 부분에서 <code>error</code>를 잡아야할지가 조금 애매할 수 있고 조건 분기를 해줄 때 불편함이 있다. 이러한 점을 보완한 것이 <code>async-await</code> 문법이다.</p>
-<a class="header" href="#promiseall" id="promiseall"><h3>Promise.all()</h3></a>
+<h3><a class="header" href="#promiseall" id="promiseall">Promise.all()</a></h3>
 <p><code>Promise.all()</code>은 여러 개의 비동기적 처리를 한 번에 처리하고 싶을 때 사용한다. 단, 모든 비동기 함수가 처리가 완료되면 결과를 출력한다. 따라서 비동기 함수 중 하나라도 에러가 발생한다면 결과 값은 에러가 된다.</p>
 <pre><code class="language-js">const myPromise = time =&gt; {
   return new Promise(resolve =&gt; setTimeout(resolve, time));
@@ -1928,7 +1942,7 @@ const makeProcessWithError = async () =&gt; {
 makeProcess(); //['Hello', 'BKJang', 'world']
 makeProcessWithError(); //Error : This is Error!
 </code></pre>
-<a class="header" href="#promiserace" id="promiserace"><h3>Promise.race()</h3></a>
+<h3><a class="header" href="#promiserace" id="promiserace">Promise.race()</a></h3>
 <p><code>Promise.race()</code>도 <code>Promise.all()</code>과 마찬가지로 모든 비동기 함수를 동시에 요청하지만 가장 먼저 처리된 비동기 함수의 결과만을 반환한다.</p>
 <pre><code class="language-js">const myPromise = time =&gt; {
   return new Promise(resolve =&gt; setTimeout(resolve, time));
@@ -1971,7 +1985,7 @@ const makeProcessWithError = async () =&gt; {
 makeProcessWithError(); //Hello
 </code></pre>
 <p>위의 코드를 보면 에러를 발생시키는 비동기 함수가 <code>printHello</code>함수보다 늦게 처리되기 때문에 에러가 아닌 <code>Hello</code>가 출력되는 것을 볼 수 있다.</p>
-<a class="header" href="#async-await" id="async-await"><h3>async-await</h3></a>
+<h3><a class="header" href="#async-await" id="async-await">async-await</a></h3>
 <p><code>async-await</code>문법은 <code>ES8</code>에서 새롭게 도입된 문법으로 <code>Promise</code>를 좀 더 편하게 다룰 수 있게 해준다. 또한 <code>try-catch</code>구문을 사용할 수 있기 때문에 에러 처리도 좀 더 간편하게 할 수 있다.</p>
 <pre><code class="language-js">const printNumber = number =&gt; {
   return new Promise((resolve, reject) =&gt; {
@@ -2001,7 +2015,7 @@ const makeProcess = async () =&gt; {
 makeProcess();
 </code></pre>
 <hr />
-<a class="header" href="#-reference-13" id="-reference-13"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-13" id="-reference-13">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise">MDN Docs - Promise</a></li>
 <li><a href="https://joshua1988.github.io/web-development/javascript/promise-for-beginners/">Captain Pangyo - 자바스크립트 Promise 쉽게 이해하기</a></li>
@@ -2011,9 +2025,9 @@ makeProcess();
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/Promise2.md">Im-D/Dev-Docs - Promise2</a></li>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/PromisePattern.md">Im-D/Dev-Docs - Promise Pattern</a></li>
 </ul>
-<a class="header" href="#iteration-protocol" id="iteration-protocol"><h2>Iteration Protocol</h2></a>
+<h2><a class="header" href="#iteration-protocol" id="iteration-protocol">Iteration Protocol</a></h2>
 <p><code>Iteration Protocol</code>은 ES6에서 도입되었다. 이는 새로운 구문이 아닌 하나의 프로토콜, 규약이다. 즉, 같은 규칙을 준수하는 객체에 의해 구현될 수 있다. <code>Iteration Protocol</code>에는 <strong>Iterable Protocol</strong> 과 <strong>Iterator Protocol</strong> 이 있다.</p>
-<a class="header" href="#iterable" id="iterable"><h3>Iterable</h3></a>
+<h3><a class="header" href="#iterable" id="iterable">Iterable</a></h3>
 <p><code>Iterable</code>은 <code>Iterable Protocol</code>을 준수한 객체다. <code>Iterable</code>은 반복 가능한 객체이며 <code>Symbol.iterator</code> 메서드를 구현하거나 프로토타입 체인에 의해 상속한 객체를 말한다. <code>Iterable</code>은 <code>for...of</code>문에서 반복 가능하며 <a href="https://github.com/Im-D/Dev-Docs/blob/master/ECMAScript/Spread_Operator.md">Spread Operator</a>의 대상이 될 수 있다.</p>
 <p><code>Iterable</code>은 <code>Symbol.iterator</code>을 가지기 때문에 해당 메서드가 없는 객체는 Iterable 객체가 아니다.</p>
 <p>Iterable 객체로는 내장 객체인 <code>Array</code>, <code>Map</code>, <code>Set</code>, <code>String</code> 등이 있다.</p>
@@ -2058,7 +2072,7 @@ for (let item of iterator) {
   console.log(item);
 }
 </code></pre>
-<a class="header" href="#iterator" id="iterator"><h3>Iterator</h3></a>
+<h3><a class="header" href="#iterator" id="iterator">Iterator</a></h3>
 <p><code>Iterator Protocol</code>은 <code>next</code> 메서드를 가진다. <code>next</code> 메소드를 호출하면 Iterable 객체를 순회하며 <code>value</code>, <code>done</code> 프로퍼티를 갖는 Iterator Reuslt 객체를 반환한다. 이 규약을 준수한 객체가 Iterator 객체다.</p>
 <p>위에서 잠깐 봤던 코드의 일부분을 다시 한 번 살펴보자.</p>
 <pre><code class="language-js">[Symbol.iterator]() {
@@ -2085,21 +2099,21 @@ iterator.next().value; // 3
 iterator.next(); // { value: undefined, done: true }
 </code></pre>
 <p>Iterator 객체의 <code>next</code> 메서드가 반환하는 Iterator Result 객체의 <code>value</code> 프로퍼티는 Iterable 객체의 값을 반환하고 <code>done</code> 프로퍼티는 Iterable 객체의 반복 완료 여부를 반환한다.</p>
-<a class="header" href="#iteration-protocol이-왜-필요할까" id="iteration-protocol이-왜-필요할까"><h3>Iteration Protocol이 왜 필요할까?</h3></a>
+<h3><a class="header" href="#iteration-protocol이-왜-필요할까" id="iteration-protocol이-왜-필요할까">Iteration Protocol이 왜 필요할까?</a></h3>
 <p><code>for...of</code>, <code>Spread Operator</code>, <code>Destructuring</code>, <code>Map/Set constructor</code>등을 <strong>데이터 소비자(Data Consumer)</strong> 라고 한다.<br/> 반면, <code>배열</code>, <code>문자열</code>, <code>Map</code>, <code>Set</code>, <code>DOM Data Structure</code> 등과 같은 Iterable 객체는 <strong>데이터 공급자(Data Provider)</strong> 라고 한다.</p>
 <p>만약, 위와 같은 Data Provider인 Iterable 객체들이 각각 다른 방식의 순회 방식을 갖는다면 어떨까? 당연히 효율적이지 못하다.</p>
 <p>순회 방식에 대한 하나의 규약을 정해놓고 사용한다면 Data Consumer가 여러 구조의 Iterable을 효율적으로 사용할 수 있을 것이다. 즉, Iteration Protocol은 Data Consumer와 Data Provider를 연결하는 인터페이스 역할을 해주기 때문에 필요하다고 볼 수 있다.</p>
 <hr />
-<a class="header" href="#-reference-14" id="-reference-14"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-14" id="-reference-14">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://poiemaweb.com/es6-iteration-for-of">Poiemaweb - 이터레이션과 for...of 문</a></li>
 <li><a href="https://wonism.github.io/javascript-iteration-protocol/">wonism.github.io - JavaScript iterables와 iterator 이해하기</a></li>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Iteration_protocols">MDN Docs - Iteration protocols</a></li>
 </ul>
-<a class="header" href="#generator" id="generator"><h2>Generator</h2></a>
+<h2><a class="header" href="#generator" id="generator">Generator</a></h2>
 <p><code>Generator</code>는 <code>ES6</code>에서 도입되었으며 <code>Iterable</code>을 생성하는 함수다. <code>Generator</code>를 사용하면 <code>Iteration Protocol</code>을 사용하여 <code>Iterable</code>을 생성하는 방식보다 간편하다.<br/>
 <code>Iteration Protocol</code>에 대한 자세한 내용은 <a href="https://github.com/Im-D/Dev-Docs/blob/master/ECMAScript/Iteration_Protocol.md">다음</a>을 참고하길 바란다.</p>
-<a class="header" href="#generator-함수의-정의" id="generator-함수의-정의"><h3>Generator 함수의 정의</h3></a>
+<h3><a class="header" href="#generator-함수의-정의" id="generator-함수의-정의">Generator 함수의 정의</a></h3>
 <p><code>Generator</code> 함수는 코드 블록을 한 번에 실행하지 않고 함수 코드 블록의 실행을 중지했다가 필요한 시점에 다시 시작할 수 있는 함수다.<br/>
 <code>Generator</code> 함수는 <code>function *</code> 키워드를 사용하며 하나 이상의 <code>yield</code> 문을 포함한다.</p>
 <pre><code class="language-js">// 함수 선언문
@@ -2135,7 +2149,7 @@ class GenClass {
 const genClass = new GenClass();
 genObj = genClass.classMethod();
 </code></pre>
-<a class="header" href="#generator-객체" id="generator-객체"><h3>Generator 객체</h3></a>
+<h3><a class="header" href="#generator-객체" id="generator-객체">Generator 객체</a></h3>
 <p><code>Generator</code> 함수를 호출하면 코드 블록이 실행되는 것이 아니라 <code>Generator</code> 객체를 반환한다. <code>Generator</code> 객체는 이터러블이면서 동시에 이터레이터다. 따라서 <code>Symbol.iterator</code>를 사용하여 이터레이터를 생성할 필요 없다.</p>
 <pre><code class="language-js">function* counter() {
   console.log(&quot;First&quot;);
@@ -2155,7 +2169,7 @@ console.log(genObj.next()); //{value: 3, done: false}
 console.log(genObj.next()); //{value: undefined, done: true}
 </code></pre>
 <p><code>Generator</code> 객체는 이터러블이면서 이터레이터이기 때문에 <code>next()</code>메서드를 가지고 있다. 따라서 <code>next()</code> 메서드를 호출하면 <code>yield</code>문까지 실행되고 일시 중지된다. 다시 <code>next()</code> 메서드를 호출하면 다음 <code>yield</code>문을 만날 때까지 실행된 뒤 일시 중지된다.</p>
-<a class="header" href="#generator-객체를-이용한-이터러블-구현" id="generator-객체를-이용한-이터러블-구현"><h3>Generator 객체를 이용한 이터러블 구현</h3></a>
+<h3><a class="header" href="#generator-객체를-이용한-이터러블-구현" id="generator-객체를-이용한-이터러블-구현">Generator 객체를 이용한 이터러블 구현</a></h3>
 <pre><code class="language-js">const genObj = (function*() {
   let i = 0;
 
@@ -2204,7 +2218,7 @@ console.log(genObj.next(1));
 console.log(genObj.next(2));
 console.log(genObj.next(3));
 </code></pre>
-<a class="header" href="#generator를-이용한-비동기-처리" id="generator를-이용한-비동기-처리"><h3>Generator를 이용한 비동기 처리</h3></a>
+<h3><a class="header" href="#generator를-이용한-비동기-처리" id="generator를-이용한-비동기-처리">Generator를 이용한 비동기 처리</a></h3>
 <p><code>Generator</code>의 진면목은 비동기 프로그래밍에서 볼 수 있다. 함수가 실행 도중에 멈춘다니. 언제 응답이 올지 알 수 없기 때문에, callback을 등록하는 비동기 프로그래밍에 응용하면 callback hell을 탈출할 수 있지 않을까?</p>
 <pre><code class="language-js">function getId(phoneNumber) {
   // …
@@ -2236,7 +2250,7 @@ function* orderCoffee(phoneNumber) {
 const iterator = orderCoffee(&quot;010-1234-1234&quot;);
 iterator.next();
 </code></pre>
-<a class="header" href="#generator는-어떻게-구현되어-있을까" id="generator는-어떻게-구현되어-있을까"><h3>Generator는 어떻게 구현되어 있을까?</h3></a>
+<h3><a class="header" href="#generator는-어떻게-구현되어-있을까" id="generator는-어떻게-구현되어-있을까">Generator는 어떻게 구현되어 있을까?</a></h3>
 <pre><code class="language-js">// ES6
 function* foo() {
   yield bar();
@@ -2272,33 +2286,33 @@ function foo() {
 <p>코드의 역사를 따라가다 보면 <a href="https://github.com/facebook/regenerator/blob/master/packages/regenerator-runtime/runtime.js">facebook/regenerator</a> repository에 도달하게 된다.</p>
 <p>이 라이브러리는 2013년 Node.js v0.11.2에서 generator syntax를 지원하기 위해 만들어 졌으며, Babel에서는 이 라이브러리를 사용하여 generator를 구현하고 있다. 실제 코드를 들여다보면 Symbol과 Iterator를 이용해서 Iterable Protocol을 구현하고 있다.</p>
 <hr />
-<a class="header" href="#-reference-15" id="-reference-15"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-15" id="-reference-15">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://poiemaweb.com/es6-generator">Poiemaweb-Generator와 async/await</a></li>
 <li><a href="https://meetup.toast.com/posts/73">ES6의 제너레이터를 사용한 비동기 프로그래밍</a></li>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Generator">MDN Docs-Genenrator</a></li>
 </ul>
-<a class="header" href="#이벤트-루프event-loop" id="이벤트-루프event-loop"><h2>이벤트 루프(Event Loop)</h2></a>
-<a class="header" href="#자바스크립트는-싱글쓰레드-기반이다" id="자바스크립트는-싱글쓰레드-기반이다"><h3>자바스크립트는 싱글쓰레드 기반이다.</h3></a>
+<h2><a class="header" href="#이벤트-루프event-loop" id="이벤트-루프event-loop">이벤트 루프(Event Loop)</a></h2>
+<h3><a class="header" href="#자바스크립트는-싱글쓰레드-기반이다" id="자바스크립트는-싱글쓰레드-기반이다">자바스크립트는 싱글쓰레드 기반이다.</a></h3>
 <p>자바스크립트를 공부해본 개발자라면 한 번쯤은 <code>자바스크립트는 싱글 쓰레드 기반의 언어다.</code>라는 말을 들어봤을 것이다. 하지만 우리는 실제 웹 애플리케이션에서 여러 개의 작업이 동시에 처리되는 것처럼(비동기적) 느끼는 일이 더 많다. 싱글 쓰레드 기반의 언어에서 즉, 한 번에 하나의 작업만 처리가능한 환경에서 어떻게 많은 작업이 동시에 처리되는 것처럼 느낄 수 있을까? 그 답은 <strong>이벤트 루프</strong>에 있다.</p>
 <p>브라우저 환경을 간단히 표현하면 다음 이미지와 같다.</p>
 <p><img src="https://github.com/Im-D/Dev-Docs/raw/master/assets/images/event_loop.jpeg" alt="eventLoop" /></p>
 <p>우선, 위의 그림에서 보여지는 각각에 대해서 살펴본 후, 전체적으로 이벤트 루프가 동작하는 방식을 살펴보도록 하자.</p>
-<a class="header" href="#자바스크립트-엔진" id="자바스크립트-엔진"><h3>자바스크립트 엔진</h3></a>
-<a class="header" href="#heap" id="heap"><h4>Heap</h4></a>
+<h3><a class="header" href="#자바스크립트-엔진" id="자바스크립트-엔진">자바스크립트 엔진</a></h3>
+<h4><a class="header" href="#heap" id="heap">Heap</a></h4>
 <p>동적으로 생성된 객체 인스턴스는 Heap에 할당이 된다. Heap은 메모리에서 대부분 구조화되지 않은 영역을 나타낸다.</p>
-<a class="header" href="#call-stack호출-스택" id="call-stack호출-스택"><h4>Call Stack(호출 스택)</h4></a>
+<h4><a class="header" href="#call-stack호출-스택" id="call-stack호출-스택">Call Stack(호출 스택)</a></h4>
 <p>호출 스택은 이름 그대로 <code>Stack</code>이며 LIFO(Last-In-First-Out)구조를 갖는다. 함수를 호출하면(작업을 요청하면) 작업은 순차적으로 호출 스택에 쌓이고 실행된다. 자바스크립트 엔진은 하나의 스택만 가지고 있기 때문에 하나의 작업이 끝나기 전까지 다른 작업을 수행할 수 없다.</p>
-<a class="header" href="#web-apis" id="web-apis"><h3>Web APIs</h3></a>
+<h3><a class="header" href="#web-apis" id="web-apis">Web APIs</a></h3>
 <p>흔히 WebAPI라 불리는 API들은 실행환경에 내장되어 있다.</p>
 <p>이것은 자바스크립트에 포함되는 것이 아니다. 즉, 우리는 Web API의 내부는 조작할 수 없으며 호출만 가능하다. 또한 자바스크립트 언어를 사용하는데 있어 강력한 성능을 제공한다.</p>
 <p>Web API의 종류는 <a href="https://developer.mozilla.org/en-US/docs/Web/API">다음</a>을 참조하면 알 수 있다.</p>
-<a class="header" href="#콜백함수" id="콜백함수"><h3>콜백함수</h3></a>
+<h3><a class="header" href="#콜백함수" id="콜백함수">콜백함수</a></h3>
 <p>자바스크립트의 싱글 쓰레드 구조에서 비동기성의 이벤트 기반 실행(대표적으로 <code>setTimeout</code>)이나 <code>ajax</code>요청이 필요하다면, 콜백 함수를 큐로 보내고 큐에서는 호출 스택으로 보내 해결하게 된다.</p>
 <p>자바스크립트에서는 쓰레드를 통해 병렬처리가 안되기 때문에 콜백 함수의 사용은 필수불가결하게 되는 것이다.</p>
-<a class="header" href="#event-queue이벤트-큐" id="event-queue이벤트-큐"><h3>Event Queue(이벤트 큐)</h3></a>
+<h3><a class="header" href="#event-queue이벤트-큐" id="event-queue이벤트-큐">Event Queue(이벤트 큐)</a></h3>
 <p>이벤트 큐는 말 그대로 콜백 함수들이 대기하는 <code>Queue</code>이며 <code>FIFO(First-In-First-Out)</code>의 구조를 갖는다. 이벤트 루프는 호출 스택이 비워질 때마다 큐에서 콜백 함수를 호출 스택에 넣어주는 역할을 해준다.</p>
-<a class="header" href="#이벤트-루프를-통한-비동기적-처리" id="이벤트-루프를-통한-비동기적-처리"><h3>이벤트 루프를 통한 비동기적 처리</h3></a>
+<h3><a class="header" href="#이벤트-루프를-통한-비동기적-처리" id="이벤트-루프를-통한-비동기적-처리">이벤트 루프를 통한 비동기적 처리</a></h3>
 <p>이벤트 루프의 역할은 생각보다 단순한다. 호출 스택에 실행 중인 작업이 있는지, 이벤트 큐에 대기 중인 작업이 있는지 반복해서 확인한다. 만약 호출 스택이 비어있다면 이벤트 큐에 있는 작업을 호출 스택으로 옮긴다. 그리고 이 작업을 수행하는 것은 결국 호출 스택이다.</p>
 <pre><code class="language-js">function func1() {
   console.log(&quot;func1&quot;);
@@ -2325,7 +2339,7 @@ func1();
 <blockquote>
 <p>이미지 출처: https://poiemaweb.com/js-event</p>
 </blockquote>
-<p><br/></p>
+<br/>
 <p>위 과정을 순차적으로 정리하면 다음과 같다.</p>
 <blockquote>
 <ol>
@@ -2365,7 +2379,7 @@ while (true) {
 </code></pre>
 <p>결론적으로, 이벤트 루프는 메시지 큐에 메시지가 더 있는지 확인하는 루프이다.</p>
 <p>메시지 큐에 메시지가 있으면 메시지 큐에서 다음 메시지를 제거하고 그 메시지와 연관된 기능을 호출 스택으로 보낸다. 그렇지 않으면 새 메시지가 메시지 대기열에 추가될 때까지 대기를 한다. 이벤트 루프가 자바스크립트에게 비동기를 허용하는 기본 모델이다.</p>
-<a class="header" href="#es6이후의-변화된-비동기-처리와-이벤트-루프" id="es6이후의-변화된-비동기-처리와-이벤트-루프"><h3>ES6이후의 변화된 비동기 처리와 이벤트 루프</h3></a>
+<h3><a class="header" href="#es6이후의-변화된-비동기-처리와-이벤트-루프" id="es6이후의-변화된-비동기-처리와-이벤트-루프">ES6이후의 변화된 비동기 처리와 이벤트 루프</a></h3>
 <p>기본적으로 이벤트 루프는 위에서 설명한 내용이 큰 틀이다. 큐와 스택을 감시하며 스택의 작업이 없으면 큐의 작업을 스택에 올린다. 다만, <code>ES6</code>이후에는 몇 가지 비동기적 작업을 수행하는 API들이 추가되었고 이에 따라 약간의 추가된 내용이 있다. 하지만, 전체적인 실행 방식은 동일하며 각각의 비동기 처리에 수행 순서에 초점을 두고 살펴보자.</p>
 <p>기존에 살펴보았던 이벤트 큐(Event Queue)를 좀 더 자세히 나눠보면 다음과 같다.</p>
 <ol>
@@ -2404,21 +2418,15 @@ setTimeout
 </blockquote>
 <p>기존에 이벤트 루프에 대해서 이해가 된 상태라면 이 내용은 크게 어렵지 않다. 쉽게 보면 비동기 작업을 처리하는 방법이 추가되었고 이에 따라 이벤트 큐에서 내부적으로 처리하는 로직에 약간의 변화가 생겼을 뿐이다. 결국, 정리하면 다음과 같다.</p>
 <ol>
-<li>
-<p>비동기 작업으로 등록되는 작업은 <code>Task</code>와 <code>Micro Task</code>, 그리고 <code>AnimationFrame</code>으로 구분된다.</p>
-</li>
-<li>
-<p><code>Micro Task</code>는 <code>Task</code>보다 먼저 처리된다.</p>
-</li>
-<li>
-<p><code>Micro Task</code>가 처리된 이후 <code>requestAnimationFrame</code>이 호출되고 이후 브라우저 랜더링이 발생한다.</p>
-</li>
+<li>비동기 작업으로 등록되는 작업은 <code>Task</code>와 <code>Micro Task</code>, 그리고 <code>AnimationFrame</code>으로 구분된다.</li>
+<li><code>Micro Task</code>는 <code>Task</code>보다 먼저 처리된다.</li>
+<li><code>Micro Task</code>가 처리된 이후 <code>requestAnimationFrame</code>이 호출되고 이후 브라우저 랜더링이 발생한다.</li>
 </ol>
 <ul>
 <li><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Task Queue와 Micro Task Queue의 처리 과정</a></li>
 </ul>
 <hr />
-<a class="header" href="#-reference-16" id="-reference-16"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-16" id="-reference-16">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/%EC%9D%B4%EB%B2%A4%ED%8A%B8%20%EB%A3%A8%ED%94%84(Event%20Loop).md">Im-D/Dev-Docs</a></li>
 <li><a href="https://medium.com/front-end-weekly/javascript-event-loop-explained-4cd26af121d4">JavaScript Event Loop Explained</a></li>
@@ -2429,27 +2437,27 @@ setTimeout
 <li><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Tasks, microtasks, queues and schedules</a></li>
 <li><a href="https://poiemaweb.com/js-event">Poiemaweb - 자바스크립트/이벤트</a></li>
 </ul>
-<a class="header" href="#이벤트-루프event-loop-1" id="이벤트-루프event-loop-1"><h2>이벤트 루프(Event Loop)</h2></a>
-<a class="header" href="#자바스크립트는-싱글쓰레드-기반이다-1" id="자바스크립트는-싱글쓰레드-기반이다-1"><h3>자바스크립트는 싱글쓰레드 기반이다.</h3></a>
+<h2><a class="header" href="#이벤트-루프event-loop-1" id="이벤트-루프event-loop-1">이벤트 루프(Event Loop)</a></h2>
+<h3><a class="header" href="#자바스크립트는-싱글쓰레드-기반이다-1" id="자바스크립트는-싱글쓰레드-기반이다-1">자바스크립트는 싱글쓰레드 기반이다.</a></h3>
 <p>자바스크립트를 공부해본 개발자라면 한 번쯤은 <code>자바스크립트는 싱글 쓰레드 기반의 언어다.</code>라는 말을 들어봤을 것이다. 하지만 우리는 실제 웹 애플리케이션에서 여러 개의 작업이 동시에 처리되는 것처럼(비동기적) 느끼는 일이 더 많다. 싱글 쓰레드 기반의 언어에서 즉, 한 번에 하나의 작업만 처리가능한 환경에서 어떻게 많은 작업이 동시에 처리되는 것처럼 느낄 수 있을까? 그 답은 <strong>이벤트 루프</strong>에 있다.</p>
 <p>브라우저 환경을 간단히 표현하면 다음 이미지와 같다.</p>
 <p><img src="https://github.com/Im-D/Dev-Docs/raw/master/assets/images/event_loop.jpeg" alt="eventLoop" /></p>
 <p>우선, 위의 그림에서 보여지는 각각에 대해서 살펴본 후, 전체적으로 이벤트 루프가 동작하는 방식을 살펴보도록 하자.</p>
-<a class="header" href="#자바스크립트-엔진-1" id="자바스크립트-엔진-1"><h3>자바스크립트 엔진</h3></a>
-<a class="header" href="#heap-1" id="heap-1"><h4>Heap</h4></a>
+<h3><a class="header" href="#자바스크립트-엔진-1" id="자바스크립트-엔진-1">자바스크립트 엔진</a></h3>
+<h4><a class="header" href="#heap-1" id="heap-1">Heap</a></h4>
 <p>동적으로 생성된 객체 인스턴스는 Heap에 할당이 된다. Heap은 메모리에서 대부분 구조화되지 않은 영역을 나타낸다.</p>
-<a class="header" href="#call-stack호출-스택-1" id="call-stack호출-스택-1"><h4>Call Stack(호출 스택)</h4></a>
+<h4><a class="header" href="#call-stack호출-스택-1" id="call-stack호출-스택-1">Call Stack(호출 스택)</a></h4>
 <p>호출 스택은 이름 그대로 <code>Stack</code>이며 LIFO(Last-In-First-Out)구조를 갖는다. 함수를 호출하면(작업을 요청하면) 작업은 순차적으로 호출 스택에 쌓이고 실행된다. 자바스크립트 엔진은 하나의 스택만 가지고 있기 때문에 하나의 작업이 끝나기 전까지 다른 작업을 수행할 수 없다.</p>
-<a class="header" href="#web-apis-1" id="web-apis-1"><h3>Web APIs</h3></a>
+<h3><a class="header" href="#web-apis-1" id="web-apis-1">Web APIs</a></h3>
 <p>흔히 WebAPI라 불리는 API들은 실행환경에 내장되어 있다.</p>
 <p>이것은 자바스크립트에 포함되는 것이 아니다. 즉, 우리는 Web API의 내부는 조작할 수 없으며 호출만 가능하다. 또한 자바스크립트 언어를 사용하는데 있어 강력한 성능을 제공한다.</p>
 <p>Web API의 종류는 <a href="https://developer.mozilla.org/en-US/docs/Web/API">다음</a>을 참조하면 알 수 있다.</p>
-<a class="header" href="#콜백함수-1" id="콜백함수-1"><h3>콜백함수</h3></a>
+<h3><a class="header" href="#콜백함수-1" id="콜백함수-1">콜백함수</a></h3>
 <p>자바스크립트의 싱글 쓰레드 구조에서 비동기성의 이벤트 기반 실행(대표적으로 <code>setTimeout</code>)이나 <code>ajax</code>요청이 필요하다면, 콜백 함수를 큐로 보내고 큐에서는 호출 스택으로 보내 해결하게 된다.</p>
 <p>자바스크립트에서는 쓰레드를 통해 병렬처리가 안되기 때문에 콜백 함수의 사용은 필수불가결하게 되는 것이다.</p>
-<a class="header" href="#event-queue이벤트-큐-1" id="event-queue이벤트-큐-1"><h3>Event Queue(이벤트 큐)</h3></a>
+<h3><a class="header" href="#event-queue이벤트-큐-1" id="event-queue이벤트-큐-1">Event Queue(이벤트 큐)</a></h3>
 <p>이벤트 큐는 말 그대로 콜백 함수들이 대기하는 <code>Queue</code>이며 <code>FIFO(First-In-First-Out)</code>의 구조를 갖는다. 이벤트 루프는 호출 스택이 비워질 때마다 큐에서 콜백 함수를 호출 스택에 넣어주는 역할을 해준다.</p>
-<a class="header" href="#이벤트-루프를-통한-비동기적-처리-1" id="이벤트-루프를-통한-비동기적-처리-1"><h3>이벤트 루프를 통한 비동기적 처리</h3></a>
+<h3><a class="header" href="#이벤트-루프를-통한-비동기적-처리-1" id="이벤트-루프를-통한-비동기적-처리-1">이벤트 루프를 통한 비동기적 처리</a></h3>
 <p>이벤트 루프의 역할은 생각보다 단순한다. 호출 스택에 실행 중인 작업이 있는지, 이벤트 큐에 대기 중인 작업이 있는지 반복해서 확인한다. 만약 호출 스택이 비어있다면 이벤트 큐에 있는 작업을 호출 스택으로 옮긴다. 그리고 이 작업을 수행하는 것은 결국 호출 스택이다.</p>
 <pre><code class="language-js">function func1() {
   console.log(&quot;func1&quot;);
@@ -2476,7 +2484,7 @@ func1();
 <blockquote>
 <p>이미지 출처: https://poiemaweb.com/js-event</p>
 </blockquote>
-<p><br/></p>
+<br/>
 <p>위 과정을 순차적으로 정리하면 다음과 같다.</p>
 <blockquote>
 <ol>
@@ -2516,7 +2524,7 @@ while (true) {
 </code></pre>
 <p>결론적으로, 이벤트 루프는 메시지 큐에 메시지가 더 있는지 확인하는 루프이다.</p>
 <p>메시지 큐에 메시지가 있으면 메시지 큐에서 다음 메시지를 제거하고 그 메시지와 연관된 기능을 호출 스택으로 보낸다. 그렇지 않으면 새 메시지가 메시지 대기열에 추가될 때까지 대기를 한다. 이벤트 루프가 자바스크립트에게 비동기를 허용하는 기본 모델이다.</p>
-<a class="header" href="#es6이후의-변화된-비동기-처리와-이벤트-루프-1" id="es6이후의-변화된-비동기-처리와-이벤트-루프-1"><h3>ES6이후의 변화된 비동기 처리와 이벤트 루프</h3></a>
+<h3><a class="header" href="#es6이후의-변화된-비동기-처리와-이벤트-루프-1" id="es6이후의-변화된-비동기-처리와-이벤트-루프-1">ES6이후의 변화된 비동기 처리와 이벤트 루프</a></h3>
 <p>기본적으로 이벤트 루프는 위에서 설명한 내용이 큰 틀이다. 큐와 스택을 감시하며 스택의 작업이 없으면 큐의 작업을 스택에 올린다. 다만, <code>ES6</code>이후에는 몇 가지 비동기적 작업을 수행하는 API들이 추가되었고 이에 따라 약간의 추가된 내용이 있다. 하지만, 전체적인 실행 방식은 동일하며 각각의 비동기 처리에 수행 순서에 초점을 두고 살펴보자.</p>
 <p>기존에 살펴보았던 이벤트 큐(Event Queue)를 좀 더 자세히 나눠보면 다음과 같다.</p>
 <ol>
@@ -2555,21 +2563,15 @@ setTimeout
 </blockquote>
 <p>기존에 이벤트 루프에 대해서 이해가 된 상태라면 이 내용은 크게 어렵지 않다. 쉽게 보면 비동기 작업을 처리하는 방법이 추가되었고 이에 따라 이벤트 큐에서 내부적으로 처리하는 로직에 약간의 변화가 생겼을 뿐이다. 결국, 정리하면 다음과 같다.</p>
 <ol>
-<li>
-<p>비동기 작업으로 등록되는 작업은 <code>Task</code>와 <code>Micro Task</code>, 그리고 <code>AnimationFrame</code>으로 구분된다.</p>
-</li>
-<li>
-<p><code>Micro Task</code>는 <code>Task</code>보다 먼저 처리된다.</p>
-</li>
-<li>
-<p><code>Micro Task</code>가 처리된 이후 <code>requestAnimationFrame</code>이 호출되고 이후 브라우저 랜더링이 발생한다.</p>
-</li>
+<li>비동기 작업으로 등록되는 작업은 <code>Task</code>와 <code>Micro Task</code>, 그리고 <code>AnimationFrame</code>으로 구분된다.</li>
+<li><code>Micro Task</code>는 <code>Task</code>보다 먼저 처리된다.</li>
+<li><code>Micro Task</code>가 처리된 이후 <code>requestAnimationFrame</code>이 호출되고 이후 브라우저 랜더링이 발생한다.</li>
 </ol>
 <ul>
 <li><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Task Queue와 Micro Task Queue의 처리 과정</a></li>
 </ul>
 <hr />
-<a class="header" href="#-reference-17" id="-reference-17"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-17" id="-reference-17">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/%EC%9D%B4%EB%B2%A4%ED%8A%B8%20%EB%A3%A8%ED%94%84(Event%20Loop).md">Im-D/Dev-Docs</a></li>
 <li><a href="https://medium.com/front-end-weekly/javascript-event-loop-explained-4cd26af121d4">JavaScript Event Loop Explained</a></li>
@@ -2580,13 +2582,13 @@ setTimeout
 <li><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/">Tasks, microtasks, queues and schedules</a></li>
 <li><a href="https://poiemaweb.com/js-event">Poiemaweb - 자바스크립트/이벤트</a></li>
 </ul>
-<a class="header" href="#repaint와-reflow" id="repaint와-reflow"><h2>repaint와 reflow</h2></a>
+<h2><a class="header" href="#repaint와-reflow" id="repaint와-reflow">repaint와 reflow</a></h2>
 <p><img src="https://github.com/Im-D/Dev-Docs/raw/master/assets/images/rendering.png" alt="rendering" /></p>
 <p>위의 그림과 같이 브라우저는 화면을 rendering하는 과정에서 <strong>배치(flow)</strong> 와 <strong>그리기(paint)</strong> 의 과정을 거친다.</p>
 <p>생성된 DOM 노드의 레이아웃이 변경될 떄, 변경 후 영향을 받는 모든 노드를 다시 계산하고 렌더 트리를 재생성 한다.
 이러한 과정을 <code>reflow</code>라 하고 <code>reflow</code>가 일어난 후, <code>repaint</code>가 일어난다.</p>
 <p>즉, <strong>DOM의 노드가 변경될 때 마다 DOM tree라는 자료구조에 접근</strong>해야 하기 때문에 DOM의 레이아웃을 변경하는 코드를 작성할 때는 이를 최적화하기 위한 고민이 필요하다.</p>
-<a class="header" href="#reflow" id="reflow"><h3>reflow</h3></a>
+<h3><a class="header" href="#reflow" id="reflow">reflow</a></h3>
 <pre><code class="language-js">function reFlow() {
     var container = document.getElementById('container');
 
@@ -2594,7 +2596,7 @@ setTimeout
 }
 </code></pre>
 <p>위의 코드를 보면 <code>conatiner</code>라는 엘리먼트에 <code>hello</code>라는 <code>TextNode</code>를 추가했다. 이로 인해 DOM 노드의 레이아웃이 바뀌며 <code>reflow</code>와 <code>repaint</code>가 일어날 것이다.</p>
-<a class="header" href="#repaint" id="repaint"><h3>repaint</h3></a>
+<h3><a class="header" href="#repaint" id="repaint">repaint</a></h3>
 <pre><code class="language-js">function repaint() {
     var container = document.getElementById('container');
 
@@ -2605,13 +2607,13 @@ setTimeout
 <p>위의 코드에서는 이전의 코드와 다르게 엘리먼트의 <code>style</code>만 변경했다. 이러한 경우 DOM 노드의 레이아웃은 변경되지 않았고 <code>style</code>속성만 변경되었기 때문에 <code>reflow</code>는 일어나지 않고 <code>repaint</code>만 일어나게 된다.</p>
 <p><code>reflow</code>와 <code>repaint</code>가 많아질수록 애플리케이션의 렌더링 성능은 느려지게 되기 때문에 이를 줄일 수록 성능을 높일 수 있다.</p>
 <hr />
-<a class="header" href="#--reference" id="--reference"><h4>🙏  Reference</h4></a>
+<h4><a class="header" href="#--reference" id="--reference">🙏  Reference</a></h4>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Performance/Repaint%EC%99%80%20Reflow.md">Im-D/Dev-Docs - Refaint와 Reflow</a></li>
 <li><a href="http://webclub.tistory.com/346">Reflow or Repaint(or ReDraw)과정 설명 및 최적화 방법</a></li>
 <li><a href="https://velopert.com/775">DOM의 문제점과 Virtual DOM</a></li>
 </ul>
-<a class="header" href="#네임스페이스-패턴namespace-pattern과-iife" id="네임스페이스-패턴namespace-pattern과-iife"><h2>네임스페이스 패턴(Namespace Pattern)과 IIFE</h2></a>
+<h2><a class="header" href="#네임스페이스-패턴namespace-pattern과-iife" id="네임스페이스-패턴namespace-pattern과-iife">네임스페이스 패턴(Namespace Pattern)과 IIFE</a></h2>
 <p>전역 변수를 많이 쓰면 안좋다고 흔히들 말한다.
 그 이유를 알 수 있는 간단한 예를 보자.</p>
 <pre><code class="language-javascript">var x = 100;
@@ -2632,7 +2634,7 @@ console.log('100을 출력해볼까 ?', x);
 <p><strong>지역 스코프에서 전역변수를 참조할 수 있으므로</strong> 전역변수의 값도 변경할 수 있다.
 <strong>내부 함수의 경우에는, 전역변수는 물론 상위 함수에서 선언한 변수에 접근/변경이 가능</strong>하다.</p>
 <p>프로젝트가 클수록, 협업이 이루어질수록 전역 변수가 많아지면 원하는 결과가 아닌 다른 결과가 나타날 수 있다.</p>
-<a class="header" href="#네임스페이스-패턴namespace-pattern" id="네임스페이스-패턴namespace-pattern"><h3>네임스페이스 패턴(Namespace Pattern)</h3></a>
+<h3><a class="header" href="#네임스페이스-패턴namespace-pattern" id="네임스페이스-패턴namespace-pattern">네임스페이스 패턴(Namespace Pattern)</a></h3>
 <p>네임스페이스 패턴은 <strong>말 그대로 이름 공간을 선언하여 다른 공간과 구분하는 패턴</strong>이라고 보면 된다.</p>
 <pre><code class="language-javascript">var APP_GLOBAL = {
     name : 'BKJang',
@@ -2647,7 +2649,7 @@ console.log(APP_GLOBAL.name, APP_GLOBAL.age); //BKJang 25
 APP_GLOBAL.getInfo(); //name : BKJang age : 25
 </code></pre>
 <p>이처럼 <strong>전역 변수 사용을 위해 전역 객체 하나를 만들어 사용</strong>하는 것이다.</p>
-<a class="header" href="#즉시-실행-함수-표현식iife-immediately-invoked-function-expression" id="즉시-실행-함수-표현식iife-immediately-invoked-function-expression"><h3>즉시 실행 함수 표현식(IIFE, Immediately-Invoked Function Expression)</h3></a>
+<h3><a class="header" href="#즉시-실행-함수-표현식iife-immediately-invoked-function-expression" id="즉시-실행-함수-표현식iife-immediately-invoked-function-expression">즉시 실행 함수 표현식(IIFE, Immediately-Invoked Function Expression)</a></h3>
 <p>즉시 실행 함수를 사용하면 <strong>함수가 실행되고 전역에서 사라진다.</strong> 이 방법으로 라이브러리를 많이 만들곤 한다.</p>
 <pre><code class="language-javascript">(function moduleFunction() {
 
@@ -2662,7 +2664,7 @@ APP_GLOBAL.getInfo(); //name : BKJang age : 25
 
 helloWorld(); //Uncaught ReferenceError: helloWorld is not defined
 </code></pre>
-<p>즉시실행함수가 실행되고 전역에서 사라지기 때문에 그 밖에선 출력 값이 에러가 발생하는 것을 볼 수 있다.</p>
+<p>즉시실행함수가 실행되고 전역에서 사라지기 때문에 그 밖에선 출력 값이 에러가 발생하는 것을 볼 수 있다. </p>
 <pre><code class="language-javascript">var singleton = (function () {
 
   var a = 3;
@@ -2683,11 +2685,11 @@ console.log(singleton.a); //3
 </code></pre>
 <p>위와 같이 <strong>반환 값을 변수에 담아 전역 변수를 한 번 만 사용</strong>하여 전역 변수의 사용을 줄일 수도 있다.</p>
 <hr />
-<a class="header" href="#-reference-18" id="-reference-18"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-18" id="-reference-18">🙏 Reference</a></h4>
 <ul>
 <li><a href="http://www.nextree.co.kr/p7650/">JavaScript: 네임스페이스 패턴(Namespace Pattern) 바로 알기</a></li>
 </ul>
-<a class="header" href="#모듈-패턴module-pattern" id="모듈-패턴module-pattern"><h2>모듈 패턴(Module Pattern)</h2></a>
+<h2><a class="header" href="#모듈-패턴module-pattern" id="모듈-패턴module-pattern">모듈 패턴(Module Pattern)</a></h2>
 <pre><code class="language-javascript">var Developer = function(arg) {
   var lang = arg ? arg : '';
 
@@ -2710,7 +2712,7 @@ bkjang.setLang('java');
 
 console.log(bkjang.getLang()); //java
 </code></pre>
-<p>위의 코드를 보면 Developer 생성자 함수에서 <strong><code>this</code>가 아닌 <code>var lang = arg ? arg : '';</code>으로 선언하면 자바스크립트는 함수형 스코프를 따르기 때문에 private해진다.</strong></p>
+<p>위의 코드를 보면 Developer 생성자 함수에서 <strong><code>this</code>가 아닌 <code>var lang = arg ? arg : '';</code>으로 선언하면 자바스크립트는 함수형 스코프를 따르기 때문에 private해진다.</strong> </p>
 <p>그리고 <code>getLang()</code> 과 <code>setLang()</code> 이라는 함수는 <strong>클로저</strong>이기 때문에 외부에서는 <code>lang</code>이라는 변수의 값에 접근할 수 있는 인터페이스가 된다.</p>
 <p>위와 같이 <code>getLang()</code>과 <code>setLang()</code>과 같은 public 메서드를 인터페이스로 제공하고 <code>lang</code>과 같은 private한 변수에 인터페이스를 통해서만 접근하도록 하는 것이 <strong>모듈 패턴</strong>이다.</p>
 <p>그렇다면 private 멤버 변수가 객체나 배열일 경우는 어떻게 될까?</p>
@@ -2739,7 +2741,7 @@ console.log('bkJang: ', bkJang);
 console.log(Developer.prototype === bkJang.__proto__); //false
 </code></pre>
 <p><strong>일반 변수가 아닌 객체나 배열을 멤버 변수로 가지고 이를 그대로 반환할 경우, 외부에서 이 멤버를 변경할 수 있다.</strong></p>
-<p>왜냐하면, 객체나 배열을 반환하는 경우는 얕은 복사(shallow copy)로 private 멤버의 <strong>참조값을 반환</strong>하게 된다.</p>
+<p>왜냐하면, 객체나 배열을 반환하는 경우는 얕은 복사(shallow copy)로 private 멤버의 <strong>참조값을 반환</strong>하게 된다. </p>
 <p>따라서, 반환할 객체나 배열의 정보를 담은 <strong>새로운 객체를 만들어 깊은 복사(deep copy)를 거친 후 반환</strong>해야 한다.</p>
 <p>또한, 위처럼 일반 객체를 반환하면 프로토타입 객체는 <code>Object.prototype</code> 객체가 되기 때문에 <strong>상속을 구현할 수 없다.</strong> 따라서 <strong>함수를 반환</strong>해야 한다.</p>
 <pre><code class="language-js">var Developer = (function() {
@@ -2776,13 +2778,13 @@ console.log(Developer.prototype === bkJang.__proto__); //true
 </code></pre>
 <p>마지막 출력 값을 보면 <strong>인스턴스인 <code>bkJang</code>의 프로토타입 객체가 <code>Developer.prototype</code> 객체임을 알 수 있고 이는 상속을 구현할 수 있음을 의미</strong>한다.</p>
 <hr />
-<a class="header" href="#-reference-19" id="-reference-19"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-19" id="-reference-19">🙏 Reference</a></h4>
 <ul>
 <li>인사이드 자바스크립트 (송형주, 고형준)</li>
 <li><a href="https://poiemaweb.com/js-object-oriented-programming">자바스크립트 객체지향 프로그래밍</a></li>
 <li><a href="https://bkdevlog.netlify.com/posts/oop-encapsulation-of-js">[JavaScript] 8-3. 객체지향 프로그래밍(캡슐화)</a></li>
 </ul>
-<a class="header" href="#렉시컬-스코프lexical-scope" id="렉시컬-스코프lexical-scope"><h2>렉시컬 스코프(Lexical Scope)</h2></a>
+<h2><a class="header" href="#렉시컬-스코프lexical-scope" id="렉시컬-스코프lexical-scope">렉시컬 스코프(Lexical Scope)</a></h2>
 <p>자바스크립트는 렉시컬 스코프를 지원한다.</p>
 <p>우선적으로, 자바스크립트 엔진에서 코드를 컴파일 하는 과정을 보면 다음과 같다.</p>
 <blockquote>
@@ -2792,7 +2794,7 @@ console.log(Developer.prototype === bkJang.__proto__); //true
 <li><strong>코드생성</strong> - AST를 기계어로 만든다.</li>
 </ul>
 </blockquote>
-<p>렉시컬 스코프란 1단계에서 발생하는 즉, 렉싱 과정에서 정의되는 스코프를 말한다.
+<p>렉시컬 스코프란 1단계에서 발생하는 즉, 렉싱 과정에서 정의되는 스코프를 말한다. 
 <strong>프로그래머가 변수와 스코프 블록을 어떻게 구성하는냐에 따라 렉싱 타임에서 정의되는 스코프를 렉시컬 스코프</strong>라고 한다.</p>
 <pre><code class="language-javascript">var x = 'global'
 
@@ -2812,11 +2814,11 @@ test2(); //global
 <p>즉, <strong><code>test2()</code>함수의 상위 스코프는 test1()과 전역이 아닌 전역</strong>이다. 이에 따라 <code>test2()</code>에서 출력한 값은 <code>global</code>이 나올 것이다.</p>
 <p>쉽게 말하면, <strong>렉시컬 스코프는 함수를 어디서 호출하는지가 아닌 어디서 선언했는지에 따라 결정</strong>된다. 이러한 특성때문에 <strong>정적 스코프(Static Scope)</strong> 라고도 한다.</p>
 <hr />
-<a class="header" href="#-reference-20" id="-reference-20"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-20" id="-reference-20">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/%EB%A0%89%EC%8B%9C%EC%BB%AC_%EC%86%8D%EC%9D%B4%EA%B8%B0(eval).md">Im-D/Dev-Docs - 렉시컬 속이기(eval)</a></li>
 </ul>
-<a class="header" href="#deep-copy" id="deep-copy"><h2>Deep Copy</h2></a>
+<h2><a class="header" href="#deep-copy" id="deep-copy">Deep Copy</a></h2>
 <p><em>use <code>JSON.parse</code> , <code>JSON.stringify</code></em></p>
 <pre><code class="language-js">function changeAgePure(person) {
     var newPersonObj = JSON.parse(JSON.stringify(person));
@@ -2852,8 +2854,8 @@ console.log(alexChanged); // -&gt; { name: 'Alex', age: 25 }
 <p><strong>or</strong> <em>use <code>destructuring</code></em> (ES6)</p>
 <pre><code class="language-js">function changeAgePure(person) {
     var newPersonObj = { ...person };
-    newPersonObj.age = 25;
-    return newPersonObj
+	newPersonObj.age = 25;
+	return newPersonObj
 }
     
 var alex = {
@@ -2866,11 +2868,11 @@ console.log(alex); // -&gt; { name: 'Alex', age: 30 }
 console.log(alexChanged); // -&gt; { name: 'Alex', age: 25 }
 </code></pre>
 <hr />
-<a class="header" href="#-reference-21" id="-reference-21"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-21" id="-reference-21">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Type.md">ImD/Dev-Docs - javascript Type</a></li>
 </ul>
-<a class="header" href="#deep-copy-1" id="deep-copy-1"><h2>Deep Copy</h2></a>
+<h2><a class="header" href="#deep-copy-1" id="deep-copy-1">Deep Copy</a></h2>
 <p><em>use <code>JSON.parse</code> , <code>JSON.stringify</code></em></p>
 <pre><code class="language-js">function changeAgePure(person) {
     var newPersonObj = JSON.parse(JSON.stringify(person));
@@ -2906,8 +2908,8 @@ console.log(alexChanged); // -&gt; { name: 'Alex', age: 25 }
 <p><strong>or</strong> <em>use <code>destructuring</code></em> (ES6)</p>
 <pre><code class="language-js">function changeAgePure(person) {
     var newPersonObj = { ...person };
-    newPersonObj.age = 25;
-    return newPersonObj
+	newPersonObj.age = 25;
+	return newPersonObj
 }
     
 var alex = {
@@ -2920,21 +2922,21 @@ console.log(alex); // -&gt; { name: 'Alex', age: 30 }
 console.log(alexChanged); // -&gt; { name: 'Alex', age: 25 }
 </code></pre>
 <hr />
-<a class="header" href="#-reference-22" id="-reference-22"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-22" id="-reference-22">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/B_Type.md">ImD/Dev-Docs - javascript Type</a></li>
 </ul>
-<a class="header" href="#이벤트-위임event-delegation" id="이벤트-위임event-delegation"><h2>이벤트 위임(Event Delegation)</h2></a>
+<h2><a class="header" href="#이벤트-위임event-delegation" id="이벤트-위임event-delegation">이벤트 위임(Event Delegation)</a></h2>
 <p><strong>이벤트 위임</strong>의 이해에는 <strong>이벤트 버블링</strong>과 <strong>이벤트 캡쳐</strong>에 대한 이해가 수반된다.</p>
 <p>우선 그림으로 보면, 이벤트 버블링과 이벤트 캡쳐의 개념은 다음과 같다.</p>
 <p><img src="https://github.com/Im-D/Dev-Docs/raw/master/assets/images/event_delegation.png" alt="event_delegation" /></p>
-<a class="header" href="#이벤트-버블링event-bubbling" id="이벤트-버블링event-bubbling"><h3>이벤트 버블링(Event Bubbling)</h3></a>
+<h3><a class="header" href="#이벤트-버블링event-bubbling" id="이벤트-버블링event-bubbling">이벤트 버블링(Event Bubbling)</a></h3>
 <pre><code class="language-html">&lt;body&gt;
    &lt;div class=&quot;el1&quot;&gt;
-    &lt;div class=&quot;el2&quot;&gt;
-        &lt;div class=&quot;el3&quot;&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
+	&lt;div class=&quot;el2&quot;&gt;
+	    &lt;div class=&quot;el3&quot;&gt;
+	    &lt;/div&gt;
+	&lt;/div&gt;
    &lt;/div&gt;
 &lt;/body&gt;
 </code></pre>
@@ -2957,12 +2959,12 @@ el1
 <p>위의 코드에서는 class 명이 el3인 element(<code>&lt;div class=&quot;el3&quot;&gt;&lt;/div&gt;</code>)을 클릭했을 때, <strong>이벤트가 발생하는 요소인 <code>&lt;div class=&quot;el3&quot;&gt;&lt;/div&gt;</code>에서 상위에 있는 요소까지 이벤트를 전파시키고 있다.</strong>
 이에 따라 결과 값은 el3만 나오는 것이 아닌 el1까지 콘솔에 출력되고 있다.</p>
 <p>이처럼 이벤트가 발생한 요소로부터 상위요소로 전파시키는 이벤트 전파 방식을 <strong>이벤트 버블링</strong>이라고 한다.</p>
-<a class="header" href="#이벤트-캡쳐event-capture" id="이벤트-캡쳐event-capture"><h3>이벤트 캡쳐(Event Capture)</h3></a>
+<h3><a class="header" href="#이벤트-캡쳐event-capture" id="이벤트-캡쳐event-capture">이벤트 캡쳐(Event Capture)</a></h3>
 <pre><code class="language-html">&lt;body&gt;
    &lt;div class=&quot;el1&quot;&gt;
        &lt;div class=&quot;el2&quot;&gt;
-      &lt;div class=&quot;el3&quot;&gt;
-      &lt;/div&gt;
+	  &lt;div class=&quot;el3&quot;&gt;
+	  &lt;/div&gt;
        &lt;/div&gt;
    &lt;/div&gt;
 &lt;/body&gt;
@@ -2988,7 +2990,7 @@ el3
 <p>위의 코드에서는 마찬가지로 class 명이 el3인 element(<code>&lt;div class=&quot;el3&quot;&gt;&lt;/div&gt;</code>)을 클릭했을 때, 이벤트 버블링과 다르게 상위 요소에서 하위 요소로 즉, 이벤트 버블링과 반대 방향으로 이벤트를 전파하고 있다.</p>
 <p>이에 따라 결과 값은 el3부터 el1까지 상위 요소부터 콘솔에 출력되고 있다.</p>
 <p>이처럼, 이벤트가 발생했을 때, 상위 요소부터 하위요소로 전파시키는 이벤트 전파 방식을 <strong>이벤트 캡쳐</strong>라고 한다.</p>
-<a class="header" href="#이벤트-위임event-delegation-1" id="이벤트-위임event-delegation-1"><h3>이벤트 위임(Event Delegation)</h3></a>
+<h3><a class="header" href="#이벤트-위임event-delegation-1" id="이벤트-위임event-delegation-1">이벤트 위임(Event Delegation)</a></h3>
 <p><strong>이벤트 위임</strong>은 하위 요소 각각에 이벤트를 구현하지 않고 상위 요소에서 하위요소의 이벤트를 제어하는 방식이다.</p>
 <pre><code class="language-html">&lt;body&gt;
    &lt;ul class=&quot;list&quot;&gt;
@@ -3033,7 +3035,7 @@ items.addEventListener('click', function(e) {
 <p>위의 수정된 코드를 보면, 이벤트 줄 요소를 해당 요소가 아닌 그 상위 요소인 <code>&lt;ul class=&quot;list&quot;&gt;&lt;/ul&gt;</code>을 지정하고 있다.
 <strong>이벤트를 줄 요소가 아닌 그 요소의 부모 요소를 지정하여 이벤트 리스너를 달고, 하위에서 발생한 클릭 이벤틀를 감지하도록 한다.</strong>
 이렇게 코드를 짜면, 동적으로 추가된 요소에 대해서도 이벤트가 동작하도록 할 수 있다.</p>
-<a class="header" href="#이벤트-위임event-delegation의-장점" id="이벤트-위임event-delegation의-장점"><h3>이벤트 위임(Event Delegation)의 장점</h3></a>
+<h3><a class="header" href="#이벤트-위임event-delegation의-장점" id="이벤트-위임event-delegation의-장점">이벤트 위임(Event Delegation)의 장점</a></h3>
 <ul>
 <li>
 <p>상위 요소에서 이벤트 리스너를 관리하기 때문에 하위 요소에는 자유롭게 요소를 추가할 수 있다. 즉, <strong>동적인 element를 관리하기에 수월하다.</strong></p>
@@ -3048,16 +3050,16 @@ items.addEventListener('click', function(e) {
 <p>이벤트 핸들러가 줄어들기 때문에 <strong>메모리 누수의 가능성도 줄어든다.</strong></p>
 </li>
 </ul>
-<a class="header" href="#-reference-23" id="-reference-23"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-23" id="-reference-23">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Javascript/%EC%9D%B4%EB%B2%A4%ED%8A%B8%20%EC%9C%84%EC%9E%84(Event%20Delegation).md">ImD/Dev-Docs - javascript Event Delegation</a></li>
 <li><a href="https://joshua1988.github.io/web-development/javascript/event-propagation-delegation/">이벤트 버블링, 이벤트 캡처 그리고 이벤트 위임까지</a></li>
 <li><a href="http://paiai.tistory.com/42">Event delegation(이벤트 위임)</a></li>
 </ul>
-<a class="header" href="#documentfragment" id="documentfragment"><h2>DocumentFragment</h2></a>
+<h2><a class="header" href="#documentfragment" id="documentfragment">DocumentFragment</a></h2>
 <p><code>DocumentFragment</code>를 활용하는 것은 <code>reflow</code>를 줄이기 위한 방법 중 하나다.</p>
 <pre><code class="language-html">&lt;body&gt;
-    &lt;select id=&quot;timer&quot;&gt;
+	&lt;select id=&quot;timer&quot;&gt;
     &lt;/select&gt;
 &lt;/body&gt;
 </code></pre>
@@ -3091,18 +3093,18 @@ items.addEventListener('click', function(e) {
 <p>위의 코드를 보면 DOM레이아웃을 변경시키는 경우는 <code>timer</code>셀렉트 박스 엘리먼트에 추가할 때 발생한다. 즉, <code>DocumentFragMent</code>객체를 셀렉트 박스 엘리먼트에 추가할 때 1번만 DOM 레이아웃이 변경된다. 따라서 각각 24번의 <code>reflow</code>와 <code>repaint</code>가 일어나던 것을 1번씩만 일어나도록 줄일 수 있게 된다.</p>
 <p>최신 브라우저의 경우에는 <code>reflow</code>가 발생하지 않도록 엔진을 최적화하기 때문에 <code>DocumentFragment</code>를 통한 성능 향상을 체감할 수 없는 경우가 많다. 그러나 DOM 객체에 대한 다수의 접근을 필요로하는 작업을 수행해야하는 상황에서는 충분한 성능 향상을 체감할 수 있다.</p>
 <hr />
-<a class="header" href="#--reference-1" id="--reference-1"><h4>🙏  Reference</h4></a>
+<h4><a class="header" href="#--reference-1" id="--reference-1">🙏  Reference</a></h4>
 <ul>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/API/DocumentFragment">MDN Docs - Document​Fragment</a></li>
 <li><a href="https://untitledtblog.tistory.com/44">DocumentFragment를 이용한 JavaScript 성능 최적화</a></li>
 </ul>
-<a class="header" href="#repaint와-reflow-최적화" id="repaint와-reflow-최적화"><h2>repaint와 reflow 최적화</h2></a>
+<h2><a class="header" href="#repaint와-reflow-최적화" id="repaint와-reflow-최적화">repaint와 reflow 최적화</a></h2>
 <p><code>Repaint</code>와 <code>Reflow</code>가 많아질수록 애플리케이션의 렌더링 성능은 느려지게 된다.
 즉, 이를 줄일수록 성능을 높일 수 있다.</p>
-<a class="header" href="#dom객체의-캐싱" id="dom객체의-캐싱"><h3>DOM객체의 캐싱</h3></a>
+<h3><a class="header" href="#dom객체의-캐싱" id="dom객체의-캐싱">DOM객체의 캐싱</a></h3>
 <pre><code class="language-javascript">//Before
 for(var i=0; i&lt;100; i++) {
-    document.getElementById('container').style.padding = i + 'px';
+	document.getElementById('container').style.padding = i + 'px';
 }
 
 //After
@@ -3112,7 +3114,7 @@ for(var i=0; i&lt;100; i++) {
     container.style.padding = i + 'px';
 }
 </code></pre>
-<a class="header" href="#class명과-csstext사용" id="class명과-csstext사용"><h3>class명과 cssText사용</h3></a>
+<h3><a class="header" href="#class명과-csstext사용" id="class명과-csstext사용">class명과 cssText사용</a></h3>
 <pre><code class="language-javascript">//Before
 var container = document.getElementById('container');
 
@@ -3126,14 +3128,14 @@ container.style.cssText = 'padding:20px;border:10px solid red;color:blue;';
 //After class
 container.className = 'test';
 </code></pre>
-<a class="header" href="#애니메이션이-들어간-노드는-가급적-positionfixed-또는-positionabsolute로-지정" id="애니메이션이-들어간-노드는-가급적-positionfixed-또는-positionabsolute로-지정"><h3>애니메이션이 들어간 노드는 가급적 position:fixed 또는 position:absolute로 지정</h3></a>
+<h3><a class="header" href="#애니메이션이-들어간-노드는-가급적-positionfixed-또는-positionabsolute로-지정" id="애니메이션이-들어간-노드는-가급적-positionfixed-또는-positionabsolute로-지정">애니메이션이 들어간 노드는 가급적 position:fixed 또는 position:absolute로 지정</a></h3>
 <pre><code class="language-javascript">&lt;div id=&quot;animation&quot; style=&quot;background:blue;position:absolute;&quot;&gt;&lt;/div&gt;
 </code></pre>
 <p>프레임에 따라 reflow비용이 많은 애니메이션 효과의 경우엔 노드의 <code>position</code>을 <code>absolute</code>나 <code>fixed</code>로 주면 전체 노드에서 분리된다.
 이 경우엔, <strong>전체 노드에 걸쳐 Reflow 비용이 들지 않으며 해당 노드의 Repaint 비용만 들어가게 된다.</strong></p>
-<a class="header" href="#테이블-레이아웃을-피한다" id="테이블-레이아웃을-피한다"><h3>테이블 레이아웃을 피한다.</h3></a>
+<h3><a class="header" href="#테이블-레이아웃을-피한다" id="테이블-레이아웃을-피한다">테이블 레이아웃을 피한다.</a></h3>
 <p>테이블로 구성된 페이지 레이아웃의 경우, 점진적 페이지 렌더링이 일어나지 않고 모든 계산이 완료된 후, 화면에 렌더링이 되기 때문에 피하는게 좋다.</p>
-<a class="header" href="#virtual-dom의-사용" id="virtual-dom의-사용"><h3>Virtual DOM의 사용</h3></a>
+<h3><a class="header" href="#virtual-dom의-사용" id="virtual-dom의-사용">Virtual DOM의 사용</a></h3>
 <p><strong>Virtual DOM</strong>은 React나 Angular와 같은 UI/UX기반의 라이브러리 혹은 프레임워크에서의 컨셈이 되는 개념이다.</p>
 <p>기존에 javascript나 jQuery에서 사용되던 DOM 직접접근 방식의 문제는 reflow와 repaint의 연관성도 빼놓을 수 없다.</p>
 <p><strong>DOM은 정적이다.</strong>
@@ -3148,18 +3150,18 @@ DOM 요소에 접근하여 동적으로 이벤트를 주어 layout을 바꾸게 
 </blockquote>
 <p>즉, <strong>Virtual DOM을 사용함으로써 바뀐 부분(Component)만 rerendering하기 때문에 컴포넌트가 업데이트 될 때, 레이아웃 계산이 한 번만 일어나게 된다.</strong></p>
 <hr />
-<a class="header" href="#reference" id="reference"><h4>🙏Reference</h4></a>
+<h4><a class="header" href="#reference" id="reference">🙏Reference</a></h4>
 <ul>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Performance/Repaint%EC%99%80%20Reflow.md">Im-D/Dev-Docs - Refaint와 Reflow</a></li>
 <li><a href="http://webclub.tistory.com/346">Reflow or Repaint(or ReDraw)과정 설명 및 최적화 방법</a></li>
 <li><a href="https://velopert.com/775">DOM의 문제점과 Virtual DOM</a></li>
 </ul>
-<a class="header" href="#쓰로틀링-vs-디바운싱" id="쓰로틀링-vs-디바운싱"><h2>쓰로틀링 vs 디바운싱</h2></a>
+<h2><a class="header" href="#쓰로틀링-vs-디바운싱" id="쓰로틀링-vs-디바운싱">쓰로틀링 vs 디바운싱</a></h2>
 <p>함수를 호출할 때 호출이 너무 많이 되어 과부화 됨을 방지하기 위한 기술이다.</p>
 <p>함수 호출이 잦은 예로는 브라우저의 이벤트가 있다. onscroll 이나 onchange 와 같은 이벤트의 콜백으로 함수를 호출하는 경우 굉장히 많은 호출이 발생할 수 있다.</p>
 <p>infinite scroll 이나 자동완성 기능의 경우 사용자의 특정 이벤트에 따라 비동기 콜백을 호출하는 방식이다. 이 경우 이벤트가 매우 빈번하게 일어나며 많은 호출을 제어하지 않으면 브라우저가 버티지 못할 것이다. 이 때 사용하는 것이 쓰로틀링과 디바운싱이다.</p>
-<a class="header" href="#쓰로틀링" id="쓰로틀링"><h3>쓰로틀링</h3></a>
-<p>Throttle 은 정해진 시간동안 특정 행위를 한 번만 호출하도록 하는 것이다. 예를 들어 스크롤 행위가 1 초에 500 번이 발생한다면 이를 0.2 초에 한 번만 실행하게 만들 수 있다.</p>
+<h3><a class="header" href="#쓰로틀링" id="쓰로틀링">쓰로틀링</a></h3>
+<p>Throttle 은 정해진 시간동안 특정 행위를 한 번만 호출하도록 하는 것이다. 예를 들어 스크롤 행위가 1 초에 500 번이 발생한다면 이를 0.2 초에 한 번만 실행하게 만들 수 있다. </p>
 <p>Throttle 처리가 되지 않은 경우 콜백이 500 번 발생한다. 하지만 Throttle 처리가 된다면 5 번만 실행되게 만드는 기술이다.</p>
 <p>스크롤 이벤트의 경우 작은 움직임에도 엄청나게 많은 이벤트가 발생한다. 따라서 1 초 미만으로 쓰로틀링을 하여 같은 동작의 여러번 호출을 1 번으로 제어하는 것이 좋다.</p>
 <pre><code class="language-js">var timer;
@@ -3175,10 +3177,10 @@ document.querySelector('#input').addEventListener('input', function (e) {
     }
 });
 </code></pre>
-<a class="header" href="#디바운싱" id="디바운싱"><h3>디바운싱</h3></a>
+<h3><a class="header" href="#디바운싱" id="디바운싱">디바운싱</a></h3>
 <p>Debounce 는 한 행위를 여러 번 반복하는 경우, 마지막 행위 이후 특정 시간이 흐른 뒤에 콜백을 호출하도록 하는 방식이다. 자동완성 즉 autocomplete 를 떠올리면 편하다.</p>
-<p>input 의 <code>onChange</code>가 일어나면 callback 으로 AJAX 를 이용해 관련 데이터를 긁어온다. 그런데 사용자의 모든 입력에 AJAX 호출을 한다면 브라우저가 견디지 못할 것이다.
-그래서 일정시간동안 Timer 를 만든다. 이 타이머의 시간동안 입력이 발생해 변경이 일어나면 Timer 를 초기화 한다.
+<p>input 의 <code>onChange</code>가 일어나면 callback 으로 AJAX 를 이용해 관련 데이터를 긁어온다. 그런데 사용자의 모든 입력에 AJAX 호출을 한다면 브라우저가 견디지 못할 것이다. 
+그래서 일정시간동안 Timer 를 만든다. 이 타이머의 시간동안 입력이 발생해 변경이 일어나면 Timer 를 초기화 한다. 
 입력이 멈추어 Timer 가 다 되면 AJAX 를 호출한다.</p>
 <pre><code class="language-js">var timer;
 document.querySelector('#input').addEventListener('input', function (e) {
@@ -3197,14 +3199,14 @@ document.querySelector('#input').addEventListener('input', function (e) {
 </code></pre>
 <p><a href="https://lodash.com/">Lodash</a> 와 <a href="https://underscorejs.org/">Underscore</a>에는 해당 기능들이 구현되어 있다.</p>
 <hr />
-<a class="header" href="#reference-1" id="reference-1"><h4>🙏Reference</h4></a>
+<h4><a class="header" href="#reference-1" id="reference-1">🙏Reference</a></h4>
 <ul>
 <li><a href="https://jm-web.tistory.com/33">[JS] 쓰로틀링(Throttling)과 디바운싱(Debouncing)</a></li>
 <li><a href="https://www.zerocho.com/category/JavaScript/post/59a8e9cb15ac0000182794fa">zerocho blog - 쓰로틀링과 디바운싱</a></li>
 <li><a href="https://css-tricks.com/debouncing-throttling-explained-examples/">CSS-Tricks 의 Throttling 과 Debouncing</a> =&gt; 예시가 구현되어 있음</li>
 </ul>
-<a class="header" href="#스크롤-이벤트-최적화-raf" id="스크롤-이벤트-최적화-raf"><h2>스크롤 이벤트 최적화 (rAF)</h2></a>
-<a class="header" href="#throttling쓰로틀링" id="throttling쓰로틀링"><h3>Throttling(쓰로틀링)</h3></a>
+<h2><a class="header" href="#스크롤-이벤트-최적화-raf" id="스크롤-이벤트-최적화-raf">스크롤 이벤트 최적화 (rAF)</a></h2>
+<h3><a class="header" href="#throttling쓰로틀링" id="throttling쓰로틀링">Throttling(쓰로틀링)</a></h3>
 <p><code>Throttling</code>은 스크롤 이벤트에서 주로 사용되는 기술로 지나치게 많은 이벤트가 발생하는 것을 몇 초에 한 번, 또는 몇 밀리초에 한 번씩만 실행되게 제한을 두는 것이다.<br/></p>
 <pre><code class="language-js">var timer;
 document.querySelector('#input2').addEventListener('input', function (e) {
@@ -3217,7 +3219,7 @@ document.querySelector('#input2').addEventListener('input', function (e) {
 });
 </code></pre>
 <p>위의 코드에서 보다시피 <code>setTimeout</code>을 이용하여 2초 동안에 한 번만 ajax요청을 하도록 하고 있다. 하지만 <code>setTimeout</code>은 지정된 시간 뒤에 무조건 실행되는 것을 보장할 수 없다. 위의 코드는 2초 뒤에 콜백 함수를 실행하는 것이 아니라 2초 뒤에 <code>Task Queue</code>에 넣는 것을 의미한다. <br/><strong><code>Task Queue</code>에 들어간 함수는 순차적으로 <code>Call Stack</code>에 옮겨지고 실행</strong>되는데 만약 <code>Call Stack</code>이 비워져 있지 않다면, 지정한 시간 이후에 실행되는 것을 보장할 수 없다.</p>
-<a class="header" href="#requestanimationframeraf" id="requestanimationframeraf"><h3>requestAnimationFrame(rAF)</h3></a>
+<h3><a class="header" href="#requestanimationframeraf" id="requestanimationframeraf">requestAnimationFrame(rAF)</a></h3>
 <p><strong><code>rAF</code>는 브라우저의 최적화 상태를 고려하여 이벤트를 실행</strong>한다. 즉, <code>setTimeout</code>처럼 무조건 지정된 시간에 한 번씩 이벤트를 트리거하지 않아도 된다.
 Jbee님 포스팅 중 <a href="https://jbee.io/web/optimize-scroll-event/">스크롤 이벤트 최적화</a>를 보면 <code>rAF</code>를 이용하여 스크롤 이벤트를 구현하는 방식을 살펴 볼 수 있는데 간단히 보면 다음과 같다.</p>
 <pre><code class="language-js">function rAFScroll(callback) {
@@ -3236,7 +3238,7 @@ Jbee님 포스팅 중 <a href="https://jbee.io/web/optimize-scroll-event/">스�
   }
 }
 </code></pre>
-<p><code>trigger</code>함수를 보면 <code>tick</code>의 값이 <code>false</code>일 경우에만 <code>requestAnimationFrame</code>의 콜백이 실행된다.
+<p><code>trigger</code>함수를 보면 <code>tick</code>의 값이 <code>false</code>일 경우에만 <code>requestAnimationFrame</code>의 콜백이 실행된다. 
 즉, <strong>콜백 함수(<code>callback</code>)가 <code>rAF</code>에 의해 브라우저가 최적화된 상태에서만 <code>tick</code>의 값이 <code>false</code>가 되고 실행</strong>된다. 순차적으로 정리하면 다음과 같다.</p>
 <ol>
 <li><code>rAF</code>의 콜백 함수인 <code>task</code>함수가 <code>animation frame</code>에 들어간다.</li>
@@ -3244,13 +3246,13 @@ Jbee님 포스팅 중 <a href="https://jbee.io/web/optimize-scroll-event/">스�
 <li><code>task</code>함수가 실행되면서 <code>tick</code>이 <code>false</code>가 되면 다시 콜백 함수가 실행될 수 있는 환경이 된다.</li>
 </ol>
 <p>이처럼 쓰로틀링을 사용하지 않고 <code>rAF</code>을 사용하여 이벤트 최적화가 가능하며 <code>rAF</code>는 애니메이션의 최적화에도 많이 사용되는 API이기 때문에 잘 알아두는게 좋다.</p>
-<a class="header" href="#reference-2" id="reference-2"><h4>🙏Reference</h4></a>
+<h4><a class="header" href="#reference-2" id="reference-2">🙏Reference</a></h4>
 <ul>
 <li><a href="https://jbee.io/web/optimize-scroll-event/">jbee.io - 스크롤 이벤트 최적화</a></li>
 <li><a href="https://www.zerocho.com/category/Javascript/post/59a8e9cb15ac0000182794fa">zerocho 블로그 - 쓰로틀링과 디바운싱</a></li>
 <li><a href="https://github.com/Im-D/Dev-Docs/blob/master/Design_Pattern/Throttle%20and%20Debounce.md">ImD/Dev-Docs - 쓰로틀링과 디바운싱</a></li>
 </ul>
-<a class="header" href="#값-비교하기-array-string-object-" id="값-비교하기-array-string-object-"><h2>값 비교하기 (Array, String, Object ...)</h2></a>
+<h2><a class="header" href="#값-비교하기-array-string-object-" id="값-비교하기-array-string-object-">값 비교하기 (Array, String, Object ...)</a></h2>
 <ul>
 <li><code>react-router-dom</code>에서 사용 중인 <code>value-equal</code> 라이브러리</li>
 </ul>
@@ -3290,14 +3292,14 @@ function valueEqual(a, b) {
 }
 </code></pre>
 <hr />
-<a class="header" href="#-reference-24" id="-reference-24"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-24" id="-reference-24">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://github.com/ReactTraining/react-router/tree/master/packages/react-router-dom">react-router-dom</a></li>
 <li><a href="https://github.com/mjackson/value-equal">value-equal</a></li>
 </ul>
-<a class="header" href="#배열-내장함수" id="배열-내장함수"><h2>배열 내장함수</h2></a>
+<h2><a class="header" href="#배열-내장함수" id="배열-내장함수">배열 내장함수</a></h2>
 <p>자바스크립트의 배열에서는 기본적으로 많은 종류의 내장 함수를 제공하고 있고 이를 이용하면 보다 간단한 코드로 다양한 기능을 구현할 수 있다.</p>
-<a class="header" href="#foreach" id="foreach"><h3>forEach</h3></a>
+<h3><a class="header" href="#foreach" id="foreach">forEach</a></h3>
 <p><code>forEach</code>는 배열을 반복하여 기존 값을 가져오는데 주로 쓰인다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -3305,7 +3307,7 @@ arr.forEach(item =&gt; {
   console.log(item); //1 2 3 4 5
 });
 </code></pre>
-<a class="header" href="#map" id="map"><h3>map</h3></a>
+<h3><a class="header" href="#map" id="map">map</a></h3>
 <p><code>map</code>과 <code>forEach</code>의 차이는 배열을 반복하면서 각각의 원소에 대하여 특정 로직을 수행한 뒤, 새로운 배열을 반환하고 싶을 때 주로 사용한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -3317,7 +3319,7 @@ console.log(arr); //[1, 2, 3, 4, 5]
 console.log(newArr); //[2, 4, 6, 8, 10]
 </code></pre>
 <p>위에서 볼 수 있듯이 <code>map</code>을 통해 반환한 배열은 깊은 복사를 사용하기 때문에 기존 배열을 영향을 주지 않고 새로운 배열을 반환한다.</p>
-<a class="header" href="#filter" id="filter"><h3>filter</h3></a>
+<h3><a class="header" href="#filter" id="filter">filter</a></h3>
 <p><code>filter</code>함수의 기능은 이름 그대로 배열을 반복하며 각각의 원소들 중 특정 조건에 해당하는 원소들만 뽑아내어 새로운 배열을 반환한다.
 <code>filter</code>또한 <code>map</code>과 마찬가지로 기존 배열에 영향을 주지 않는다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
@@ -3329,13 +3331,13 @@ const newArr = arr.filter(item =&gt; {
 console.log(arr); //[1, 2, 3, 4, 5]
 console.log(newArr); //[3, 4, 5]
 </code></pre>
-<a class="header" href="#indexof" id="indexof"><h3>indexOf</h3></a>
+<h3><a class="header" href="#indexof" id="indexof">indexOf</a></h3>
 <p><code>indexOf</code>함수는 배열에서 찾고자 하는 원소가 있다면 그 원소의 <code>index</code>값을 반환한다.</p>
 <pre><code class="language-js">const arr = ['a', 'b', 'c', 'd'];
 
 console.log(arr.indexOf('c')); //2
 </code></pre>
-<a class="header" href="#findindex" id="findindex"><h3>findIndex</h3></a>
+<h3><a class="header" href="#findindex" id="findindex">findIndex</a></h3>
 <p><code>findIndex</code>함수도 <code>indexOf</code>함수와 마찬가지로 찾고자 하는 원소의 <code>index</code>값을 반환한다. 하지만 원소가 객체로 되어있거나 배열로 되어있을 때 <code>indexOf</code>함수로는 <code>index</code>값을 찾을 수 없지만 <code>findIndex</code> 함수는 조건 처리를 통하여 <code>index</code>값을 찾을 수 있다.</p>
 <pre><code class="language-js">const arr = [
   {
@@ -3352,7 +3354,7 @@ console.log(arr.indexOf('c')); //2
 
 console.log(arr.findIndex(item =&gt; item.id === 2)); //1
 </code></pre>
-<a class="header" href="#find" id="find"><h3>find</h3></a>
+<h3><a class="header" href="#find" id="find">find</a></h3>
 <p><code>find</code>함수는 <code>findIndex</code>함수와 사용법은 동일하지만 반환하는 값이 <code>index</code>값이 아닌 찾아낸 값 자체를 반환한다.</p>
 <pre><code class="language-js">const arr = [
   {
@@ -3370,7 +3372,7 @@ console.log(arr.findIndex(item =&gt; item.id === 2)); //1
 console.log(arr.find(item =&gt; item.id === 2)); 
 // {id: 2, name: &quot;JHKim&quot;, age: 25}
 </code></pre>
-<a class="header" href="#splice" id="splice"><h3>splice</h3></a>
+<h3><a class="header" href="#splice" id="splice">splice</a></h3>
 <p><code>splice</code>함수의 첫번째 파라미터는 <strong>지우기 시작할 원소의 <code>index</code></strong>, 두번째 파라미터는 <strong>지울 원소의 갯수</strong>를 넘긴다.</p>
 <pre><code class="language-js">const arr = ['a', 'b', 'c', 'd', 'e'];
 
@@ -3379,7 +3381,7 @@ const arr2 = arr.splice(2, 3);
 console.log(arr); //[&quot;a&quot;, &quot;b&quot;]
 console.log(arr2); //[&quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
 </code></pre>
-<a class="header" href="#slice" id="slice"><h3>slice</h3></a>
+<h3><a class="header" href="#slice" id="slice">slice</a></h3>
 <p><code>slice</code>함수와 <code>splice</code>함수의 가장 큰 차이점은 <code>slice</code>함수는 기존 배열에 영향을 주지 않고 새로운 배열을 반환한다는 것이다.<br/>
 또 다른 차이점은 <code>slice</code>함수는 두번째 파라미터로 보낸 원소의 <code>index</code>값 전까지 원소를 제거한다.</p>
 <pre><code class="language-js">const arr = ['a', 'b', 'c', 'd', 'e'];
@@ -3389,7 +3391,7 @@ const arr2 = arr.slice(1, 3);
 console.log(arr); //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
 console.log(arr2); //[&quot;b&quot;, &quot;c&quot;]
 </code></pre>
-<a class="header" href="#shift" id="shift"><h3>shift</h3></a>
+<h3><a class="header" href="#shift" id="shift">shift</a></h3>
 <p><code>shift</code>함수는 기존 배열의 원소를 앞에서부터 하나씩 제거한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -3399,7 +3401,7 @@ console.log(arr); //[2, 3, 4, 5]
 arr.shift();
 console.log(arr); //[3, 4, 5]
 </code></pre>
-<a class="header" href="#unshift" id="unshift"><h3>unshift</h3></a>
+<h3><a class="header" href="#unshift" id="unshift">unshift</a></h3>
 <p><code>unshift</code>함수는 기존 배열에 새로운 원소를 앞에 추가한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -3409,7 +3411,7 @@ console.log(arr); //[0, 1, 2, 3, 4, 5]
 arr.unshift(-1);
 console.log(arr); //[-1, 0, 1, 2, 3, 4, 5]
 </code></pre>
-<a class="header" href="#push" id="push"><h3>push</h3></a>
+<h3><a class="header" href="#push" id="push">push</a></h3>
 <p><code>push</code>함수는 기존 배열에 새로운 원소를 뒤에 추가한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -3419,7 +3421,7 @@ console.log(arr); //[1, 2, 3, 4, 5, 6]
 arr.push(7);
 console.log(arr); //[1, 2, 3, 4, 5, 6, 7]
 </code></pre>
-<a class="header" href="#pop" id="pop"><h3>pop</h3></a>
+<h3><a class="header" href="#pop" id="pop">pop</a></h3>
 <p><code>pop</code>함수는 기존 배열의 원소를 뒤에서부터 하나씩 제거한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -3429,7 +3431,7 @@ console.log(arr); //[1, 2, 3, 4]
 arr.pop();
 console.log(arr); //[1, 2, 3]
 </code></pre>
-<a class="header" href="#concat" id="concat"><h3>concat</h3></a>
+<h3><a class="header" href="#concat" id="concat">concat</a></h3>
 <p><code>concat</code>은 여러 개의 배열을 하나로 합쳐주는 함수다. 기존 배열들에는 영향을 끼치지 않고 새로운 배열을 반환한다. <code>ES6</code>에서는 <code>concat</code>대신 <code>Spread Operator</code>를 많이 사용한다.</p>
 <pre><code class="language-js">//concat
 const arr1 = ['a', 'b'];
@@ -3451,14 +3453,14 @@ console.log(arr1); //[&quot;a&quot;, &quot;b&quot;]
 console.log(arr2); //[&quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
 console.log(newArr); //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
 </code></pre>
-<a class="header" href="#join" id="join"><h3>join</h3></a>
+<h3><a class="header" href="#join" id="join">join</a></h3>
 <p><code>join</code>함수는 배열의 원소들을 합쳐 문자열 형태로 반환한다.</p>
 <pre><code class="language-js">const arr = ['a', 'b', 'c', 'd', 'e'];
 
 console.log(arr.join(', ')); //a, b, c, d, e
 console.log(arr.join('')); //abcde
 </code></pre>
-<a class="header" href="#every" id="every"><h3>every</h3></a>
+<h3><a class="header" href="#every" id="every">every</a></h3>
 <p><code>every</code>함수는 특정 조건에 대하여 배열의 모든 원소가 통과해야만 <code>true</code>를 반환하며 빈 배열에 대해서는 무조건 <code>true</code>를 반환한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -3467,7 +3469,7 @@ const result2 = arr.every(item =&gt; item &lt; 3);
 
 console.log(result1, result2); //true false
 </code></pre>
-<a class="header" href="#some" id="some"><h3>some</h3></a>
+<h3><a class="header" href="#some" id="some">some</a></h3>
 <p><code>some</code>함수는 특정 조건에 대하여 배열의 어떤 한 요소라도 통과하면 <code>true</code>를 반환하며 빈 배열에 대해서는 무조건 <code>false</code>를 반환한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -3476,7 +3478,7 @@ const result2 = arr.some(item =&gt; item &lt; 3);
 
 console.log(result1, result2); //true true
 </code></pre>
-<a class="header" href="#sort" id="sort"><h3>sort</h3></a>
+<h3><a class="header" href="#sort" id="sort">sort</a></h3>
 <pre><code class="language-js">const fruit = ['orange', 'apple', 'banana'];
 
 fruit.sort();
@@ -3538,7 +3540,7 @@ imD.sort((a, b) =&gt; { // 내림차순
 4: {name: &quot;JSKang&quot;, age: 23} 
 */
 </code></pre>
-<a class="header" href="#reduce" id="reduce"><h3>reduce</h3></a>
+<h3><a class="header" href="#reduce" id="reduce">reduce</a></h3>
 <p><code>reduce</code>함수는 누적 값과 현재 값을 이용하여 여러 가지 기능을 구현할 수 있는 매우 유용한 함수다. 사실, <code>reduce</code>만 잘 사용할 줄 알아도 <code>filter</code>함수의 기능까지도 구현할 수 있다.</p>
 <pre><code class="language-javascript">var arr = [1, 2, 3, 4, 5];
 
@@ -3616,7 +3618,7 @@ const flattenCastArray = input.reduce(flatMapReducer, []);
 
 console.log(flattenCastArray);
 </code></pre>
-<a class="header" href="#reduceright" id="reduceright"><h3>reduceRight</h3></a>
+<h3><a class="header" href="#reduceright" id="reduceright">reduceRight</a></h3>
 <p><code>reduceRight</code>함수는 기존의 <code>reduce</code>와 원리는 동일하지만 <code>current</code>에 마지막 <code>index</code>원소부터 첫번째 원소 순서로 들어간다. 아래는 배열을 <code>nested object</code>로 만드는 예시다.</p>
 <pre><code class="language-js">const makeNestedObjWithArray = (arr) =&gt; {
   return arr.reduceRight(
@@ -3640,7 +3642,7 @@ a : { b: { c: {} } }
 */
 </code></pre>
 <hr />
-<a class="header" href="#-reference-25" id="-reference-25"><h4>🙏 Reference</h4></a>
+<h4><a class="header" href="#-reference-25" id="-reference-25">🙏 Reference</a></h4>
 <ul>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/some">MDN Docs - Array.some()</a></li>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/every">MDN Docs - Array.every()</a></li>
@@ -3649,8 +3651,8 @@ a : { b: { c: {} } }
 <li><a href="https://github.com/Im-D/Dev-Docs/edit/master/Javascript/Reduce.md">Im-D/Dev-Docs - Reduce</a></li>
 <li><a href="https://hashnode.com/post/how-to-create-nested-child-objects-in-javascript-from-array-cj9tsc3we01m0uowu4pyuesy0">How to create nested child objects in Javascript from array?</a></li>
 </ul>
-<a class="header" href="#objectkeys-objectvalues-objectentries-그리고-forin" id="objectkeys-objectvalues-objectentries-그리고-forin"><h2>Object.keys(), Object.values(), Object.entries() 그리고 for...in</h2></a>
-<a class="header" href="#objectkeys-objectvalues-objectentries" id="objectkeys-objectvalues-objectentries"><h3>Object.keys(), Object.values(), Object.entries()</h3></a>
+<h2><a class="header" href="#objectkeys-objectvalues-objectentries-그리고-forin" id="objectkeys-objectvalues-objectentries-그리고-forin">Object.keys(), Object.values(), Object.entries() 그리고 for...in</a></h2>
+<h3><a class="header" href="#objectkeys-objectvalues-objectentries" id="objectkeys-objectvalues-objectentries">Object.keys(), Object.values(), Object.entries()</a></h3>
 <pre><code class="language-js">const developer = {
   name : 'BKJang',
   age : 26,
@@ -3666,7 +3668,7 @@ console.log(Object.entries(developer));
 2: [&quot;lang&quot;, &quot;Korean&quot;]
 */
 </code></pre>
-<a class="header" href="#forin" id="forin"><h3>for...in</h3></a>
+<h3><a class="header" href="#forin" id="forin">for...in</a></h3>
 <pre><code class="language-js">const developer = {
   name : 'BKJang',
   age : 26,
@@ -3706,6 +3708,14 @@ lang: 'Korean'
 
         
 
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
         
 
         
