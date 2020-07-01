@@ -1,23 +1,14 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="sidebar-visible no-js">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>배열 내장함수 - Do you know vanilla?</title>
-        
-        
-
-
-        <!-- Custom HTML head -->
-        
-
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="icon" href="../favicon.svg">
         <link rel="shortcut icon" href="../favicon.png">
         <link rel="stylesheet" href="../css/variables.css">
         <link rel="stylesheet" href="../css/general.css">
@@ -26,9 +17,8 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
-        
-        <link rel="stylesheet" href="../fonts/fonts.css">
-        
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
         <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="../highlight.css">
@@ -40,11 +30,11 @@
 
         
     </head>
-    <body>
+    <body class="light">
         <!-- Provide site root to javascript -->
         <script type="text/javascript">
             var path_to_root = "../";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+            var default_theme = "light";
         </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -66,13 +56,10 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
-            html.classList.remove('no-js')
-            html.classList.remove('light')
-            html.classList.add(theme);
-            html.classList.add('js');
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
@@ -88,10 +75,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded "><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li class="chapter-item expanded "><a href="../basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li class="chapter-item expanded "><a href="../basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li class="chapter-item expanded "><a href="../basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li class="chapter-item expanded "><a href="../basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li class="chapter-item expanded "><a href="../basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li class="chapter-item expanded "><a href="../basic/07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li class="chapter-item expanded "><a href="../basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li class="chapter-item expanded "><a href="../basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li class="chapter-item expanded "><a href="../basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li class="chapter-item expanded "><a href="../basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li class="chapter-item expanded "><a href="../basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li class="chapter-item expanded "><a href="../basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li class="chapter-item expanded "><a href="../basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li class="chapter-item expanded "><a href="../basic/15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li class="chapter-item expanded "><a href="../basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li class="chapter-item expanded "><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li class="chapter-item expanded "><a href="../advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li><li class="chapter-item expanded "><a href="../advance/03-Namespace.html"><strong aria-hidden="true">2.3.</strong> 네임스페이스 패턴(Namespace Pattern)과 IIFE</a></li><li class="chapter-item expanded "><a href="../advance/04-Module-Pattern.html"><strong aria-hidden="true">2.4.</strong> 모듈 패턴(Module Pattern)</a></li><li class="chapter-item expanded "><a href="../advance/05-Lexical-Scope.html"><strong aria-hidden="true">2.5.</strong> 렉시컬 스코프(Lexical Scope)</a></li></ol></li><li class="chapter-item expanded "><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.</strong> Skill</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.1.</strong> Deep Copy</a></li><li class="chapter-item expanded "><a href="../skill/02-Event-Delegation.html"><strong aria-hidden="true">3.2.</strong> 이벤트 위임(Event Delegation)</a></li><li class="chapter-item expanded "><a href="../skill/03-fragment.html"><strong aria-hidden="true">3.3.</strong> DocumentFragment</a></li><li class="chapter-item expanded "><a href="../skill/04-reflow&repaint.html"><strong aria-hidden="true">3.4.</strong> repaint와 reflow 최적화</a></li><li class="chapter-item expanded "><a href="../skill/05-throttle&debounce.html"><strong aria-hidden="true">3.5.</strong> 쓰로틀링 vs 디바운싱</a></li><li class="chapter-item expanded "><a href="../skill/06-scroll-event-raf.html"><strong aria-hidden="true">3.6.</strong> 스크롤 이벤트 최적화 (rAF)</a></li><li class="chapter-item expanded "><a href="../skill/07-Array-String-Object.html"><strong aria-hidden="true">3.7.</strong> 값 비교하기 (Array, String, Object ...)</a></li><li class="chapter-item expanded "><a href="../skill/08-Array-Function.html" class="active"><strong aria-hidden="true">3.8.</strong> 배열 내장함수</a></li><li class="chapter-item expanded "><a href="../skill/09-Object-Function.html"><strong aria-hidden="true">3.9.</strong> Object.[Function]</a></li></ol></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <ol class="chapter"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.</strong> Basic</a></li><li><ol class="section"><li><a href="../basic/01-PrimitivevsObject.html"><strong aria-hidden="true">1.1.</strong> Primitive(값) vs Object(참조)</a></li><li><a href="../basic/02-conversion.html"><strong aria-hidden="true">1.2.</strong> 명시적 변환 vs 암묵적 변환</a></li><li><a href="../basic/03-Scope.html"><strong aria-hidden="true">1.3.</strong> Functional Scope vs Block Scope</a></li><li><a href="../basic/04-this-binding.html"><strong aria-hidden="true">1.4.</strong> this binding</a></li><li><a href="../basic/05-prototype.html"><strong aria-hidden="true">1.5.</strong> prototype</a></li><li><a href="../basic/06-execution-context.html"><strong aria-hidden="true">1.6.</strong> 실행 컨텍스트(Execution Context)</a></li><li><a href="../basic/07-Closure.html"><strong aria-hidden="true">1.7.</strong> 클로저(Closure)</a></li><li><a href="../basic/08-Template-Literal.html"><strong aria-hidden="true">1.8.</strong> 템플릿 리터럴(Template Literal)</a></li><li><a href="../basic/09-Arrow-Function.html"><strong aria-hidden="true">1.9.</strong> 화살표 함수(Arrow Function)</a></li><li><a href="../basic/10-Spread.html"><strong aria-hidden="true">1.10.</strong> Spread연산자 &amp; rest파라미터</a></li><li><a href="../basic/11-Destructuring.html"><strong aria-hidden="true">1.11.</strong> Destructuring(비구조화 할당)</a></li><li><a href="../basic/12-Class.html"><strong aria-hidden="true">1.12.</strong> Class(클래스)</a></li><li><a href="../basic/13-Module.html"><strong aria-hidden="true">1.13.</strong> Module(모듈)</a></li><li><a href="../basic/14-Promise&Async-Await.html"><strong aria-hidden="true">1.14.</strong> Promise와 async-await</a></li><li><a href="../basic/15-Iteration-Protocol.html"><strong aria-hidden="true">1.15.</strong> Iteration Protocol</a></li><li><a href="../basic/16-Generator.html"><strong aria-hidden="true">1.16.</strong> Generator</a></li></ol></li><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.</strong> Advance</a></li><li><ol class="section"><li><a href="../advance/01-EventLoop.html"><strong aria-hidden="true">2.1.</strong> Event Loop</a></li><li><a href="../advance/02-repaint&reflow.html"><strong aria-hidden="true">2.2.</strong> repaint와 reflow</a></li><li><a href="../advance/03-Namespace.html"><strong aria-hidden="true">2.3.</strong> 네임스페이스 패턴(Namespace Pattern)과 IIFE</a></li><li><a href="../advance/04-Module-Pattern.html"><strong aria-hidden="true">2.4.</strong> 모듈 패턴(Module Pattern)</a></li><li><a href="../advance/05-Lexical-Scope.html"><strong aria-hidden="true">2.5.</strong> 렉시컬 스코프(Lexical Scope)</a></li></ol></li><li><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.</strong> Skill</a></li><li><ol class="section"><li><a href="../skill/01-Deep-Copy.html"><strong aria-hidden="true">3.1.</strong> Deep Copy</a></li><li><a href="../skill/02-Event-Delegation.html"><strong aria-hidden="true">3.2.</strong> 이벤트 위임(Event Delegation)</a></li><li><a href="../skill/03-fragment.html"><strong aria-hidden="true">3.3.</strong> DocumentFragment</a></li><li><a href="../skill/04-reflow&repaint.html"><strong aria-hidden="true">3.4.</strong> repaint와 reflow 최적화</a></li><li><a href="../skill/05-throttle&debounce.html"><strong aria-hidden="true">3.5.</strong> 쓰로틀링 vs 디바운싱</a></li><li><a href="../skill/06-scroll-event-raf.html"><strong aria-hidden="true">3.6.</strong> 스크롤 이벤트 최적화 (rAF)</a></li><li><a href="../skill/07-Array-String-Object.html"><strong aria-hidden="true">3.7.</strong> 값 비교하기 (Array, String, Object ...)</a></li><li><a href="../skill/08-Array-Function.html" class="active"><strong aria-hidden="true">3.8.</strong> 배열 내장함수</a></li><li><a href="../skill/09-Object-Function.html"><strong aria-hidden="true">3.9.</strong> Object.[Function]</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -134,36 +118,37 @@
   }
 </style>
 
-                <div id="menu-bar-hover-placeholder"></div>
-                <div id="menu-bar" class="menu-bar sticky bordered">
-                    <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
-                            <i class="fa fa-paint-brush"></i>
-                        </button>
-                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
-                        </ul>
-                        
-                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
-                            <i class="fa fa-search"></i>
-                        </button>
-                        
-                    </div>
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
 
-                    <h1 class="menu-title">Do you know vanilla?</h1>
+                        <h1 class="menu-title">Do you know vanilla?</h1> 
 
-                    <div class="right-buttons">
-                        <a href="../print.html" title="Print this book" aria-label="Print this book">
-                            <i id="print-button" class="fa fa-print"></i>
-                        </a>
-                        
+                        <div class="right-buttons">
+                            <a href="../print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
                     </div>
                 </div>
 
@@ -191,9 +176,9 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h2><a class="header" href="#배열-내장함수" id="배열-내장함수">배열 내장함수</a></h2>
+                        <a class="header" href="#배열-내장함수" id="배열-내장함수"><h2>배열 내장함수</h2></a>
 <p>자바스크립트의 배열에서는 기본적으로 많은 종류의 내장 함수를 제공하고 있고 이를 이용하면 보다 간단한 코드로 다양한 기능을 구현할 수 있다.</p>
-<h3><a class="header" href="#foreach" id="foreach">forEach</a></h3>
+<a class="header" href="#foreach" id="foreach"><h3>forEach</h3></a>
 <p><code>forEach</code>는 배열을 반복하여 기존 값을 가져오는데 주로 쓰인다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -201,7 +186,7 @@ arr.forEach(item =&gt; {
   console.log(item); //1 2 3 4 5
 });
 </code></pre>
-<h3><a class="header" href="#map" id="map">map</a></h3>
+<a class="header" href="#map" id="map"><h3>map</h3></a>
 <p><code>map</code>과 <code>forEach</code>의 차이는 배열을 반복하면서 각각의 원소에 대하여 특정 로직을 수행한 뒤, 새로운 배열을 반환하고 싶을 때 주로 사용한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -213,7 +198,7 @@ console.log(arr); //[1, 2, 3, 4, 5]
 console.log(newArr); //[2, 4, 6, 8, 10]
 </code></pre>
 <p>위에서 볼 수 있듯이 <code>map</code>을 통해 반환한 배열은 깊은 복사를 사용하기 때문에 기존 배열을 영향을 주지 않고 새로운 배열을 반환한다.</p>
-<h3><a class="header" href="#filter" id="filter">filter</a></h3>
+<a class="header" href="#filter" id="filter"><h3>filter</h3></a>
 <p><code>filter</code>함수의 기능은 이름 그대로 배열을 반복하며 각각의 원소들 중 특정 조건에 해당하는 원소들만 뽑아내어 새로운 배열을 반환한다.
 <code>filter</code>또한 <code>map</code>과 마찬가지로 기존 배열에 영향을 주지 않는다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
@@ -225,13 +210,13 @@ const newArr = arr.filter(item =&gt; {
 console.log(arr); //[1, 2, 3, 4, 5]
 console.log(newArr); //[3, 4, 5]
 </code></pre>
-<h3><a class="header" href="#indexof" id="indexof">indexOf</a></h3>
+<a class="header" href="#indexof" id="indexof"><h3>indexOf</h3></a>
 <p><code>indexOf</code>함수는 배열에서 찾고자 하는 원소가 있다면 그 원소의 <code>index</code>값을 반환한다.</p>
 <pre><code class="language-js">const arr = ['a', 'b', 'c', 'd'];
 
 console.log(arr.indexOf('c')); //2
 </code></pre>
-<h3><a class="header" href="#findindex" id="findindex">findIndex</a></h3>
+<a class="header" href="#findindex" id="findindex"><h3>findIndex</h3></a>
 <p><code>findIndex</code>함수도 <code>indexOf</code>함수와 마찬가지로 찾고자 하는 원소의 <code>index</code>값을 반환한다. 하지만 원소가 객체로 되어있거나 배열로 되어있을 때 <code>indexOf</code>함수로는 <code>index</code>값을 찾을 수 없지만 <code>findIndex</code> 함수는 조건 처리를 통하여 <code>index</code>값을 찾을 수 있다.</p>
 <pre><code class="language-js">const arr = [
   {
@@ -248,7 +233,7 @@ console.log(arr.indexOf('c')); //2
 
 console.log(arr.findIndex(item =&gt; item.id === 2)); //1
 </code></pre>
-<h3><a class="header" href="#find" id="find">find</a></h3>
+<a class="header" href="#find" id="find"><h3>find</h3></a>
 <p><code>find</code>함수는 <code>findIndex</code>함수와 사용법은 동일하지만 반환하는 값이 <code>index</code>값이 아닌 찾아낸 값 자체를 반환한다.</p>
 <pre><code class="language-js">const arr = [
   {
@@ -266,7 +251,7 @@ console.log(arr.findIndex(item =&gt; item.id === 2)); //1
 console.log(arr.find(item =&gt; item.id === 2)); 
 // {id: 2, name: &quot;JHKim&quot;, age: 25}
 </code></pre>
-<h3><a class="header" href="#splice" id="splice">splice</a></h3>
+<a class="header" href="#splice" id="splice"><h3>splice</h3></a>
 <p><code>splice</code>함수의 첫번째 파라미터는 <strong>지우기 시작할 원소의 <code>index</code></strong>, 두번째 파라미터는 <strong>지울 원소의 갯수</strong>를 넘긴다.</p>
 <pre><code class="language-js">const arr = ['a', 'b', 'c', 'd', 'e'];
 
@@ -275,7 +260,7 @@ const arr2 = arr.splice(2, 3);
 console.log(arr); //[&quot;a&quot;, &quot;b&quot;]
 console.log(arr2); //[&quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
 </code></pre>
-<h3><a class="header" href="#slice" id="slice">slice</a></h3>
+<a class="header" href="#slice" id="slice"><h3>slice</h3></a>
 <p><code>slice</code>함수와 <code>splice</code>함수의 가장 큰 차이점은 <code>slice</code>함수는 기존 배열에 영향을 주지 않고 새로운 배열을 반환한다는 것이다.<br/>
 또 다른 차이점은 <code>slice</code>함수는 두번째 파라미터로 보낸 원소의 <code>index</code>값 전까지 원소를 제거한다.</p>
 <pre><code class="language-js">const arr = ['a', 'b', 'c', 'd', 'e'];
@@ -285,7 +270,7 @@ const arr2 = arr.slice(1, 3);
 console.log(arr); //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
 console.log(arr2); //[&quot;b&quot;, &quot;c&quot;]
 </code></pre>
-<h3><a class="header" href="#shift" id="shift">shift</a></h3>
+<a class="header" href="#shift" id="shift"><h3>shift</h3></a>
 <p><code>shift</code>함수는 기존 배열의 원소를 앞에서부터 하나씩 제거한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -295,7 +280,7 @@ console.log(arr); //[2, 3, 4, 5]
 arr.shift();
 console.log(arr); //[3, 4, 5]
 </code></pre>
-<h3><a class="header" href="#unshift" id="unshift">unshift</a></h3>
+<a class="header" href="#unshift" id="unshift"><h3>unshift</h3></a>
 <p><code>unshift</code>함수는 기존 배열에 새로운 원소를 앞에 추가한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -305,7 +290,7 @@ console.log(arr); //[0, 1, 2, 3, 4, 5]
 arr.unshift(-1);
 console.log(arr); //[-1, 0, 1, 2, 3, 4, 5]
 </code></pre>
-<h3><a class="header" href="#push" id="push">push</a></h3>
+<a class="header" href="#push" id="push"><h3>push</h3></a>
 <p><code>push</code>함수는 기존 배열에 새로운 원소를 뒤에 추가한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -315,7 +300,7 @@ console.log(arr); //[1, 2, 3, 4, 5, 6]
 arr.push(7);
 console.log(arr); //[1, 2, 3, 4, 5, 6, 7]
 </code></pre>
-<h3><a class="header" href="#pop" id="pop">pop</a></h3>
+<a class="header" href="#pop" id="pop"><h3>pop</h3></a>
 <p><code>pop</code>함수는 기존 배열의 원소를 뒤에서부터 하나씩 제거한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -325,7 +310,7 @@ console.log(arr); //[1, 2, 3, 4]
 arr.pop();
 console.log(arr); //[1, 2, 3]
 </code></pre>
-<h3><a class="header" href="#concat" id="concat">concat</a></h3>
+<a class="header" href="#concat" id="concat"><h3>concat</h3></a>
 <p><code>concat</code>은 여러 개의 배열을 하나로 합쳐주는 함수다. 기존 배열들에는 영향을 끼치지 않고 새로운 배열을 반환한다. <code>ES6</code>에서는 <code>concat</code>대신 <code>Spread Operator</code>를 많이 사용한다.</p>
 <pre><code class="language-js">//concat
 const arr1 = ['a', 'b'];
@@ -347,14 +332,14 @@ console.log(arr1); //[&quot;a&quot;, &quot;b&quot;]
 console.log(arr2); //[&quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
 console.log(newArr); //[&quot;a&quot;, &quot;b&quot;, &quot;c&quot;, &quot;d&quot;, &quot;e&quot;]
 </code></pre>
-<h3><a class="header" href="#join" id="join">join</a></h3>
+<a class="header" href="#join" id="join"><h3>join</h3></a>
 <p><code>join</code>함수는 배열의 원소들을 합쳐 문자열 형태로 반환한다.</p>
 <pre><code class="language-js">const arr = ['a', 'b', 'c', 'd', 'e'];
 
 console.log(arr.join(', ')); //a, b, c, d, e
 console.log(arr.join('')); //abcde
 </code></pre>
-<h3><a class="header" href="#every" id="every">every</a></h3>
+<a class="header" href="#every" id="every"><h3>every</h3></a>
 <p><code>every</code>함수는 특정 조건에 대하여 배열의 모든 원소가 통과해야만 <code>true</code>를 반환하며 빈 배열에 대해서는 무조건 <code>true</code>를 반환한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -363,7 +348,7 @@ const result2 = arr.every(item =&gt; item &lt; 3);
 
 console.log(result1, result2); //true false
 </code></pre>
-<h3><a class="header" href="#some" id="some">some</a></h3>
+<a class="header" href="#some" id="some"><h3>some</h3></a>
 <p><code>some</code>함수는 특정 조건에 대하여 배열의 어떤 한 요소라도 통과하면 <code>true</code>를 반환하며 빈 배열에 대해서는 무조건 <code>false</code>를 반환한다.</p>
 <pre><code class="language-js">const arr = [1, 2, 3, 4, 5];
 
@@ -372,7 +357,7 @@ const result2 = arr.some(item =&gt; item &lt; 3);
 
 console.log(result1, result2); //true true
 </code></pre>
-<h3><a class="header" href="#sort" id="sort">sort</a></h3>
+<a class="header" href="#sort" id="sort"><h3>sort</h3></a>
 <pre><code class="language-js">const fruit = ['orange', 'apple', 'banana'];
 
 fruit.sort();
@@ -434,7 +419,7 @@ imD.sort((a, b) =&gt; { // 내림차순
 4: {name: &quot;JSKang&quot;, age: 23} 
 */
 </code></pre>
-<h3><a class="header" href="#reduce" id="reduce">reduce</a></h3>
+<a class="header" href="#reduce" id="reduce"><h3>reduce</h3></a>
 <p><code>reduce</code>함수는 누적 값과 현재 값을 이용하여 여러 가지 기능을 구현할 수 있는 매우 유용한 함수다. 사실, <code>reduce</code>만 잘 사용할 줄 알아도 <code>filter</code>함수의 기능까지도 구현할 수 있다.</p>
 <pre><code class="language-javascript">var arr = [1, 2, 3, 4, 5];
 
@@ -512,7 +497,7 @@ const flattenCastArray = input.reduce(flatMapReducer, []);
 
 console.log(flattenCastArray);
 </code></pre>
-<h3><a class="header" href="#reduceright" id="reduceright">reduceRight</a></h3>
+<a class="header" href="#reduceright" id="reduceright"><h3>reduceRight</h3></a>
 <p><code>reduceRight</code>함수는 기존의 <code>reduce</code>와 원리는 동일하지만 <code>current</code>에 마지막 <code>index</code>원소부터 첫번째 원소 순서로 들어간다. 아래는 배열을 <code>nested object</code>로 만드는 예시다.</p>
 <pre><code class="language-js">const makeNestedObjWithArray = (arr) =&gt; {
   return arr.reduceRight(
@@ -536,7 +521,7 @@ a : { b: { c: {} } }
 */
 </code></pre>
 <hr />
-<h4><a class="header" href="#-reference" id="-reference">🙏 Reference</a></h4>
+<a class="header" href="#-reference" id="-reference"><h4>🙏 Reference</h4></a>
 <ul>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/some">MDN Docs - Array.some()</a></li>
 <li><a href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/every">MDN Docs - Array.every()</a></li>
@@ -569,13 +554,13 @@ a : { b: { c: {} } }
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a rel="prev" href="../skill/07-Array-String-Object.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="../skill/07-Array-String-Object.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a rel="next" href="../skill/09-Object-Function.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="../skill/09-Object-Function.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -585,14 +570,6 @@ a : { b: { c: {} } }
 
         
 
-        
-
-        
-
-        
-        <script type="text/javascript">
-            window.playground_copyable = true;
-        </script>
         
 
         
