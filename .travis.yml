@@ -1,3 +1,4 @@
+
 language: rust
 before_script:
 - cargo install mdbook --version 0.4.0
